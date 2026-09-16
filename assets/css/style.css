@@ -1,5 +1,8 @@
-/* Scharf Digital - das einzige Stylesheet. Kein Build, kein Framework.
-   Animiert werden nur transform und opacity. */
+/* Scharf Digital - das einzige Stylesheet, kein Build. Animiert werden nur transform und opacity. */
+
+/* Schriften vom eigenen Server: keine Verbindung zu Google, keine IP an Dritte. Variable Schriften - je eine Datei fuer alle Schnitte. */
+@font-face { font-family: 'Space Grotesk'; font-weight: 300 700; font-display: swap; src: url(/assets/fonts/space-grotesk.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 400 600; font-display: swap; src: url(/assets/fonts/ibm-plex-sans.woff2) format('woff2'); }
 
 :root {
   
@@ -126,7 +129,7 @@ strong { font-weight: 600; color: var(--text); }
   padding: var(--sec-y) var(--pad-x) calc(var(--sec-y) + 50px);
   overflow: hidden;
 }
-/* Keine geraden Kanten zwischen den Abschnitten: der Wechsel entsteht aus Farbverlauf (.fade-down) und krummer Kante (.wave), nicht aus einer Linie. */
+/* Keine geraden Kanten zwischen den Abschnitten: Farbverlauf (.fade-down) plus krumme Kante (.wave). */
 .sec--alt { background: var(--bg-alt); }
 .sec--tight { --sec-y: 90px; }
 .sec--flush-top { padding-top: 20px; }
@@ -193,7 +196,7 @@ strong { font-weight: 600; color: var(--text); }
 .nebula--dim  { background: rgba(246,167,43,.09); }
 .nebula--dim ~ .wrap .lead-sm { color: var(--text); }
 
-/* Zwei Lagen: der Verlauf nimmt dem Wechsel die Härte, die Welle die Gerade. Beide tragen die Farbe der FOLGENDEN Sektion und liegen in der oberen. */
+/* Beide Lagen tragen die Farbe der FOLGENDEN Sektion und liegen in der oberen. */
 .fade-down {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -285,7 +288,7 @@ strong { font-weight: 600; color: var(--text); }
 
 .nebula { animation: soft-in 1200ms var(--ease-smooth) both; }
 
-/* 5.5 Staffelung: 50 ms Abstand. animation-delay greift beim Rueckfall ohne view()-Timeline; fuer die scrollgesteuerten Reveals verschiebt zusaetzlich die animation-range, sonst waere die Staffelung unsichtbar. */
+/* 5.5 Staffelung: 50 ms Abstand. animation-delay greift nur beim Rueckfall ohne view()-Timeline; scrollgesteuert verschiebt zusaetzlich die animation-range. */
 .stagger > *:nth-child(2) { animation-delay:  50ms; animation-range: entry 4% entry 64%; }
 .stagger > *:nth-child(3) { animation-delay: 100ms; animation-range: entry 8% entry 68%; }
 .stagger > *:nth-child(4) { animation-delay: 150ms; animation-range: entry 12% entry 72%; }
@@ -318,9 +321,7 @@ strong { font-weight: 600; color: var(--text); }
   min-height: 44px; color: #FFF;
 }
 .logo-mark { grid-row: 1 / 3; }
-/* Beim Laden zieht die Blende einmal scharf. Umgesetzt ueber transform und
-   opacity - ein animierter filter: blur() waere nach Abschnitt 1 verboten
-   und auf schwachen Geraeten teuer. */
+/* Beim Laden zieht die Blende einmal scharf - ueber transform und opacity, ein animierter filter: blur() waere nach Abschnitt 1 verboten. */
 .logo-mark { animation: focus-in 600ms var(--ease-smooth) both; }
 @keyframes focus-in {
   from { opacity: 0; transform: scale(1.4); }
@@ -769,7 +770,7 @@ strong { font-weight: 600; color: var(--text); }
   .prose h2 { font-size: 23px; }
 }
 
-/* 5.7 reduce heisst REDUZIEREN, nicht einfrieren: die Einstellung richtet sich gegen grosse raeumliche Bewegung, nicht gegen sanftes Einblenden. Eine Seite, die dabei erstarrt, erfuellt die Anforderung schlechter. */
+/* 5.7 reduce heisst REDUZIEREN, nicht einfrieren: gegen grosse raeumliche Bewegung, nicht gegen sanftes Einblenden. Eine Seite, die dabei erstarrt, erfuellt die Anforderung schlechter. */
 @media (prefers-reduced-motion: reduce) {
   
   .logo-mark { animation: soft-in 300ms var(--ease-snappy) both; }

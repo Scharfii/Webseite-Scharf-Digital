@@ -50,7 +50,6 @@ function fehlerseite(array $meldungen): void
 <title>Anfrage konnte nicht gesendet werden | Scharf Digital</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0A0F1E">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>

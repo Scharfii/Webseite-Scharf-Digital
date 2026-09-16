@@ -1,0 +1,68 @@
+# Scharf Digital — Serverkonfiguration für Apache (All-Inkl, IONOS, Netcup).
+# Liegt im Wurzelverzeichnis, also dort, wo auch index.html liegt.
+# Wenn der Hoster kein Apache ist (nginx), greift diese Datei nicht — dann
+# HTTPS-Weiterleitung und Caching im Kundenmenü des Hosters einstellen.
+
+Options -Indexes
+DirectoryIndex index.html index.php
+AddDefaultCharset UTF-8
+
+# ---------------------------------------------------------------- HTTPS + eine Adresse
+# Ziel: jede Seite ist unter genau einer Adresse erreichbar —
+# https://scharf-digital.de/... ohne www. Alles andere wird dorthin
+# umgeleitet. Das ist wichtig für Google: sonst zählt jede Variante
+# als eigene Seite und die Bewertung verteilt sich.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http -> https
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://scharf-digital.de/$1 [R=301,L]
+
+  # www -> ohne www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # /seo/index.html -> /seo/
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------------- Komprimierung
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/manifest+json
+</IfModule>
+
+# ---------------------------------------------------------------- Zwischenspeicher
+# Schriften und Bilder ändern sich nie, HTML soll immer frisch sein.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                          "access plus 1 month"
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType text/css                  "access plus 7 days"
+  ExpiresByType application/javascript    "access plus 7 days"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType image/webp                "access plus 1 month"
+</IfModule>
+
+# ---------------------------------------------------------------- Kopfzeilen
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+  # HSTS erst einschalten, wenn HTTPS sicher läuft — sonst sperrt man sich aus.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  <FilesMatch "\.(woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------- Schutz
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
