@@ -207,6 +207,39 @@ strong { font-weight: 600; color: var(--text); }
 .nebula--warm { background: rgba(246,167,43,.16); }
 .nebula--cool { background: rgba(76,110,190,.20); }
 
+/* ---------- Sonnenstrahlen ------------------------------------------------ */
+/* Ursprung des Farbverlaufs liegt ausserhalb des Bildes, dadurch laufen die
+   Strahlen auseinander wie echtes Licht. Zwei Ebenen mit 11 und 17 Sekunden:
+   die Perioden haben kein wahrnehmbares gemeinsames Vielfaches, das Flimmern
+   wiederholt sich nie sichtbar. Diese Werte nicht auf runde Zahlen aendern. */
+.rays {
+  position: absolute;
+  top: -35%; left: -15%;
+  width: 130%; height: 170%;
+  pointer-events: none;
+  background: repeating-conic-gradient(
+    from 196deg at 14% -6%,
+    rgba(246,167,43,.085) 0deg 2.5deg,
+    transparent 2.5deg 8deg
+  );
+  filter: blur(14px);
+  transform: translateZ(0);
+  animation: shimmer 11s ease-in-out infinite alternate;
+}
+
+.rays--soft {
+  background: repeating-conic-gradient(
+    from 199deg at 14% -6%,
+    rgba(255,214,150,.055) 0deg 1.5deg,
+    transparent 1.5deg 11deg
+  );
+  filter: blur(22px);
+  animation: shimmer-soft 17s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer      { from { opacity: .55; } to { opacity: .95; } }
+@keyframes shimmer-soft { from { opacity: .85; } to { opacity: .45; } }
+
 /* ---------- Scroll-Animation --------------------------------------------- */
 
 .reveal {
@@ -496,11 +529,14 @@ strong { font-weight: 600; color: var(--text); }
 
 /* ---------- Breadcrumb ---------------------------------------------------- */
 
-.breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); flex-wrap: wrap; }
-.breadcrumb a { color: var(--muted); }
+/* --text-3 statt --muted: die Brotkrumen sitzen oben links, genau im Ursprung
+   der Sonnenstrahlen. Ueber der hellsten Stelle erreicht --muted dort nur
+   3,7:1, --text-3 kommt auf 5,3:1. */
+.breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-3); flex-wrap: wrap; }
+.breadcrumb a { color: var(--text-3); }
 .breadcrumb a:hover { color: var(--accent-hover); }
 .breadcrumb li { display: flex; align-items: center; gap: 10px; }
-.breadcrumb li + li::before { content: "/"; color: var(--muted-3); }
+.breadcrumb li + li::before { content: "/"; color: var(--muted); }
 
 /* ---------- Footer -------------------------------------------------------- */
 
@@ -557,6 +593,21 @@ strong { font-weight: 600; color: var(--text); }
   .burger { display: flex; }
   .header-actions .btn { display: none; }
   .header-actions { gap: 14px; }
+
+  /* Zwei ueberlagerte geblurrte Flaechen kosten auf schwachen Geraeten
+     Bildrate. Auf Mobil deshalb nur eine Ebene. */
+  .rays--soft { display: none; }
+  .rays {
+    top: -30%; left: -20%;
+    width: 150%; height: 160%;
+    background: repeating-conic-gradient(
+      from 196deg at 16% -6%,
+      rgba(246,167,43,.09) 0deg 2.5deg,
+      transparent 2.5deg 9deg
+    );
+    filter: blur(12px);
+    animation-duration: 13s;
+  }
 
   .nav-mobile {
     display: block;
@@ -644,6 +695,8 @@ strong { font-weight: 600; color: var(--text); }
 @media (prefers-reduced-motion: reduce) {
   .stars { animation: none; }
   .reveal { animation: none; opacity: 1; transform: none; }
+  /* Die Strahlen bleiben sichtbar: der Effekt ist Gestaltung, nicht Information. */
+  .rays { animation: none; opacity: .5; }
   *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
