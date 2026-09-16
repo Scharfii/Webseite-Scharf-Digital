@@ -1,4 +1,4 @@
-# scharf-digital.com
+# scharfdigital.de
 
 Statische Webseite für **Scharf Digital** — Anton Scharf, Webseiten und Sichtbarkeit
 für Solarteure und SHK-Betriebe.
@@ -17,7 +17,7 @@ Den kompletten Inhalt dieses Ordners in das Web-Verzeichnis des Hosters kopieren
 * PHP für `kontakt.php` (jede Version ab 8.0). Kann der Hoster kein PHP, muss das
   Formular auf einen DSGVO-konformen Dienst mit Serverstandort EU umgestellt und
   in der Datenschutzerklärung benannt werden.
-* In `kontakt.php` steht `ABSENDER = formular@scharf-digital.com`. Diese Adresse muss
+* In `kontakt.php` steht `ABSENDER = formular@scharfdigital.de`. Diese Adresse muss
   beim Hoster existieren, sonst stufen viele Mailserver die Anfragen als Spam ein.
 * HTTPS aktivieren und `http` dauerhaft auf `https` umleiten.
 

@@ -1,4 +1,4 @@
-# scharf-digital.com
+# scharfdigital.de
 # Suchmaschinen und KI-Crawler sind ausdruecklich willkommen.
 
 User-agent: *
@@ -31,4 +31,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://scharf-digital.com/sitemap.xml
+Sitemap: https://scharfdigital.de/sitemap.xml

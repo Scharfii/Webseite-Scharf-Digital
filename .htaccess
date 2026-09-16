@@ -9,7 +9,7 @@ AddDefaultCharset UTF-8
 
 # ---------------------------------------------------------------- HTTPS + eine Adresse
 # Ziel: jede Seite ist unter genau einer Adresse erreichbar —
-# https://scharf-digital.com/... ohne www. Alles andere wird dorthin
+# https://scharfdigital.de/... ohne www. Alles andere wird dorthin
 # umgeleitet. Das ist wichtig für Google: sonst zählt jede Variante
 # als eigene Seite und die Bewertung verteilt sich.
 <IfModule mod_rewrite.c>
@@ -18,7 +18,7 @@ AddDefaultCharset UTF-8
   # http -> https
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteRule ^(.*)$ https://scharf-digital.com/$1 [R=301,L]
+  RewriteRule ^(.*)$ https://scharfdigital.de/$1 [R=301,L]
 
   # www -> ohne www
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
