@@ -40,7 +40,7 @@ function fehlerseite(array $meldungen): void
     header('Content-Type: text/html; charset=utf-8');
     $liste = '';
     foreach ($meldungen as $m) {
-        $liste .= '<li>' . htmlspecialchars($m, ENT_QUOTES, 'UTF-8') . '</li>';
+        $liste .= '<li class="body-lg">' . htmlspecialchars($m, ENT_QUOTES, 'UTF-8') . '</li>';
     }
     echo '<!doctype html>
 <html lang="de">
@@ -49,7 +49,7 @@ function fehlerseite(array $meldungen): void
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anfrage konnte nicht gesendet werden | Scharf Digital</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#05070F">
+<meta name="theme-color" content="#0A0F1E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -61,7 +61,7 @@ function fehlerseite(array $meldungen): void
 <p class="eyebrow">Da fehlt noch etwas</p>
 <h1 class="h1-sub">Die Anfrage konnte nicht gesendet werden.</h1>
 <p class="lead-sm">Bitte gehen Sie kurz zurück und ergänzen Sie die folgenden Punkte. Ihre übrigen Angaben sind nicht verloren, wenn Sie den Zurück-Knopf Ihres Browsers benutzen.</p>
-<ul class="prose"><li class="body-lg">' . $liste . '</li></ul>
+<ul class="prose">' . $liste . '</ul>
 <div class="row">
 <a class="btn btn-primary" href="' . ZIEL_FORMULAR . '">Zurück zum Formular</a>
 <a class="btn btn-ghost" href="tel:+4915224610099">01522 4610099</a>

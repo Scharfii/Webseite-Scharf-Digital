@@ -58,7 +58,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h1, h2, h3, h4, p, ul, ol, figure, dl { margin: 0; }
+h1, h2, h3, h4, p, ul, ol, figure, dl { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 p, li, dd, dt, address { text-wrap: pretty; overflow-wrap: break-word; }
 
@@ -69,10 +69,7 @@ img, svg { display: block; max-width: 100%; }
 svg { flex-shrink: 0; }
 
 /* Icons kommen aus dem Sprite; die Strichfarbe erbt currentColor. */
-.ic {
-  fill: none; stroke: currentColor; color: var(--accent);
-  stroke-linecap: round; stroke-linejoin: round;
-}
+.ic { fill: none; stroke: currentColor; color: var(--accent); stroke-linecap: round; stroke-linejoin: round; }
 .ic--i    { color: inherit; }
 .ic--m    { color: var(--muted); }
 .ic--m2   { color: var(--muted-2); }
@@ -194,6 +191,7 @@ strong { font-weight: 600; color: var(--text); }
 .nebula--cool { background: rgba(76,110,190,.20); }
 /* Im CTA liegen Nebel und beide Strahlenebenen uebereinander - sonst < 4,5:1 */
 .nebula--dim  { background: rgba(246,167,43,.09); }
+.nebula--dim ~ .wrap .lead-sm { color: var(--text); }
 
 /* Zwei Lagen: der Verlauf nimmt dem Wechsel die Härte, die Welle die Gerade. Beide tragen die Farbe der FOLGENDEN Sektion und liegen in der oberen. */
 .fade-down {
@@ -221,7 +219,7 @@ strong { font-weight: 600; color: var(--text); }
 .w-alt    path { fill: #0E1528; }
 .w-footer path { fill: #080C18; }
 
-/* Ursprung des Farbverlaufs liegt ausserhalb des Bildes, dadurch laufen die Strahlen auseinander wie echtes Licht. Zwei Ebenen mit 11 und 17 Sekunden: die Perioden haben kein wahrnehmbares gemeinsames Vielfaches, das Flimmern wiederholt sich nie sichtbar. Diese Werte nicht auf runde Zahlen aendern. */
+/* Der Ursprung des Verlaufs liegt ausserhalb des Bildes, dadurch laufen die Strahlen auseinander wie echtes Licht. Die zwei Ebenen flimmern in 7 und 11 Sekunden: teilerfremd, das Muster wiederholt sich nie sichtbar. Nicht auf runde Zahlen aendern. */
 .rays {
   position: absolute;
   top: -35%; left: -15%;
@@ -229,7 +227,7 @@ strong { font-weight: 600; color: var(--text); }
   pointer-events: none;
   background: repeating-conic-gradient(
     from 196deg at 14% -6%,
-    rgba(246,167,43,.115) 0deg 2.5deg,
+    rgba(246,167,43,.145) 0deg 2.5deg,
     transparent 2.5deg 8deg
   );
   filter: blur(14px);
@@ -241,12 +239,23 @@ strong { font-weight: 600; color: var(--text); }
 .rays--soft {
   background: repeating-conic-gradient(
     from 199deg at 14% -6%,
-    rgba(255,214,150,.075) 0deg 1.5deg,
+    rgba(255,214,150,.098) 0deg 1.5deg,
     transparent 1.5deg 11deg
   );
   filter: blur(22px);
   animation: soft-in 1200ms var(--ease-smooth) both,
              shimmer-soft 11s ease-in-out infinite alternate;
+}
+
+/* Sonnenlicht auf der Ueberschrift: Verlauf aus der Richtung der Strahlen, Lichthof dahinter. Ohne background-clip bleibt die Schrift weiss. */
+.h-title { filter: drop-shadow(0 0 30px rgba(255,178,68,.42)); }
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .h-title {
+    background: linear-gradient(152deg, #FFD28C 0%, #FFF0D8 30%, #FFF 64%, #E4EBF8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 @keyframes shimmer      { from { opacity: .40; } to { opacity: 1; } }
@@ -318,10 +327,7 @@ strong { font-weight: 600; color: var(--text); }
   to   { opacity: 1; transform: scale(1); }
 }
 .logo:hover { color: #FFF; }
-.logo-name {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
-  font-size: 20px; font-weight: 700; letter-spacing: .14em; line-height: 1.1;
-}
+.logo-name { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: .14em; line-height: 1.1; }
 .logo-name span { color: var(--accent); }
 .logo-claim { font-size: 11px; letter-spacing: .08em; color: var(--muted); }
 
@@ -343,10 +349,7 @@ strong { font-weight: 600; color: var(--text); }
 
 .header-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 
-.header-phone {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 15px; font-weight: 500; color: var(--text);
-}
+.header-phone { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: var(--text); }
 .header-phone:hover { color: var(--accent-hover); }
 
 .header-phone-mobile, .burger { display: none; }
@@ -357,10 +360,7 @@ strong { font-weight: 600; color: var(--text); }
   cursor: pointer;
   flex-direction: column; align-items: center; justify-content: center; gap: 5px;
 }
-.burger span {
-  width: 22px; height: 2px; border-radius: 2px; background: var(--text);
-  transition: transform 250ms var(--ease-snappy), opacity 250ms var(--ease-snappy);
-}
+.burger span { width: 22px; height: 2px; border-radius: 2px; background: var(--text); transition: transform 250ms var(--ease-snappy), opacity 250ms var(--ease-snappy); }
 .burger[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
 .burger[aria-expanded="true"] span:last-child  { transform: translateY(-3.5px) rotate(-45deg); }
 
@@ -393,10 +393,7 @@ strong { font-weight: 600; color: var(--text); }
 }
 .btn-primary:active { transform: translateY(-1px); transition-duration: 90ms; }
 
-.btn-ghost {
-  border-color: rgba(255,255,255,.18);
-  color: var(--text); font-weight: 500; padding: 17px 28px;
-}
+.btn-ghost { border-color: rgba(255,255,255,.18); color: var(--text); font-weight: 500; padding: 17px 28px; }
 .btn-ghost:hover, .btn-ghost:active {
   border-color: rgba(246,167,43,.6);
   background: rgba(246,167,43,.10);
@@ -431,10 +428,7 @@ strong { font-weight: 600; color: var(--text); }
   box-shadow: 0 26px 50px -26px rgba(0,0,0,.9),
               0 0 30px -18px rgba(246,167,43,.7);
 }
-.card--highlight {
-  background: linear-gradient(180deg, var(--surface-raised) 0%, var(--surface) 100%);
-  border-color: var(--accent-border);
-}
+.card--highlight { background: linear-gradient(180deg, var(--surface-raised) 0%, var(--surface) 100%); border-color: var(--accent-border); }
 .card--pad { padding: 40px; gap: 26px; }
 .card-foot {
   margin-top: auto;
@@ -458,10 +452,7 @@ strong { font-weight: 600; color: var(--text); }
   padding: 7px 16px;
   font-size: 13px; color: var(--accent); letter-spacing: .03em;
 }
-.badge::before {
-  content: ""; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent);
-}
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .tag {
   font-size: 11px; letter-spacing: .1em; font-weight: 600;
   color: var(--bg); background: var(--accent);
@@ -504,6 +495,7 @@ strong { font-weight: 600; color: var(--text); }
   border-top: 2px solid rgba(255,255,255,.14);
 }
 .step--first { border-top-color: var(--accent); }
+.step .small { color: var(--text-3); }
 .step-num {
   font-family: 'Space Grotesk', system-ui, sans-serif;
   /* --muted statt --muted-2: #6B7793 liegt mit 4,49:1 knapp unter der 4,5:1-Grenze */
@@ -548,10 +540,7 @@ strong { font-weight: 600; color: var(--text); }
   border-radius: 10px;
   transition: background 200ms var(--ease-snappy), padding-left 200ms var(--ease-snappy);
 }
-.faq-item:hover, .faq-item:active {
-  background: rgba(246,167,43,.05);
-  padding-left: 14px;
-}
+.faq-item:hover, .faq-item:active { background: rgba(246,167,43,.05); padding-left: 14px; }
 .faq-item:last-child { border-bottom: 0; }
 
 .form { display: flex; flex-direction: column; gap: 22px; }
@@ -574,10 +563,7 @@ strong { font-weight: 600; color: var(--text); }
 .field:hover { border-color: rgba(255,255,255,.2); }
 
 .consent { display: flex; align-items: flex-start; gap: 12px; }
-.consent input {
-  width: 24px; height: 24px; margin: 2px 0 0;
-  accent-color: var(--accent); flex-shrink: 0;
-}
+.consent input { width: 24px; height: 24px; margin: 2px 0 0; accent-color: var(--accent); flex-shrink: 0; }
 .consent label { font-size: 15px; line-height: 1.55; color: var(--text-2); }
 .consent a { color: var(--text-3); text-decoration: underline; }
 
@@ -588,14 +574,6 @@ strong { font-weight: 600; color: var(--text); }
   width: 1px; height: 1px;
   overflow: hidden; opacity: 0;
   pointer-events: none;
-}
-
-.form-error {
-  padding: 16px;
-  border: 1px solid rgba(246,167,43,.45);
-  background: var(--accent-dim);
-  border-radius: var(--r-md);
-  font-size: 15px; line-height: 1.55; color: var(--text);
 }
 
 .prose { max-width: 780px; display: flex; flex-direction: column; gap: 26px; }
@@ -686,22 +664,19 @@ strong { font-weight: 600; color: var(--text); }
     border-radius: var(--r-md);
     transition: background 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy);
   }
-  .header-phone-mobile:hover, .header-phone-mobile:active {
-    background: rgba(246,167,43,.12);
-    border-color: rgba(246,167,43,.6);
-  }
+  .header-phone-mobile:hover, .header-phone-mobile:active { background: rgba(246,167,43,.12); border-color: rgba(246,167,43,.6); }
   .burger { display: flex; }
   .header-actions .btn { display: none; }
   .header-actions { gap: 14px; }
 
-  /* Zwei ueberlagerte geblurrte Flaechen kosten auf schwachen Geraeten Bildrate. Auf Mobil deshalb nur eine Ebene. */
+  /* Zwei geblurrte Ebenen kosten auf schwachen Geraeten Bildrate - auf Mobil nur eine. */
   .rays--soft { display: none; }
   .rays {
     top: -30%; left: -20%;
     width: 150%; height: 160%;
     background: repeating-conic-gradient(
       from 196deg at 16% -6%,
-      rgba(246,167,43,.12) 0deg 2.5deg,
+      rgba(246,167,43,.15) 0deg 2.5deg,
       transparent 2.5deg 9deg
     );
     filter: blur(12px);
@@ -798,10 +773,7 @@ strong { font-weight: 600; color: var(--text); }
 @media (prefers-reduced-motion: reduce) {
   
   .logo-mark { animation: soft-in 300ms var(--ease-snappy) both; }
-  .reveal, .h-badge, .h-title, .h-text, .h-actions, .h-trust {
-    animation: soft-in 300ms var(--ease-snappy) both;
-    animation-timeline: view();
-  }
+  .reveal, .h-badge, .h-title, .h-text, .h-actions, .h-trust { animation: soft-in 300ms var(--ease-snappy) both; animation-timeline: view(); }
   .h-badge, .h-title, .h-text, .h-actions, .h-trust { animation-timeline: auto; }
   .stagger > * { animation-range: normal; }
 
@@ -810,7 +782,6 @@ strong { font-weight: 600; color: var(--text); }
   .nebula { animation: none; }
   .rays   { animation: none; opacity: .5; }
 
-  
   .btn-primary:hover, .btn-primary:active,
   .btn-ghost:hover, .btn-ghost:active,
   .card:hover, .card:active,

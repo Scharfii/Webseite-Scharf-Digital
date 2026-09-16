@@ -7,8 +7,8 @@
   "display": "browser",
   "lang": "de",
   "dir": "ltr",
-  "background_color": "#05070F",
-  "theme_color": "#05070F",
+  "background_color": "#0A0F1E",
+  "theme_color": "#0A0F1E",
   "icons": [
     {
       "src": "/favicon.svg",
