@@ -13,7 +13,7 @@ Keine Rechts- oder Steuerberatung. Die zwei Stellen, an denen das zählt, sind u
 | Gewerbeanmeldung Erfurt | 20–40 € | — |
 | Fragebogen beim Finanzamt (ELSTER) | 0 € | — |
 | IHK-Mitgliedschaft | 0 € | in deiner Größe meist beitragsfrei, siehe 3.3 |
-| Domain `scharf-digital.de` | — | 5–15 € im Jahr |
+| Domain `scharf-digital.com` | — | 5–15 € im Jahr |
 | Netlify Hosting | — | 0 € (kostenloses Kontingent reicht deutlich) |
 | iCloud+ für die eigene E-Mail-Adresse | — | rund 12 € im Jahr |
 
@@ -31,7 +31,7 @@ ist ein deutscher Anbieter einfacher und billiger.
 vollständiger DNS-Verwaltung, die du gleich brauchst. Finger weg von Anbietern,
 die dir DNS-Einträge nicht selbst bearbeiten lassen.
 
-1. `scharf-digital.de` prüfen. Falls vergeben: `scharfdigital.de` oder
+1. `scharf-digital.com` prüfen. Falls vergeben: `scharfdigital.de` oder
    `scharf-digital.com`. **Sag mir Bescheid, wenn es eine andere wird** — die
    Adresse steht an rund 40 Stellen im Projekt (canonical-Tags, Sitemap,
    robots.txt, strukturierte Daten) und muss überall stimmen.
@@ -71,7 +71,7 @@ Scharfii/Webseite-Scharf-Digital*.
 
 ### 2.3 Domain verbinden
 
-*Site configuration → Domain management → Add a domain* → `scharf-digital.de`.
+*Site configuration → Domain management → Add a domain* → `scharf-digital.com`.
 
 Netlify schlägt dir *Netlify DNS* vor. **Nimm das.** Du bekommst vier
 Nameserver angezeigt; die trägst du bei deinem Domain-Anbieter als Nameserver
@@ -84,7 +84,7 @@ Umstellung dauert je nach Anbieter Minuten bis wenige Stunden.
 
 Passiert von allein. Sobald die Domain verbunden ist, stellt Netlify ein
 Let's-Encrypt-Zertifikat aus und leitet `http://` und `www.` auf
-`https://scharf-digital.de` um. Unter *Domain management → HTTPS* kannst du
+`https://scharf-digital.com` um. Unter *Domain management → HTTPS* kannst du
 nachsehen, ob das Zertifikat da ist. Erst dann Links verschicken.
 
 > Die `.htaccess` im Projekt macht auf Netlify nichts — sie liegt nur dabei,
@@ -115,7 +115,7 @@ Kostenloses Kontingent: 100 Einsendungen im Monat. Für den Anfang reichlich.
 
 ## 3 — E-Mail über iCloud+ (20 Min)
 
-Du willst `anton@scharf-digital.de` statt einer privaten Adresse. Mit iCloud+
+Du willst `anton@scharf-digital.com` statt einer privaten Adresse. Mit iCloud+
 geht das direkt.
 
 1. **iCloud+ buchen**, falls noch nicht vorhanden: iPhone → Einstellungen →
@@ -123,8 +123,8 @@ geht das direkt.
    rund 1 € im Monat) reicht.
 2. **Domain hinzufügen:** `iCloud.com` → Einstellungen → *Benutzerdefinierte
    E-Mail-Domain* → *Domain hinzufügen* → „Nur von dir verwendet" →
-   `scharf-digital.de` eintragen.
-3. **Adresse anlegen:** `anton@scharf-digital.de`.
+   `scharf-digital.com` eintragen.
+3. **Adresse anlegen:** `anton@scharf-digital.com`.
 4. Apple zeigt dir jetzt eine Liste DNS-Einträge (zwei MX, ein TXT für SPF,
    zwei CNAME für DKIM, ein TXT zur Bestätigung). Diese Einträge legst du bei
    **Netlify unter Domain management → DNS records** an — genau so, wie Apple
@@ -243,7 +243,7 @@ IHK-Gründerberatung (kostenlos) oder ein Anwalt für IT-Recht (150–300 €).
 1. **Search Console** (`search.google.com/search-console`): Property vom Typ
    *Domain* anlegen, den TXT-Eintrag bei Netlify unter DNS hinterlegen,
    bestätigen. Dann unter *Sitemaps* eintragen:
-   `https://scharf-digital.de/sitemap.xml`
+   `https://scharf-digital.com/sitemap.xml`
 2. **Google Business Profil** (`business.google.com`): Du verkaufst die
    Einrichtung solcher Profile und hast selbst keins. Kategorie „Webdesigner",
    Einzugsgebiet statt Ladenadresse, wenn du keine Kunden zu Hause empfängst.
@@ -264,6 +264,6 @@ IHK-Gründerberatung (kostenlos) oder ein Anwalt für IT-Recht (150–300 €).
 ## Was ich sofort übernehmen kann
 
 - Den Pull Request auf `main` anlegen
-- Die Domain im ganzen Projekt ändern, falls `scharf-digital.de` vergeben ist
+- Die Domain im ganzen Projekt ändern, falls `scharf-digital.com` vergeben ist
 - Eine Rechnungsvorlage mit korrektem § 19-Hinweis
 - Die Analyse-Vorlage aus Punkt 7

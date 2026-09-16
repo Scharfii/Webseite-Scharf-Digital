@@ -9,8 +9,8 @@
 
 declare(strict_types=1);
 
-const EMPFAENGER   = 'anton@scharf-digital.de';
-const ABSENDER     = 'formular@scharf-digital.de'; // muss zur Domain gehoeren, sonst landet die Mail im Spam
+const EMPFAENGER   = 'anton@scharf-digital.com';
+const ABSENDER     = 'formular@scharf-digital.com'; // muss zur Domain gehoeren, sonst landet die Mail im Spam
 const ZIEL_ERFOLG  = '/danke/';
 const ZIEL_FORMULAR = '/kontakt/';
 
@@ -141,7 +141,7 @@ if ($fehler !== []) {
 
 $betreff = kopfzeile('Sichtbarkeits-Analyse: ' . $betrieb . ' (' . $ort . ')');
 
-$text = "Neue Anfrage über das Formular auf scharf-digital.de\n"
+$text = "Neue Anfrage über das Formular auf scharf-digital.com\n"
       . str_repeat('-', 52) . "\n\n"
       . "Betrieb:   " . $betrieb . "\n"
       . "Ort:       " . $ort . "\n"
@@ -151,12 +151,12 @@ $text = "Neue Anfrage über das Formular auf scharf-digital.de\n"
       . "Eingegangen: " . date('d.m.Y, H:i') . " Uhr\n";
 
 $header = [
-    'From: ' . kopfzeile('Anfrage scharf-digital.de') . ' <' . ABSENDER . '>',
+    'From: ' . kopfzeile('Anfrage scharf-digital.com') . ' <' . ABSENDER . '>',
     'Reply-To: ' . ($absender_mail !== '' ? $absender_mail : ABSENDER),
     'Content-Type: text/plain; charset=UTF-8',
     'Content-Transfer-Encoding: 8bit',
     'MIME-Version: 1.0',
-    'X-Mailer: scharf-digital.de',
+    'X-Mailer: scharf-digital.com',
 ];
 
 $gesendet = @mail(EMPFAENGER, $betreff, $text, implode("\r\n", $header), '-f' . ABSENDER);
