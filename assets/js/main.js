@@ -10,7 +10,13 @@
     toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
     menu.classList.toggle('is-open', open);
     document.body.classList.toggle('nav-open', open);
+    // Das geschlossene Menü darf nicht in der Tab-Reihenfolge liegen -
+    // sonst landet der Fokus während der Schließ-Animation auf einem
+    // Link, den der Nutzer nicht sieht.
+    menu.inert = !open;
   }
+
+  menu.inert = true;
 
   toggle.addEventListener('click', function () {
     setOpen(toggle.getAttribute('aria-expanded') !== 'true');

@@ -1,24 +1,20 @@
-/* ==========================================================================
-   Scharf Digital — assets/css/style.css
-   Ein einziges Stylesheet. Kein Build, kein Framework.
-   Animiert werden ausschliesslich transform und opacity.
-   ========================================================================== */
+/* ========================================================================== Scharf Digital — assets/css/style.css Ein einziges Stylesheet. Kein Build, kein Framework. Animiert werden ausschliesslich transform und opacity. ========================================================================== */
 
 :root {
-  /* Flächen */
+  
   --bg:              #05070F;
   --bg-alt:          #070B16;
   --surface:         #0C1122;
   --surface-raised:  #131B36;
   --footer:          #04060D;
 
-  /* Akzent */
+  
   --accent:          #F6A72B;
   --accent-hover:    #FFC163;
   --accent-dim:      rgba(246,167,43,.12);
   --accent-border:   rgba(246,167,43,.30);
 
-  /* Text */
+  
   --text:            #E8ECF5;
   --text-2:          #B4BFD6;
   --text-3:          #9BA7C2;
@@ -26,24 +22,27 @@
   --muted-2:         #6B7793;
   --muted-3:         #5A6580;
 
-  /* Linien */
+  
   --line:            rgba(255,255,255,.07);
   --line-strong:     rgba(255,255,255,.12);
 
-  /* Radien */
+  
   --r-sm: 6px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px;
 
-  /* Rhythmus */
+  
   --pad-x: 80px;
   --pad-x-mobile: 20px;
 
   --wrap: 1280px;
   --sec-y: 110px;
 
+  /* 5.1 Easing - nur diese drei Kurven, nie linear (ausser Endlosdrift), nie ease. Jede transition und jede animation verweist hierauf. */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);    
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); 
+  --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);      
+
   color-scheme: dark;
 }
-
-/* Grundlagen */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -59,12 +58,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, .display {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
-  text-wrap: balance;
-  overflow-wrap: break-word;
-}
-h1, h2, h3, h4, p, ul, ol, figure, dl { margin: 0; }
+h1, h2, h3, h4, h1, h2, h3, h4, p, ul, ol, figure, dl { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 p, li, dd, dt, address { text-wrap: pretty; overflow-wrap: break-word; }
 
@@ -76,7 +70,6 @@ svg { flex-shrink: 0; }
 
 /* Icons kommen aus dem Sprite; die Strichfarbe erbt currentColor. */
 .ic {
-  color: inherit;
   fill: none; stroke: currentColor;
   stroke-linecap: round; stroke-linejoin: round;
 }
@@ -105,16 +98,6 @@ strong { font-weight: 600; color: var(--text); }
 }
 .skip-link:focus { top: 12px; color: var(--bg); }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-/* Typo-Skala */
-
 .h1-home { font-size: 78px; line-height: 1.04; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
 .h1-sub  { font-size: 58px; line-height: 1.06; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
 .h2      { font-size: 44px; line-height: 1.12; font-weight: 700; letter-spacing: -.02em;  color: #FFF; }
@@ -140,20 +123,16 @@ strong { font-weight: 600; color: var(--text); }
 .measure    { max-width: 720px; }
 .measure-sm { max-width: 640px; }
 
-/* Layout */
-
 .sec {
   position: relative;
   /* unten 50px mehr, damit kein Text unter die Welle rutscht */
   padding: var(--sec-y) var(--pad-x) calc(var(--sec-y) + 50px);
   overflow: hidden;
 }
-/* Keine geraden Kanten zwischen den Abschnitten: der Wechsel entsteht aus
-   Farbverlauf (.fade-down) und krummer Kante (.wave), nicht aus einer Linie. */
+/* Keine geraden Kanten zwischen den Abschnitten: der Wechsel entsteht aus Farbverlauf (.fade-down) und krummer Kante (.wave), nicht aus einer Linie. */
 .sec--alt { background: var(--bg-alt); }
 .sec--tight { --sec-y: 90px; }
 .sec--flush-top { padding-top: 20px; }
-.sec--clip { overflow: hidden; }
 
 .wrap {
   position: relative;
@@ -176,8 +155,6 @@ strong { font-weight: 600; color: var(--text); }
 .split-side { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 64px; }
 .split-form { display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 80px; align-items: start; }
 .split-portrait { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 64px; align-items: center; }
-
-/* Sternenhintergrund */
 
 .stars {
   position: absolute;
@@ -216,9 +193,7 @@ strong { font-weight: 600; color: var(--text); }
 .nebula--warm { background: rgba(246,167,43,.16); }
 .nebula--cool { background: rgba(76,110,190,.20); }
 
-/* Sektionsübergänge */
-/* Zwei Lagen: der Verlauf nimmt dem Wechsel die Härte, die Welle die Gerade.
-   Beide tragen die Farbe der FOLGENDEN Sektion und liegen in der oberen. */
+/* Zwei Lagen: der Verlauf nimmt dem Wechsel die Härte, die Welle die Gerade. Beide tragen die Farbe der FOLGENDEN Sektion und liegen in der oberen. */
 .fade-down {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -244,11 +219,7 @@ strong { font-weight: 600; color: var(--text); }
 .w-alt    path { fill: #070B16; }
 .w-footer path { fill: #04060D; }
 
-/* Sonnenstrahlen */
-/* Ursprung des Farbverlaufs liegt ausserhalb des Bildes, dadurch laufen die
-   Strahlen auseinander wie echtes Licht. Zwei Ebenen mit 11 und 17 Sekunden:
-   die Perioden haben kein wahrnehmbares gemeinsames Vielfaches, das Flimmern
-   wiederholt sich nie sichtbar. Diese Werte nicht auf runde Zahlen aendern. */
+/* Ursprung des Farbverlaufs liegt ausserhalb des Bildes, dadurch laufen die Strahlen auseinander wie echtes Licht. Zwei Ebenen mit 11 und 17 Sekunden: die Perioden haben kein wahrnehmbares gemeinsames Vielfaches, das Flimmern wiederholt sich nie sichtbar. Diese Werte nicht auf runde Zahlen aendern. */
 .rays {
   position: absolute;
   top: -35%; left: -15%;
@@ -261,7 +232,8 @@ strong { font-weight: 600; color: var(--text); }
   );
   filter: blur(14px);
   transform: translateZ(0);
-  animation: shimmer 11s ease-in-out infinite alternate;
+  animation: soft-in 1200ms var(--ease-smooth) both,
+             shimmer 11s ease-in-out infinite alternate;
 }
 
 .rays--soft {
@@ -271,16 +243,15 @@ strong { font-weight: 600; color: var(--text); }
     transparent 1.5deg 11deg
   );
   filter: blur(22px);
-  animation: shimmer-soft 17s ease-in-out infinite alternate;
+  animation: soft-in 1200ms var(--ease-smooth) both,
+             shimmer-soft 17s ease-in-out infinite alternate;
 }
 
 @keyframes shimmer      { from { opacity: .55; } to { opacity: .95; } }
 @keyframes shimmer-soft { from { opacity: .85; } to { opacity: .45; } }
 
-/* Scroll-Animation */
-
 .reveal {
-  animation: rise .9s cubic-bezier(.22,.61,.36,1) both;
+  animation: rise 800ms var(--ease-smooth) both;
   animation-timeline: view();
   animation-range: entry 0% entry 60%;
 }
@@ -288,8 +259,27 @@ strong { font-weight: 600; color: var(--text); }
   from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes soft-in { from { opacity: 0; } to { opacity: 1; } }
 
-/* Header */
+/* 5.4 Hero-Choreografie: die Reihenfolge fuehrt den Blick so, wie gelesen werden soll. `both` haelt Start- und Endzustand - ohne das blitzt der Inhalt vor der Animation auf. */
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.h-badge   { animation: hero-in 600ms var(--ease-smooth)  80ms both; }
+.h-title   { animation: hero-in 700ms var(--ease-smooth) 160ms both; }
+.h-text    { animation: hero-in 700ms var(--ease-smooth) 280ms both; }
+.h-actions { animation: hero-in 600ms var(--ease-smooth) 400ms both; }
+.h-trust   { animation: hero-in 500ms var(--ease-smooth) 520ms both; }
+
+.nebula { animation: soft-in 1200ms var(--ease-smooth) both; }
+
+/* 5.5 Staffelung: 50 ms Abstand. animation-delay greift beim Rueckfall ohne view()-Timeline; fuer die scrollgesteuerten Reveals verschiebt zusaetzlich die animation-range, sonst waere die Staffelung unsichtbar. */
+.stagger > *:nth-child(2) { animation-delay:  50ms; animation-range: entry 4% entry 64%; }
+.stagger > *:nth-child(3) { animation-delay: 100ms; animation-range: entry 8% entry 68%; }
+.stagger > *:nth-child(4) { animation-delay: 150ms; animation-range: entry 12% entry 72%; }
+.stagger > *:nth-child(5) { animation-delay: 200ms; animation-range: entry 16% entry 76%; }
+.stagger > *:nth-child(6) { animation-delay: 250ms; animation-range: entry 20% entry 80%; }
 
 .site-header {
   position: sticky;
@@ -324,12 +314,12 @@ strong { font-weight: 600; color: var(--text); }
 .nav-desktop a {
   position: relative;
   font-size: 15px; color: var(--text-2);
-  transition: color .2s ease;
+  transition: color 200ms var(--ease-snappy);
 }
 .nav-desktop a::after {
   content: ""; position: absolute; left: 0; right: 100%; bottom: -7px;
   height: 2px; background: var(--accent); border-radius: 2px;
-  transition: right .25s cubic-bezier(.22,.61,.36,1);
+  transition: right 250ms var(--ease-smooth);
 }
 .nav-desktop a:hover, .nav-desktop a:active { color: #FFFFFF; }
 .nav-desktop a:hover::after, .nav-desktop a:active::after { right: 0; }
@@ -346,7 +336,6 @@ strong { font-weight: 600; color: var(--text); }
 
 .header-phone-mobile, .burger { display: none; }
 
-/* Mobil-Menü */
 .burger {
   width: 44px; height: 44px;
   background: none; border: 0; padding: 0;
@@ -355,14 +344,12 @@ strong { font-weight: 600; color: var(--text); }
 }
 .burger span {
   width: 22px; height: 2px; border-radius: 2px; background: var(--text);
-  transition: transform .2s ease, opacity .2s ease;
+  transition: transform 250ms var(--ease-snappy), opacity 250ms var(--ease-snappy);
 }
 .burger[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
 .burger[aria-expanded="true"] span:last-child  { transform: translateY(-3.5px) rotate(-45deg); }
 
 .nav-mobile { display: none; }
-
-/* Buttons */
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -373,15 +360,14 @@ strong { font-weight: 600; color: var(--text); }
   text-align: center;
   border: 1px solid transparent;
   cursor: pointer;
+  transition: background 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy),
+              box-shadow 200ms var(--ease-snappy), color 200ms var(--ease-snappy),
+              transform 200ms var(--ease-spring);
 }
 .btn-primary {
   background: var(--accent); color: var(--bg);
   border-color: rgba(255,232,190,0);
   box-shadow: 0 0 0 rgba(246,167,43,0);
-  transition: background .2s ease,
-              transform .22s cubic-bezier(.22,.61,.36,1),
-              box-shadow .25s ease,
-              border-color .2s ease;
 }
 .btn-primary:hover, .btn-primary:active {
   background: var(--accent-hover); color: var(--bg);
@@ -390,14 +376,11 @@ strong { font-weight: 600; color: var(--text); }
   box-shadow: 0 14px 34px -10px rgba(246,167,43,.65),
               0 0 22px -4px rgba(246,167,43,.35);
 }
-.btn-primary:active { transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(-1px); transition-duration: 90ms; }
 
 .btn-ghost {
   border-color: rgba(255,255,255,.18);
   color: var(--text); font-weight: 500; padding: 17px 28px;
-  transition: background .2s ease, border-color .2s ease,
-              transform .22s cubic-bezier(.22,.61,.36,1),
-              box-shadow .25s ease, color .2s ease;
 }
 .btn-ghost:hover, .btn-ghost:active {
   border-color: rgba(246,167,43,.6);
@@ -406,27 +389,25 @@ strong { font-weight: 600; color: var(--text); }
   transform: translateY(-3px);
   box-shadow: 0 14px 30px -14px rgba(246,167,43,.5);
 }
-.btn-ghost:active { transform: translateY(-1px); }
+.btn-ghost:active { transform: translateY(-1px); transition-duration: 90ms; }
 .btn-sm { min-height: 44px; padding: 12px 20px; font-size: 14px; }
 .btn-block { width: 100%; }
 
 .link-arrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 16px; font-weight: 500;
-  transition: gap .2s ease, color .2s ease;
+  transition: gap 200ms var(--ease-spring), color 200ms var(--ease-snappy);
 }
 .link-arrow:hover, .link-arrow:active { gap: 14px; }
-
-/* Karten */
 
 .card {
   background: var(--surface);
   border: 1px solid rgba(255,255,255,.09);
   border-radius: 18px;
   padding: 34px;
-  transition: border-color .25s ease,
-              transform .25s cubic-bezier(.22,.61,.36,1),
-              box-shadow .3s ease;
+  transition: border-color 250ms var(--ease-snappy),
+              transform 250ms var(--ease-spring),
+              box-shadow 250ms var(--ease-snappy);
   display: flex; flex-direction: column; gap: 20px;
 }
 .card:hover, .card:active {
@@ -489,7 +470,6 @@ strong { font-weight: 600; color: var(--text); }
   font-size: 17px; line-height: 1.6; color: var(--text);
 }
 
-/* Listen mit Haken */
 .checks { display: flex; flex-direction: column; gap: 14px; }
 .checks li { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.5; color: var(--text-2); }
 .checks svg { margin-top: 3px; }
@@ -500,7 +480,6 @@ strong { font-weight: 600; color: var(--text); }
 .hero-facts { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
 .hero-facts li { display: flex; align-items: center; gap: 8px; }
 
-/* Schritte */
 .step {
   display: flex; flex-direction: column; gap: 14px;
   padding-top: 24px;
@@ -514,7 +493,6 @@ strong { font-weight: 600; color: var(--text); }
 }
 .step--first .step-num { color: var(--accent); }
 
-/* Platzhalter-Flächen */
 .placeholder {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 14px; padding: 32px;
@@ -528,14 +506,12 @@ strong { font-weight: 600; color: var(--text); }
 .placeholder--portrait { aspect-ratio: 4 / 5; }
 .placeholder span { color: var(--muted); font-size: 13px; line-height: 1.5; max-width: 240px; }
 
-/* Kontaktzeilen (Telefon, E-Mail, Anschrift) */
 .contact-list { display: flex; flex-direction: column; gap: 10px; }
 .contact-list li { display: flex; align-items: center; gap: 14px; min-height: 44px; }
 .contact-list a, .contact-list span { font-size: 18px; line-height: 1.4; color: var(--text); }
 .contact-list a { font-weight: 500; display: flex; align-items: center; min-height: 44px; }
 .contact-list a:hover { color: var(--accent-hover); }
 
-/* Zeilen der beispielhaften KI-Antwort auf der Startseite */
 .ai-row {
   display: flex; align-items: center; gap: 12px;
   background: rgba(246,167,43,.10);
@@ -546,23 +522,19 @@ strong { font-weight: 600; color: var(--text); }
 .ai-row--miss { background: none; border-style: dashed; border-color: rgba(255,255,255,.16); color: var(--muted); }
 .ai-n { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; color: var(--accent); }
 
-/* FAQ */
-
 .faq { display: flex; flex-direction: column; }
 .faq-item {
   padding: 26px 0;
   border-bottom: 1px solid rgba(255,255,255,.08);
   display: flex; flex-direction: column; gap: 10px;
   border-radius: 10px;
-  transition: background .2s ease, padding-left .2s ease;
+  transition: background 200ms var(--ease-snappy), padding-left 200ms var(--ease-snappy);
 }
 .faq-item:hover, .faq-item:active {
   background: rgba(246,167,43,.05);
   padding-left: 14px;
 }
 .faq-item:last-child { border-bottom: 0; }
-
-/* Formular */
 
 .form { display: flex; flex-direction: column; gap: 22px; }
 .form-field { display: flex; flex-direction: column; gap: 8px; }
@@ -578,7 +550,7 @@ strong { font-weight: 600; color: var(--text); }
   border-radius: var(--r-md);
   color: var(--text);
   font: inherit; font-size: 16px;
-  transition: border-color .2s ease;
+  transition: border-color 200ms var(--ease-snappy);
 }
 .field::placeholder { color: var(--muted-2); }
 .field:hover { border-color: rgba(255,255,255,.2); }
@@ -608,8 +580,6 @@ strong { font-weight: 600; color: var(--text); }
   font-size: 15px; line-height: 1.55; color: var(--text);
 }
 
-/* Rechtstexte */
-
 .prose { max-width: 780px; display: flex; flex-direction: column; gap: 26px; }
 .prose h2 { font-size: 26px; line-height: 1.3; font-weight: 600; letter-spacing: -.01em; color: #FFF; }
 .prose h3 { font-size: 19px; line-height: 1.35; font-weight: 600; color: var(--text); }
@@ -624,20 +594,14 @@ strong { font-weight: 600; color: var(--text); }
   font-size: 15px; line-height: 1.6; color: var(--text);
 }
 
-/* Breadcrumb */
-
-/* --text-3 statt --muted: die Brotkrumen sitzen oben links, genau im Ursprung
-   der Sonnenstrahlen. Ueber der hellsten Stelle erreicht --muted dort nur
-   3,7:1, --text-3 kommt auf 5,3:1. */
+/* --text-3 statt --muted: die Brotkrumen sitzen oben links, genau im Ursprung der Sonnenstrahlen. Ueber der hellsten Stelle erreicht --muted dort nur 3,7:1, --text-3 kommt auf 5,3:1. */
 .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-3); flex-wrap: wrap; }
 .breadcrumb a { color: var(--text-3); }
 .breadcrumb a:hover { color: var(--accent-hover); }
 .breadcrumb li { display: flex; align-items: center; gap: 10px; }
 .breadcrumb li + li::before { content: "/"; color: var(--muted); }
 
-/* Feste Aktionsleiste (Mobil) */
-/* Der wichtigste Baustein der Mobilansicht: wer auf halber Seite überzeugt
-   ist, soll nicht erst wieder nach oben scrollen müssen. */
+/* Der wichtigste Baustein der Mobilansicht: wer auf halber Seite überzeugt ist, soll nicht erst wieder nach oben scrollen müssen. */
 .mobile-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
   display: none; gap: 10px;
@@ -648,8 +612,6 @@ strong { font-weight: 600; color: var(--text); }
   border-top: 1px solid rgba(255,255,255,.09);
 }
 .mobile-bar .btn { flex: 1 1 0; min-height: 52px; padding: 14px 12px; font-size: 16px; }
-
-/* Footer */
 
 .site-footer {
   position: relative;
@@ -678,8 +640,6 @@ strong { font-weight: 600; color: var(--text); }
 .footer-legal { display: flex; gap: 24px; }
 .footer-legal a { font-size: 14px; color: var(--muted); }
 
-/* Breakpoints */
-
 @media (max-width: 1200px) {
   :root { --pad-x: 48px; --sec-y: 90px; }
   .h1-home { font-size: 62px; }
@@ -706,7 +666,7 @@ strong { font-weight: 600; color: var(--text); }
     width: 46px; height: 46px;
     border: 1px solid var(--accent-border);
     border-radius: var(--r-md);
-    transition: background .2s ease, border-color .2s ease;
+    transition: background 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy);
   }
   .header-phone-mobile:hover, .header-phone-mobile:active {
     background: rgba(246,167,43,.12);
@@ -716,8 +676,7 @@ strong { font-weight: 600; color: var(--text); }
   .header-actions .btn { display: none; }
   .header-actions { gap: 14px; }
 
-  /* Zwei ueberlagerte geblurrte Flaechen kosten auf schwachen Geraeten
-     Bildrate. Auf Mobil deshalb nur eine Ebene. */
+  /* Zwei ueberlagerte geblurrte Flaechen kosten auf schwachen Geraeten Bildrate. Auf Mobil deshalb nur eine Ebene. */
   .rays--soft { display: none; }
   .rays {
     top: -30%; left: -20%;
@@ -728,7 +687,7 @@ strong { font-weight: 600; color: var(--text); }
       transparent 2.5deg 9deg
     );
     filter: blur(12px);
-    animation-duration: 13s;
+    animation-duration: 1200ms, 13s;
   }
 
   .nav-mobile {
@@ -742,9 +701,9 @@ strong { font-weight: 600; color: var(--text); }
     visibility: hidden;
     opacity: 0;
     transform: translateY(-8px);
-    transition: opacity .2s ease, transform .2s ease, visibility .2s;
+    transition: opacity 240ms var(--ease-smooth), transform 240ms var(--ease-smooth), visibility 240ms;
   }
-  .nav-mobile.is-open { visibility: visible; opacity: 1; transform: translateY(0); }
+  .nav-mobile.is-open { visibility: visible; opacity: 1; transform: translateY(0); transition-duration: 300ms; }
   .nav-mobile ul { display: flex; flex-direction: column; gap: 4px; }
   .nav-mobile a {
     display: flex; align-items: center;
@@ -792,8 +751,7 @@ strong { font-weight: 600; color: var(--text); }
   .card { padding: 26px; border-radius: 14px; }
   .card--pad { padding: 26px; }
 
-  /* Eigene, kleinere Sternen-Kachel: sonst sieht man auf dem schmalen
-     Bildschirm kaum Sterne. */
+  /* Eigene, kleinere Sternen-Kachel: sonst sieht man auf dem schmalen Bildschirm kaum Sterne. */
   .stars { background-size: 390px 340px; }
   .stars--slow { background-size: 560px 470px; }
   .sec--flush-top { padding-top: 8px; }
@@ -816,20 +774,25 @@ strong { font-weight: 600; color: var(--text); }
   .prose h2 { font-size: 23px; }
 }
 
-/* Bewegung abschalten */
-
+/* 5.7 reduce heisst REDUZIEREN, nicht einfrieren: die Einstellung richtet sich gegen grosse raeumliche Bewegung, nicht gegen sanftes Einblenden. Eine Seite, die dabei erstarrt, erfuellt die Anforderung schlechter. */
 @media (prefers-reduced-motion: reduce) {
-  .stars { animation: none; }
-  .reveal { animation: none; opacity: 1; transform: none; }
-  /* Die Strahlen bleiben sichtbar: der Effekt ist Gestaltung, nicht Information. */
-  .rays { animation: none; opacity: .5; }
+  
+  .reveal, .h-badge, .h-title, .h-text, .h-actions, .h-trust {
+    animation: soft-in 300ms var(--ease-snappy) both;
+    animation-timeline: view();
+  }
+  .h-badge, .h-title, .h-text, .h-actions, .h-trust { animation-timeline: auto; }
+  .stagger > * { animation-range: normal; }
+
+  /* Endlosbewegung anhalten, Strahlen bleiben sichtbar stehen */
+  .stars  { animation: none; }
+  .nebula { animation: none; }
+  .rays   { animation: none; opacity: .5; }
+
+  
   .btn-primary:hover, .btn-primary:active,
   .btn-ghost:hover, .btn-ghost:active,
   .card:hover, .card:active,
+  .step:hover, .step:active,
   .link-arrow:hover, .link-arrow:active { transform: none; }
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
 }
