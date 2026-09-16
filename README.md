@@ -25,7 +25,7 @@ Den kompletten Inhalt dieses Ordners in das Web-Verzeichnis des Hosters kopieren
 
 ```
 index.html                      Startseite
-webseiten/ seo/ geo/            Leistungsseiten
+webseiten/ seo/ geo/            Leistungsseiten (Webseiten, SEO, GEO)
 branchen/solarteure/ shk/       Zielgruppenseiten
 preise/ ueber-mich/ kontakt/    Preise, Person, Anfrage
 impressum/ datenschutz/         Rechtstexte (ENTWURF)

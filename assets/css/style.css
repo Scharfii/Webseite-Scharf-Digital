@@ -43,7 +43,7 @@
   color-scheme: dark;
 }
 
-/* ---------- Grundlagen ---------------------------------------------------- */
+/* Grundlagen */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -74,6 +74,16 @@ a:hover { color: var(--accent-hover); }
 img, svg { display: block; max-width: 100%; }
 svg { flex-shrink: 0; }
 
+/* Icons kommen aus dem Sprite; die Strichfarbe erbt currentColor. */
+.ic {
+  color: inherit;
+  fill: none; stroke: currentColor;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.ic--a    { color: var(--accent); }
+.ic--m    { color: var(--muted); }
+.ic--m2   { color: var(--muted-2); }
+
 strong { font-weight: 600; color: var(--text); }
 
 :focus-visible {
@@ -103,7 +113,7 @@ strong { font-weight: 600; color: var(--text); }
   white-space: nowrap;
 }
 
-/* ---------- Typo-Skala ---------------------------------------------------- */
+/* Typo-Skala */
 
 .h1-home { font-size: 78px; line-height: 1.04; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
 .h1-sub  { font-size: 58px; line-height: 1.06; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
@@ -130,25 +140,24 @@ strong { font-weight: 600; color: var(--text); }
 .measure    { max-width: 720px; }
 .measure-sm { max-width: 640px; }
 
-/* ---------- Layout -------------------------------------------------------- */
+/* Layout */
 
 .sec {
   position: relative;
-  padding: var(--sec-y) var(--pad-x);
-  overflow-x: clip;
+  /* unten 50px mehr, damit kein Text unter die Welle rutscht */
+  padding: var(--sec-y) var(--pad-x) calc(var(--sec-y) + 50px);
+  overflow: hidden;
 }
-.sec--alt {
-  background: var(--bg-alt);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
+/* Keine geraden Kanten zwischen den Abschnitten: der Wechsel entsteht aus
+   Farbverlauf (.fade-down) und krummer Kante (.wave), nicht aus einer Linie. */
+.sec--alt { background: var(--bg-alt); }
 .sec--tight { --sec-y: 90px; }
 .sec--flush-top { padding-top: 20px; }
 .sec--clip { overflow: hidden; }
 
 .wrap {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   max-width: var(--wrap);
   margin-inline: auto;
 }
@@ -168,7 +177,7 @@ strong { font-weight: 600; color: var(--text); }
 .split-form { display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 80px; align-items: start; }
 .split-portrait { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 64px; align-items: center; }
 
-/* ---------- Sternenhintergrund ------------------------------------------- */
+/* Sternenhintergrund */
 
 .stars {
   position: absolute;
@@ -207,7 +216,35 @@ strong { font-weight: 600; color: var(--text); }
 .nebula--warm { background: rgba(246,167,43,.16); }
 .nebula--cool { background: rgba(76,110,190,.20); }
 
-/* ---------- Sonnenstrahlen ------------------------------------------------ */
+/* Sektionsübergänge */
+/* Zwei Lagen: der Verlauf nimmt dem Wechsel die Härte, die Welle die Gerade.
+   Beide tragen die Farbe der FOLGENDEN Sektion und liegen in der oberen. */
+.fade-down {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 180px;
+  pointer-events: none;
+  z-index: 3;
+}
+.wave {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  width: 100%;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+.wave svg { display: block; width: 100%; height: 96px; }
+
+/* Zielfarbe des Uebergangs - spart neun Inline-Verlaeufe je Seite */
+.to-base   { background: linear-gradient(180deg, rgba(5,7,15,0) 0%, rgba(5,7,15,.75) 60%, #05070F 100%); }
+.to-alt    { background: linear-gradient(180deg, rgba(7,11,22,0) 0%, rgba(7,11,22,.75) 60%, #070B16 100%); }
+.to-footer { background: linear-gradient(180deg, rgba(4,6,13,0) 0%, rgba(4,6,13,.75) 60%, #04060D 100%); }
+.w-base   path { fill: #05070F; }
+.w-alt    path { fill: #070B16; }
+.w-footer path { fill: #04060D; }
+
+/* Sonnenstrahlen */
 /* Ursprung des Farbverlaufs liegt ausserhalb des Bildes, dadurch laufen die
    Strahlen auseinander wie echtes Licht. Zwei Ebenen mit 11 und 17 Sekunden:
    die Perioden haben kein wahrnehmbares gemeinsames Vielfaches, das Flimmern
@@ -240,7 +277,7 @@ strong { font-weight: 600; color: var(--text); }
 @keyframes shimmer      { from { opacity: .55; } to { opacity: .95; } }
 @keyframes shimmer-soft { from { opacity: .85; } to { opacity: .45; } }
 
-/* ---------- Scroll-Animation --------------------------------------------- */
+/* Scroll-Animation */
 
 .reveal {
   animation: rise .9s cubic-bezier(.22,.61,.36,1) both;
@@ -252,7 +289,7 @@ strong { font-weight: 600; color: var(--text); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Header -------------------------------------------------------- */
+/* Header */
 
 .site-header {
   position: sticky;
@@ -284,9 +321,20 @@ strong { font-weight: 600; color: var(--text); }
 .logo-claim { font-size: 11px; letter-spacing: .08em; color: var(--muted); }
 
 .nav-desktop { display: flex; align-items: center; gap: 32px; }
-.nav-desktop a { font-size: 15px; color: var(--text-2); }
-.nav-desktop a:hover { color: var(--accent-hover); }
+.nav-desktop a {
+  position: relative;
+  font-size: 15px; color: var(--text-2);
+  transition: color .2s ease;
+}
+.nav-desktop a::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -7px;
+  height: 2px; background: var(--accent); border-radius: 2px;
+  transition: right .25s cubic-bezier(.22,.61,.36,1);
+}
+.nav-desktop a:hover, .nav-desktop a:active { color: #FFFFFF; }
+.nav-desktop a:hover::after, .nav-desktop a:active::after { right: 0; }
 .nav-desktop a[aria-current="page"] { color: var(--accent); }
+.nav-desktop a[aria-current="page"]::after { right: 0; }
 
 .header-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 
@@ -314,7 +362,7 @@ strong { font-weight: 600; color: var(--text); }
 
 .nav-mobile { display: none; }
 
-/* ---------- Buttons ------------------------------------------------------- */
+/* Buttons */
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -326,35 +374,67 @@ strong { font-weight: 600; color: var(--text); }
   border: 1px solid transparent;
   cursor: pointer;
 }
-.btn-primary { background: var(--accent); color: var(--bg); transition: background .2s ease; }
-.btn-primary:hover { background: var(--accent-hover); color: var(--bg); }
+.btn-primary {
+  background: var(--accent); color: var(--bg);
+  border-color: rgba(255,232,190,0);
+  box-shadow: 0 0 0 rgba(246,167,43,0);
+  transition: background .2s ease,
+              transform .22s cubic-bezier(.22,.61,.36,1),
+              box-shadow .25s ease,
+              border-color .2s ease;
+}
+.btn-primary:hover, .btn-primary:active {
+  background: var(--accent-hover); color: var(--bg);
+  transform: translateY(-3px);
+  border-color: rgba(255,232,190,.5);
+  box-shadow: 0 14px 34px -10px rgba(246,167,43,.65),
+              0 0 22px -4px rgba(246,167,43,.35);
+}
+.btn-primary:active { transform: translateY(-1px); }
+
 .btn-ghost {
   border-color: rgba(255,255,255,.18);
   color: var(--text); font-weight: 500; padding: 17px 28px;
-  transition: border-color .2s ease;
+  transition: background .2s ease, border-color .2s ease,
+              transform .22s cubic-bezier(.22,.61,.36,1),
+              box-shadow .25s ease, color .2s ease;
 }
-.btn-ghost:hover { border-color: var(--accent-border); color: var(--text); }
+.btn-ghost:hover, .btn-ghost:active {
+  border-color: rgba(246,167,43,.6);
+  background: rgba(246,167,43,.10);
+  color: #FFD79B;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -14px rgba(246,167,43,.5);
+}
+.btn-ghost:active { transform: translateY(-1px); }
 .btn-sm { min-height: 44px; padding: 12px 20px; font-size: 14px; }
 .btn-block { width: 100%; }
 
 .link-arrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 16px; font-weight: 500;
+  transition: gap .2s ease, color .2s ease;
 }
-.link-arrow svg { transition: transform .2s ease; }
-.link-arrow:hover svg { transform: translateX(3px); }
+.link-arrow:hover, .link-arrow:active { gap: 14px; }
 
-/* ---------- Karten -------------------------------------------------------- */
+/* Karten */
 
 .card {
   background: var(--surface);
   border: 1px solid rgba(255,255,255,.09);
-  border-radius: var(--r-lg);
+  border-radius: 18px;
   padding: 34px;
-  transition: border-color .2s ease;
+  transition: border-color .25s ease,
+              transform .25s cubic-bezier(.22,.61,.36,1),
+              box-shadow .3s ease;
   display: flex; flex-direction: column; gap: 20px;
 }
-.card:hover { border-color: rgba(246,167,43,.45); }
+.card:hover, .card:active {
+  border-color: rgba(246,167,43,.5);
+  transform: translateY(-5px);
+  box-shadow: 0 26px 50px -26px rgba(0,0,0,.9),
+              0 0 30px -18px rgba(246,167,43,.7);
+}
 .card--highlight {
   background: linear-gradient(180deg, var(--surface-raised) 0%, var(--surface) 100%);
   border-color: var(--accent-border);
@@ -455,17 +535,34 @@ strong { font-weight: 600; color: var(--text); }
 .contact-list a { font-weight: 500; display: flex; align-items: center; min-height: 44px; }
 .contact-list a:hover { color: var(--accent-hover); }
 
-/* ---------- FAQ ----------------------------------------------------------- */
+/* Zeilen der beispielhaften KI-Antwort auf der Startseite */
+.ai-row {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(246,167,43,.10);
+  border: 1px solid rgba(246,167,43,.28);
+  border-radius: 8px; padding: 13px 16px;
+  font-size: 15px; color: var(--text);
+}
+.ai-row--miss { background: none; border-style: dashed; border-color: rgba(255,255,255,.16); color: var(--muted); }
+.ai-n { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; color: var(--accent); }
+
+/* FAQ */
 
 .faq { display: flex; flex-direction: column; }
 .faq-item {
   padding: 26px 0;
   border-bottom: 1px solid rgba(255,255,255,.08);
   display: flex; flex-direction: column; gap: 10px;
+  border-radius: 10px;
+  transition: background .2s ease, padding-left .2s ease;
+}
+.faq-item:hover, .faq-item:active {
+  background: rgba(246,167,43,.05);
+  padding-left: 14px;
 }
 .faq-item:last-child { border-bottom: 0; }
 
-/* ---------- Formular ------------------------------------------------------ */
+/* Formular */
 
 .form { display: flex; flex-direction: column; gap: 22px; }
 .form-field { display: flex; flex-direction: column; gap: 8px; }
@@ -511,7 +608,7 @@ strong { font-weight: 600; color: var(--text); }
   font-size: 15px; line-height: 1.55; color: var(--text);
 }
 
-/* ---------- Rechtstexte --------------------------------------------------- */
+/* Rechtstexte */
 
 .prose { max-width: 780px; display: flex; flex-direction: column; gap: 26px; }
 .prose h2 { font-size: 26px; line-height: 1.3; font-weight: 600; letter-spacing: -.01em; color: #FFF; }
@@ -527,7 +624,7 @@ strong { font-weight: 600; color: var(--text); }
   font-size: 15px; line-height: 1.6; color: var(--text);
 }
 
-/* ---------- Breadcrumb ---------------------------------------------------- */
+/* Breadcrumb */
 
 /* --text-3 statt --muted: die Brotkrumen sitzen oben links, genau im Ursprung
    der Sonnenstrahlen. Ueber der hellsten Stelle erreicht --muted dort nur
@@ -538,7 +635,21 @@ strong { font-weight: 600; color: var(--text); }
 .breadcrumb li { display: flex; align-items: center; gap: 10px; }
 .breadcrumb li + li::before { content: "/"; color: var(--muted); }
 
-/* ---------- Footer -------------------------------------------------------- */
+/* Feste Aktionsleiste (Mobil) */
+/* Der wichtigste Baustein der Mobilansicht: wer auf halber Seite überzeugt
+   ist, soll nicht erst wieder nach oben scrollen müssen. */
+.mobile-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  display: none; gap: 10px;
+  padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+  background: rgba(4,6,13,.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,.09);
+}
+.mobile-bar .btn { flex: 1 1 0; min-height: 52px; padding: 14px 12px; font-size: 16px; }
+
+/* Footer */
 
 .site-footer {
   position: relative;
@@ -561,14 +672,13 @@ strong { font-weight: 600; color: var(--text); }
 .footer-about { font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 280px; }
 .footer-nap { display: flex; flex-direction: column; gap: 4px; font-style: normal; font-size: 15px; line-height: 1.6; color: var(--muted); }
 .footer-nap .nap-name { color: var(--text-2); font-weight: 500; }
+.footer-hours { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-3); }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .footer-bottom span { font-size: 14px; color: var(--muted); }
 .footer-legal { display: flex; gap: 24px; }
 .footer-legal a { font-size: 14px; color: var(--muted); }
 
-/* ==========================================================================
-   Breakpoints
-   ========================================================================== */
+/* Breakpoints */
 
 @media (max-width: 1200px) {
   :root { --pad-x: 48px; --sec-y: 90px; }
@@ -583,12 +693,24 @@ strong { font-weight: 600; color: var(--text); }
 @media (max-width: 900px) {
   :root { --sec-y: 72px; }
 
+  .mobile-bar { display: flex; }
+  body { padding-bottom: 92px; }
+
+  /* Wellen und Verläufe flacher, sonst fressen sie den halben Bildschirm */
+  .wave svg { height: 54px; }
+  .fade-down { height: 120px; }
+
   .nav-desktop, .header-phone { display: none; }
   .header-phone-mobile {
     display: flex; align-items: center; justify-content: center;
-    width: 44px; height: 44px;
+    width: 46px; height: 46px;
     border: 1px solid var(--accent-border);
     border-radius: var(--r-md);
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .header-phone-mobile:hover, .header-phone-mobile:active {
+    background: rgba(246,167,43,.12);
+    border-color: rgba(246,167,43,.6);
   }
   .burger { display: flex; }
   .header-actions .btn { display: none; }
@@ -634,7 +756,7 @@ strong { font-weight: 600; color: var(--text); }
   .nav-mobile .btn { margin-top: 24px; }
   body.nav-open { overflow: hidden; }
 
-  .grid-2, .grid-3, .grid-4,
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .split, .split-side, .split-form, .split-portrait { grid-template-columns: minmax(0, 1fr); gap: 44px; }
 
   .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
@@ -653,7 +775,7 @@ strong { font-weight: 600; color: var(--text); }
 
   body { font-size: 16px; }
 
-  .h1-home { font-size: 40px; line-height: 1.08; letter-spacing: -.02em; }
+  .h1-home { font-size: 41px; line-height: 1.06; letter-spacing: -.02em; }
   .h1-sub  { font-size: 34px; line-height: 1.1;  letter-spacing: -.02em; }
   .h2      { font-size: 30px; line-height: 1.15; }
   .h2-sm   { font-size: 28px; line-height: 1.16; }
@@ -667,12 +789,18 @@ strong { font-weight: 600; color: var(--text); }
   .tiny    { font-size: 13px; }
   .eyebrow { font-size: 12px; }
 
-  .card { padding: 26px; }
+  .card { padding: 26px; border-radius: 14px; }
   .card--pad { padding: 26px; }
+
+  /* Eigene, kleinere Sternen-Kachel: sonst sieht man auf dem schmalen
+     Bildschirm kaum Sterne. */
+  .stars { background-size: 390px 340px; }
+  .stars--slow { background-size: 560px 470px; }
   .sec--flush-top { padding-top: 8px; }
 
-  .btn { width: 100%; padding: 17px 20px; font-size: 17px; }
-  .btn-sm { width: auto; }
+  .btn { width: 100%; min-height: 58px; padding: 18px 20px; font-size: 17px; }
+  .btn-sm { width: auto; min-height: 46px; }
+  .mobile-bar .btn { width: auto; }
   .row { gap: 12px; }
   .row .btn { flex: 1 1 100%; }
 
@@ -688,15 +816,17 @@ strong { font-weight: 600; color: var(--text); }
   .prose h2 { font-size: 23px; }
 }
 
-/* ==========================================================================
-   Bewegung abschalten
-   ========================================================================== */
+/* Bewegung abschalten */
 
 @media (prefers-reduced-motion: reduce) {
   .stars { animation: none; }
   .reveal { animation: none; opacity: 1; transform: none; }
   /* Die Strahlen bleiben sichtbar: der Effekt ist Gestaltung, nicht Information. */
   .rays { animation: none; opacity: .5; }
+  .btn-primary:hover, .btn-primary:active,
+  .btn-ghost:hover, .btn-ghost:active,
+  .card:hover, .card:active,
+  .link-arrow:hover, .link-arrow:active { transform: none; }
   *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
