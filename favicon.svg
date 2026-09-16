@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Scharf Digital">
-  <rect width="64" height="64" rx="14" fill="#05070F"/>
-  <path d="M32 9 27.4 26.1 10 31l17.4 4.9L32 53l4.6-17.1L54 31l-17.4-4.9z" fill="#F6A72B"/>
-  <circle cx="48" cy="15" r="2.6" fill="#F6A72B" opacity=".7"/>
-  <circle cx="15" cy="48" r="1.8" fill="#FFFFFF" opacity=".55"/>
+<rect width="64" height="64" rx="14" fill="#05070F"/>
+<g fill="none" stroke="#F6A72B" stroke-width="3.4">
+<circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="7" fill="#F6A72B" stroke="none"/>
+<path d="M32 7v9M32 48v9M7 32h9M48 32h9" stroke-linecap="round"/>
+</g>
 </svg>

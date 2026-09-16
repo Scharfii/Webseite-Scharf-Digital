@@ -70,10 +70,10 @@ svg { flex-shrink: 0; }
 
 /* Icons kommen aus dem Sprite; die Strichfarbe erbt currentColor. */
 .ic {
-  fill: none; stroke: currentColor;
+  fill: none; stroke: currentColor; color: var(--accent);
   stroke-linecap: round; stroke-linejoin: round;
 }
-.ic--a    { color: var(--accent); }
+.ic--i    { color: inherit; }
 .ic--m    { color: var(--muted); }
 .ic--m2   { color: var(--muted-2); }
 
@@ -301,7 +301,16 @@ strong { font-weight: 600; color: var(--text); }
 }
 .site-header, .site-footer { padding-inline: var(--pad-x); }
 
-.logo { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 44px; min-width: 0; color: #FFF; }
+.logo { display: flex; align-items: center; gap: 12px; min-height: 44px; min-width: 0; color: #FFF; }
+.logo-text { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-width: 0; }
+/* Beim Laden zieht die Blende einmal scharf. Umgesetzt ueber transform und
+   opacity - ein animierter filter: blur() waere nach Abschnitt 1 verboten
+   und auf schwachen Geraeten teuer. */
+.logo-mark { animation: focus-in 600ms var(--ease-smooth) both; }
+@keyframes focus-in {
+  from { opacity: 0; transform: scale(1.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
 .logo:hover { color: #FFF; }
 .logo-name {
   font-family: 'Space Grotesk', system-ui, sans-serif;
@@ -732,6 +741,8 @@ strong { font-weight: 600; color: var(--text); }
 
   /* Wie im Mobil-Entwurf: nur die Wortmarke, der Claim braucht den Platz nicht */
   .logo-claim { display: none; }
+  .logo { gap: 10px; }
+  .logo-mark { width: 30px; height: 30px; }
   .logo-name { font-size: 16px; letter-spacing: .12em; }
   .header-inner { padding: 14px 0; gap: 12px; }
 
@@ -780,6 +791,7 @@ strong { font-weight: 600; color: var(--text); }
 /* 5.7 reduce heisst REDUZIEREN, nicht einfrieren: die Einstellung richtet sich gegen grosse raeumliche Bewegung, nicht gegen sanftes Einblenden. Eine Seite, die dabei erstarrt, erfuellt die Anforderung schlechter. */
 @media (prefers-reduced-motion: reduce) {
   
+  .logo-mark { animation: soft-in 300ms var(--ease-snappy) both; }
   .reveal, .h-badge, .h-title, .h-text, .h-actions, .h-trust {
     animation: soft-in 300ms var(--ease-snappy) both;
     animation-timeline: view();
