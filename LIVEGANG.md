@@ -1,87 +1,139 @@
 # Livegang — Schritt für Schritt
 
-**Stand:** 16.09.2026 · Ziel: diese Woche online, mit HTTPS, rechtlich sauber.
+**Stand:** 16.09.2026 · Hosting: Netlify · E-Mail: iCloud+ · Kleinunternehmer nach § 19 UStG
 
-Diese Datei ist kein Ersatz für Rechts- oder Steuerberatung. Die beiden Punkte,
-bei denen das zählt, sind unten markiert.
+Keine Rechts- oder Steuerberatung. Die zwei Stellen, an denen das zählt, sind unten markiert.
 
 ---
 
-## Der Plan in vier Abenden
+## Was das kostet
 
-| Wann | Was | Dauer |
+| | einmalig | laufend |
 |---|---|---|
-| Abend 1 | Domain + Hosting bestellen, E-Mail-Postfächer anlegen | 45 Min |
-| Abend 2 | Gewerbe klären, Impressum und Datenschutz vervollständigen | 60 Min |
-| Abend 3 | Dateien hochladen, SSL einschalten, alles durchtesten | 60 Min |
-| Abend 4 | Search Console, Google Business Profil, Bing | 30 Min |
+| Gewerbeanmeldung Erfurt | 20–40 € | — |
+| Fragebogen beim Finanzamt (ELSTER) | 0 € | — |
+| IHK-Mitgliedschaft | 0 € | in deiner Größe meist beitragsfrei, siehe 3.3 |
+| Domain `scharf-digital.de` | — | 5–15 € im Jahr |
+| Netlify Hosting | — | 0 € (kostenloses Kontingent reicht deutlich) |
+| iCloud+ für die eigene E-Mail-Adresse | — | rund 12 € im Jahr |
 
-Laufende Kosten danach: rund 8 € im Monat fürs Hosting, 10–20 € im Jahr für die Domain.
-
----
-
-## 1 — Domain und Hosting
-
-**Empfehlung: All-Inkl, Paket „PrivatPlus", rund 8 € im Monat.**
-
-Warum dieses: PHP 8 ist dabei (das Kontaktformular braucht es), SSL-Zertifikat
-kostenlos und automatisch, Server in Deutschland, Domains im Paket enthalten,
-deutscher Telefonsupport, und den Auftragsverarbeitungsvertrag (siehe 4.4)
-bekommst du im Kundenmenü mit zwei Klicks.
-
-Alternativen: **Netcup** (etwas billiger, etwas technischer), **IONOS**
-(erstes Jahr günstig, danach deutlich teurer, Support schwächer).
-
-**So gehst du vor:**
-
-1. Bei All-Inkl zuerst die Domain prüfen: `scharf-digital.de`.
-   Falls vergeben: `scharfdigital.de` oder `scharf-digital.com`.
-2. Paket PrivatPlus bestellen, die Domain im Bestellformular direkt mitbestellen.
-3. Bestellung mit deinem echten Namen und deiner echten Anschrift ausfüllen —
-   diese Daten landen im Domain-Register.
-4. Freischaltung dauert meist Minuten, spätestens Stunden. Du bekommst die
-   Zugangsdaten fürs KAS (Kundenmenü) per Mail.
-
-> **Wichtig:** Nimm **nicht** GitHub Pages, Netlify oder Vercel. Das
-> Kontaktformular ist eine PHP-Datei. Auf diesen Diensten läuft kein PHP — das
-> Formular würde still nichts tun. Das merkst du erst, wenn ein Interessent sich
-> beschwert, dass er nie eine Antwort bekommen hat.
+**Rund 2 € im Monat plus einmalig die Gewerbeanmeldung.** Das ist der ganze
+Kostenblock, um online zu gehen.
 
 ---
 
-## 2 — Zwei E-Mail-Adressen anlegen
+## 1 — Domain kaufen (15 Min)
 
-Im KAS unter *E-Mail → E-Mail-Postfach → Neues Postfach*:
+Netlify ist dein Hoster, aber die Domain kaufst du woanders — für `.de`-Domains
+ist ein deutscher Anbieter einfacher und billiger.
 
-| Adresse | Wofür |
+**Empfehlung: INWX oder netcup.** Beide rund 5–10 € im Jahr für `.de`, beide mit
+vollständiger DNS-Verwaltung, die du gleich brauchst. Finger weg von Anbietern,
+die dir DNS-Einträge nicht selbst bearbeiten lassen.
+
+1. `scharf-digital.de` prüfen. Falls vergeben: `scharfdigital.de` oder
+   `scharf-digital.com`. **Sag mir Bescheid, wenn es eine andere wird** — die
+   Adresse steht an rund 40 Stellen im Projekt (canonical-Tags, Sitemap,
+   robots.txt, strukturierte Daten) und muss überall stimmen.
+2. Mit echtem Namen und echter Anschrift bestellen. Diese Daten landen im
+   Register der DENIC.
+3. Domain-Datenschutz (Whois-Privacy) brauchst du bei `.de` nicht — die DENIC
+   veröffentlicht die Daten von Privatpersonen ohnehin nicht.
+
+---
+
+## 2 — Auf Netlify veröffentlichen (20 Min)
+
+### 2.1 Den Stand auf `main` bringen
+
+Die Arbeit liegt auf dem Zweig `claude/awesome-lamport-6kzptf`. Auf
+github.com/Scharfii/Webseite-Scharf-Digital:
+
+*Pull requests → New pull request*, base `main`, compare `claude/awesome-lamport-6kzptf`
+→ *Create pull request* → *Merge pull request* → *Confirm merge*.
+
+Sag Bescheid, dann lege ich den Pull Request an.
+
+### 2.2 Seite anlegen
+
+In Netlify: *Add new site → Import an existing project → GitHub →
+Scharfii/Webseite-Scharf-Digital*.
+
+| Feld | Wert |
 |---|---|
-| `anton@scharf-digital.de` | Deine Geschäftsadresse. Steht auf der Seite, im Impressum, auf Rechnungen. |
-| `formular@scharf-digital.de` | Absender der Formular-Mails. Muss als echtes Postfach existieren. |
+| Branch to deploy | `main` |
+| Build command | **leer lassen** |
+| Publish directory | `.` (steht schon in `netlify.toml`) |
 
-**Warum die zweite Adresse nötig ist:** Der Server verschickt die Formular-Mail
-im Namen von `formular@scharf-digital.de`. Existiert diese Adresse nicht auf der
-Domain, scheitert die SPF-Prüfung und Gmail oder Outlook werfen die Mail weg
-oder schieben sie in den Spam. Das ist der häufigste Grund, warum
-Kontaktformulare „nicht funktionieren".
+*Deploy site.* Nach etwa einer Minute ist die Seite unter einer Adresse wie
+`zufallsname.netlify.app` erreichbar. Ab hier veröffentlicht jeder Push auf
+`main` automatisch — kein FTP, kein Hochladen von Hand.
 
-`anton@` leitest du im KAS entweder auf deine bisherige Adresse weiter oder du
-richtest sie in deiner Mail-App ein (die IMAP-Daten stehen im KAS).
+### 2.3 Domain verbinden
+
+*Site configuration → Domain management → Add a domain* → `scharf-digital.de`.
+
+Netlify schlägt dir *Netlify DNS* vor. **Nimm das.** Du bekommst vier
+Nameserver angezeigt; die trägst du bei deinem Domain-Anbieter als Nameserver
+ein. Danach verwaltest du alle DNS-Einträge bei Netlify — auch die für iCloud
+aus Teil 3, das ist gleich einfacher.
+
+Umstellung dauert je nach Anbieter Minuten bis wenige Stunden.
+
+### 2.4 HTTPS
+
+Passiert von allein. Sobald die Domain verbunden ist, stellt Netlify ein
+Let's-Encrypt-Zertifikat aus und leitet `http://` und `www.` auf
+`https://scharf-digital.de` um. Unter *Domain management → HTTPS* kannst du
+nachsehen, ob das Zertifikat da ist. Erst dann Links verschicken.
+
+> Die `.htaccess` im Projekt macht auf Netlify nichts — sie liegt nur dabei,
+> falls die Seite später auf einen deutschen Apache-Hoster umzieht. Für Netlify
+> gilt `netlify.toml`.
+
+### 2.5 Das Kontaktformular scharf schalten
+
+Das ist der Teil, der neu ist: **Auf Netlify läuft kein PHP.** Ich habe das
+Formular deshalb auf *Netlify Forms* umgebaut — das ist in Netlify eingebaut,
+kostet nichts und braucht keinen Fremddienst.
+
+1. *Site configuration → Forms*: prüfen, dass **Form detection aktiviert** ist.
+   Falls nicht: einschalten und einmal neu deployen (*Deploys → Trigger deploy*).
+2. Im Reiter **Forms** muss nach dem Deploy ein Formular namens **`anfrage`**
+   auftauchen. Wenn nicht, ist die Erkennung aus — siehe Schritt 1.
+3. *Forms → Form notifications → Add notification → Email notification*:
+   deine Adresse eintragen. **Anfangs ruhig deine `@icloud.com`-Adresse** —
+   dann funktioniert das Formular sofort, auch bevor die eigene Domain-Adresse
+   aus Teil 3 fertig ist. Später umstellen.
+4. **reCAPTCHA nicht einschalten.** Netlify bietet das an — es würde Google
+   wieder auf deine Seite holen und dir die Datenschutzerklärung kaputtmachen.
+   Das unsichtbare Honeypot-Feld im Formular reicht.
+
+Kostenloses Kontingent: 100 Einsendungen im Monat. Für den Anfang reichlich.
 
 ---
 
-## 3 — Deine alte Adresse ersetzen
+## 3 — E-Mail über iCloud+ (20 Min)
 
-`antonlorenzscharf@gmail.com` steht noch an mehreren Stellen im Projekt:
+Du willst `anton@scharf-digital.de` statt einer privaten Adresse. Mit iCloud+
+geht das direkt.
 
-- `kontakt.php`, Zeile 12 (`EMPFAENGER`)
-- `impressum/index.html` — zweimal
-- `datenschutz/index.html`
-- `kontakt/index.html` — der sichtbare Kontaktblock
-- in allen zwölf Seiten im JSON-LD-Block (`"email"`)
+1. **iCloud+ buchen**, falls noch nicht vorhanden: iPhone → Einstellungen →
+   dein Name → iCloud → *Speicher aktualisieren*. Der kleinste Tarif (50 GB,
+   rund 1 € im Monat) reicht.
+2. **Domain hinzufügen:** `iCloud.com` → Einstellungen → *Benutzerdefinierte
+   E-Mail-Domain* → *Domain hinzufügen* → „Nur von dir verwendet" →
+   `scharf-digital.de` eintragen.
+3. **Adresse anlegen:** `anton@scharf-digital.de`.
+4. Apple zeigt dir jetzt eine Liste DNS-Einträge (zwei MX, ein TXT für SPF,
+   zwei CNAME für DKIM, ein TXT zur Bestätigung). Diese Einträge legst du bei
+   **Netlify unter Domain management → DNS records** an — genau so, wie Apple
+   sie anzeigt.
+5. Zurück bei Apple auf *Überprüfen*. Kann ein paar Minuten bis Stunden dauern.
 
-Sag mir die endgültige Adresse, dann ersetze ich das in einem Durchgang. Von
-Hand übersieht man garantiert eine Stelle, und ausgerechnet die strukturierten
-Daten liest Google aus.
+Danach schreibst und empfängst du aus der normalen Mail-App unter der neuen
+Adresse. **Stell sie als Standard-Absender ein**, sonst verschickst du
+weiterhin von `@icloud.com`.
 
 ---
 
@@ -89,196 +141,129 @@ Daten liest Google aus.
 
 ### 4.1 Gewerbeanmeldung
 
-Vor der ersten Rechnung. In Erfurt beim Bürgeramt/Gewerbeamt, rund 20–30 €,
-das Formular ist eine Seite. Als Tätigkeit reicht: *„Erstellung von Webseiten
-und Suchmaschinenoptimierung"*.
+Vor der ersten Rechnung. In Erfurt beim Bürgeramt/Gewerbeamt, **20–40 €**, das
+Formular ist eine Seite. Tätigkeit: *„Erstellung von Webseiten und
+Suchmaschinenoptimierung"*. Viele Kommunen bieten das inzwischen online an —
+auf der Seite der Stadt Erfurt nach „Gewerbeanmeldung" suchen.
 
-Danach schickt dir das Finanzamt den *Fragebogen zur steuerlichen Erfassung*.
-Dort entscheidest du die Frage aus 4.2.
+Danach schickt dir das Finanzamt automatisch den *Fragebogen zur steuerlichen
+Erfassung*. Den füllst du kostenlos über ELSTER aus. Dort setzt du das Kreuz
+bei der Kleinunternehmerregelung.
 
-> Falls du noch nicht 18 bist: Dann braucht es die Zustimmung der
+> **Falls du noch nicht 18 bist:** Es braucht die Zustimmung der
 > Erziehungsberechtigten und eine Genehmigung des Familiengerichts. Ruf vorher
-> beim Gewerbeamt an, das klärt sich in fünf Minuten am Telefon.
+> beim Gewerbeamt an — das klärt sich in fünf Minuten am Telefon.
 
-### 4.2 Kleinunternehmer oder nicht — das entscheidet eine Zeile im Impressum
+### 4.2 Kleinunternehmer nach § 19 UStG — ist eingetragen
 
-**Kleinunternehmerregelung (§ 19 UStG):** möglich, solange du im ersten Jahr
-unter 22.000 € Umsatz bleibst. Du weist dann keine Umsatzsteuer aus und musst
-auch keine abführen — darfst sie aber auch nicht auf Rechnungen schreiben.
+Im Impressum steht jetzt:
 
-Zeile fürs Impressum:
 > Kleinunternehmer im Sinne von § 19 UStG. Es wird keine Umsatzsteuer berechnet und ausgewiesen.
 
-**Regelbesteuerung:** Du bekommst eine USt-IdNr. und weist 19 % aus.
+**Was das für dich heißt:**
 
-Zeile fürs Impressum:
-> Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE123456789
+- Du weist auf Rechnungen **keine** Umsatzsteuer aus und führst keine ab.
+  Auf der Rechnung steht stattdessen der Hinweis auf § 19 UStG.
+- Du darfst im Gegenzug keine Vorsteuer ziehen — die 19 % auf Hosting, Software
+  und Technik sind für dich echte Kosten.
+- **Die Grenze liegt bei 22.000 € Umsatz im ersten Jahr.** Bei 2.500 € pro
+  Webseite bist du nach neun Webseiten dran. Reißt du sie, wirst du **ab dem
+  Folgejahr** umsatzsteuerpflichtig — dann musst du deine Preise entweder um
+  19 % anheben oder die Steuer aus dem bestehenden Preis herausrechnen.
+- Für deine Kunden ist das meist egal: Handwerksbetriebe sind selbst
+  vorsteuerabzugsberechtigt, ihnen ist der Bruttopreis gleich.
 
-**Zum Nachdenken:** Bei 2.500 € pro Webseite bist du nach neun Webseiten an der
-22.000-€-Grenze. Wenn du damit rechnest, sie im ersten Jahr zu reißen, ist
-Regelbesteuerung von Anfang an unkomplizierter als ein Wechsel mitten im Jahr.
-**Das ist keine Steuerberatung.** Die IHK Erfurt macht dazu eine kostenlose
-Gründerberatung — eine Stunde, und genau diese Frage ist ihr Standardthema.
+**Das ist keine Steuerberatung.** Wenn du damit rechnest, im ersten Jahr über
+22.000 € zu kommen, sprich das in der kostenlosen Gründerberatung der IHK
+Erfurt an — ein Wechsel mitten im Geschäftsjahr ist unangenehmer als von Anfang
+an Regelbesteuerung.
 
-### 4.3 Impressum vervollständigen
+### 4.3 IHK — Pflicht, aber wahrscheinlich kostenlos
 
-In `impressum/index.html` steht noch ein Platzhalter:
+Mit der Gewerbeanmeldung wirst du automatisch IHK-Mitglied. Das erschreckt
+viele Gründer, ist aber in deiner Größe in der Regel beitragsfrei: Wer nicht im
+Handelsregister steht und unter den gesetzlichen Freigrenzen bleibt, zahlt
+keinen Grundbeitrag, und in den ersten Jahren nach der Gründung gibt es
+zusätzliche Befreiungen. Die IHK Erfurt sagt dir am Telefon in zwei Minuten,
+was für dich gilt — und die Gründerberatung ist ohnehin kostenlos.
 
-```
-[UMSATZSTEUER-ID ODER HINWEIS AUF KLEINUNTERNEHMERREGELUNG § 19 UStG — vom Betreiber zu ergänzen]
-```
+### 4.4 Datenschutz — was ich schon eingetragen habe
 
-Der muss vor dem Livegang durch eine der beiden Zeilen aus 4.2 ersetzt werden.
-Ein unvollständiges Impressum ist der häufigste Abmahngrund bei neuen
-Geschäftsseiten — und du verkaufst an Betriebe, die selbst darauf achten.
+In `datenschutz/index.html` steht jetzt:
 
-Prüfe außerdem: `Am Eselsgraben 14, 99094 Erfurt` muss eine ladungsfähige
-Anschrift sein, also eine, unter der dich Post tatsächlich erreicht. Ein
-Postfach genügt nicht.
+- **Hosting-Anbieter:** Netlify, Inc., San Francisco, USA, mit
+  Auftragsverarbeitungsvertrag nach Art. 28 DSGVO und Standardvertragsklauseln
+  nach Art. 46 DSGVO für die Übermittlung in die USA.
+- **Kontaktformular:** läuft über Netlify Forms, dieselbe Grundlage.
 
-### 4.4 Datenschutz — ein Vertrag und zwei Platzhalter
+**Was du dazu noch tun musst:** Netlifys Auftragsverarbeitungsvertrag (Data
+Processing Addendum) einmal ansehen und als PDF ablegen. Er ist Bestandteil der
+Nutzungsbedingungen; im Netlify-Konto findest du ihn unter den rechtlichen
+Dokumenten. Du musst nachweisen können, dass er existiert.
 
-**Der Vertrag:** Mit dem Hoster brauchst du einen
-Auftragsverarbeitungsvertrag nach Art. 28 DSGVO. Bei All-Inkl findest du ihn im
-KAS unter *Tools → AV-Vertrag*: annehmen, PDF ablegen. Zwei Minuten. Nötig ist
-er, weil der Hoster in deinem Auftrag die IP-Adressen deiner Besucher
-verarbeitet.
+> **Der ehrliche Hinweis:** Netlify ist ein US-Unternehmen. Das ist mit
+> Auftragsverarbeitungsvertrag und Standardvertragsklauseln zulässig, aber es
+> ist Papierkram, den du bei einem deutschen Hoster nicht hättest — und du
+> verlierst das Verkaufsargument „Ihre Daten liegen in Deutschland", das bei
+> Handwerksbetrieben zieht. Für den Start diese Woche ist Netlify die richtige
+> Wahl: kostenlos, sofort, kein FTP. Wenn das Geschäft läuft, ist ein Umzug auf
+> einen deutschen Hoster ein Nachmittag Arbeit. Die PHP-Version des Formulars
+> liegt dafür weiterhin im Repository.
 
-**Die Platzhalter** in `datenschutz/index.html`:
+**Was du nicht brauchst:** Kein Cookie-Banner. Die Seite setzt keine Cookies,
+nutzt kein Tracking und lädt die Schriften vom eigenen Server — die häufigste
+Abmahnfalle (Google Fonts) ist damit erledigt.
 
-```
-[HOSTER UND SPEICHERDAUER EINTRAGEN — vom Betreiber zu ergänzen]
-[AUFTRAGSVERARBEITUNGSVERTRAG BESTÄTIGEN — vom Betreiber zu ergänzen]
-```
+### 4.5 Einmal prüfen lassen
 
-Ersetzen durch Name und Anschrift deines Hosters und die tatsächliche
-Löschfrist der Logfiles. Beides steht in den Datenschutzhinweisen des Hosters —
-lies es dort ab, rate es nicht.
-
-**Was du dagegen nicht mehr brauchst:** Die Seite setzt keine Cookies, nutzt
-kein Tracking und lädt seit heute auch keine Schriften mehr von Google — die
-liegen jetzt auf deinem eigenen Server. Damit brauchst du **kein
-Cookie-Banner**, und der mit Abstand häufigste Abmahngrund der letzten Jahre
-(Google Fonts, Urteil LG München 2022) ist vom Tisch.
-
-### 4.5 Einmal drüberschauen lassen
-
-Impressum und Datenschutz sind von mir als Entwurf geschrieben, nicht juristisch
-geprüft. Vor dem Livegang einmal prüfen lassen: IHK-Gründerberatung (kostenlos)
-oder ein Anwalt für IT-Recht (150–300 €). Bei deinem Geschäftsmodell ist das
-gut angelegt.
-
----
-
-## 5 — Von GitHub auf den Server
-
-GitHub ist deine Sicherung und dein Verlauf. Es ist hier **nicht** der Webhoster.
-
-### 5.1 Den Stand auf `main` bringen
-
-Die Arbeit liegt auf dem Zweig `claude/awesome-lamport-6kzptf`. Auf
-github.com/Scharfii/Webseite-Scharf-Digital:
-
-1. *Pull requests → New pull request*, base: `main`, compare: `claude/awesome-lamport-6kzptf`
-2. *Create pull request* → *Merge pull request* → *Confirm merge*
-
-Danach steht alles auf `main`. Sag Bescheid, dann lege ich den Pull Request an.
-
-### 5.2 Herunterladen
-
-Grüner Knopf *Code → Download ZIP*, entpacken. Oder du nimmst das ZIP, das ich
-dir geschickt habe — gleicher Inhalt.
-
-### 5.3 Per FTP hochladen
-
-- **Programm:** FileZilla (kostenlos, filezilla-project.org — „FileZilla Client", nicht Server)
-- **Zugangsdaten:** im KAS unter *FTP → FTP-Zugänge*
-- **Server:** der in KAS angezeigte Name, **Port 21**, Verschlüsselung
-  *„Explizites FTP über TLS"*
-- Rechts in den Ordner deiner Domain wechseln. Bei All-Inkl ist das meist direkt
-  `/`, bei anderen Hostern `httpdocs`, `public_html` oder `www`.
-- Dann den **Inhalt** des entpackten Ordners hinüberziehen: `index.html`,
-  `assets`, `kontakt.php`, `.htaccess` und alle Unterordner.
-
-> **Zwei typische Fehler:**
->
-> 1. Du ziehst den *Ordner* statt seines *Inhalts* hinüber. Dann liegt die Seite
->    unter `scharf-digital.de/Webseite-Scharf-Digital/`. Merkst du sofort.
-> 2. `.htaccess` fehlt. FileZilla blendet Dateien mit führendem Punkt
->    standardmäßig aus — unter *Server → „Anzeige versteckter Dateien
->    erzwingen"* einschalten. Ohne diese Datei gibt es keine
->    HTTPS-Weiterleitung.
+Impressum und Datenschutzerklärung sind von mir als Entwurf geschrieben und
+nicht juristisch geprüft. Vor dem Livegang einmal durchsehen lassen:
+IHK-Gründerberatung (kostenlos) oder ein Anwalt für IT-Recht (150–300 €).
 
 ---
 
-## 6 — HTTPS einschalten
+## 5 — Testen, bevor du den ersten Link verschickst
 
-Im KAS: *Domain → deine Domain → SSL-Schutz → Let's Encrypt* → speichern.
-Kostenlos, verlängert sich selbst, ist nach ein paar Minuten aktiv.
-
-Die `.htaccess` im Projekt erledigt den Rest: Jeder Aufruf über `http://` und
-jeder über `www.` wird per 301 auf `https://scharf-digital.de/…` umgeleitet.
-Das ist nicht nur Sicherheit, sondern auch SEO — sonst zählt Google jede
-Variante als eigene Seite.
-
-**Test:** `http://scharf-digital.de` und `http://www.scharf-digital.de` aufrufen.
-Beide müssen bei `https://scharf-digital.de` mit Schloss-Symbol landen.
-
-**HSTS erst später.** In der `.htaccess` ist die Zeile
-`Strict-Transport-Security` auskommentiert. Schalte sie frühestens nach ein paar
-Tagen stabilem Betrieb frei. Wenn HTTPS danach kaputtgeht, weigern sich Browser
-ein Jahr lang, die Seite überhaupt zu öffnen.
-
----
-
-## 7 — Testen nach dem Hochladen
-
-1. Jede Seite einmal aufrufen: `/`, `/webseiten/`, `/seo/`, `/geo/`, `/preise/`,
-   `/branchen/solarteure/`, `/branchen/shk/`, `/ueber-mich/`, `/kontakt/`,
-   `/impressum/`, `/datenschutz/`
-2. **Das Kontaktformular an dich selbst abschicken.** Ausfüllen wie ein Kunde.
-   Die Mail muss ankommen und du musst auf `/danke/` landen. Kommt nichts:
-   erst Spam-Ordner, dann prüfen, ob `formular@…` als Postfach existiert (Teil 2).
-3. Das Formular einmal mit leerem Feld „Betrieb" abschicken — es muss die
-   Fehlerseite im Design kommen, keine weiße Seite.
-4. Auf dem Handy öffnen. Unten muss die Leiste mit „Anrufen" und
+1. Alle zwölf Seiten einmal aufrufen.
+2. Eine erfundene Adresse aufrufen, etwa `/gibtesnicht/` — es muss die
+   404-Seite im Design kommen.
+3. **Das Formular an dich selbst abschicken.** Es muss unter *Forms → anfrage*
+   in Netlify auftauchen **und** die Benachrichtigungs-Mail muss ankommen.
+   Danach musst du auf `/danke/` landen.
+4. Auf dem Handy öffnen: unten muss die Leiste mit „Anrufen" und
    „Analyse anfordern" stehen.
 5. Den Link an dich selbst über WhatsApp schicken — das Vorschaubild muss
-   erscheinen. Das machst du nach jedem Telefonat, es muss sitzen.
-6. `pagespeed.web.dev` aufrufen, deine URL eintragen. Du verkaufst genau das —
-   die Werte sollten grün sein.
+   erscheinen. Das machst du nach jedem Telefonat, das muss sitzen.
+6. `pagespeed.web.dev` mit deiner Adresse. Du verkaufst genau das.
 
 ---
 
-## 8 — Google (am Tag danach)
+## 6 — Google (am Tag danach)
 
 1. **Search Console** (`search.google.com/search-console`): Property vom Typ
-   *Domain* anlegen, den angezeigten TXT-Eintrag im KAS unter DNS hinterlegen,
-   bestätigen. Danach unter *Sitemaps* eintragen:
+   *Domain* anlegen, den TXT-Eintrag bei Netlify unter DNS hinterlegen,
+   bestätigen. Dann unter *Sitemaps* eintragen:
    `https://scharf-digital.de/sitemap.xml`
 2. **Google Business Profil** (`business.google.com`): Du verkaufst die
-   Einrichtung solcher Profile und hast selbst keins. Kategorie „Webdesigner".
-   Wenn du keine Kunden zu Hause empfangen willst: Einzugsgebiet angeben statt
-   Ladenadresse.
+   Einrichtung solcher Profile und hast selbst keins. Kategorie „Webdesigner",
+   Einzugsgebiet statt Ladenadresse, wenn du keine Kunden zu Hause empfängst.
 3. **Bing Webmaster Tools**: übernimmt die Search-Console-Daten mit zwei Klicks.
-   Bing versorgt die Websuche von ChatGPT — für dein GEO-Argument relevant.
+   Bing versorgt die Websuche von ChatGPT — gehört zu deinem GEO-Argument.
 
 ---
 
-## 9 — Was bis nächste Woche warten kann
+## 7 — Was danach kommt
 
 - **Dein Foto.** Der einzige echte Platzhalter im Design.
-- Eine 404-Seite.
-- Die Vorlage für die Sichtbarkeits-Analyse. Deine Seite verspricht sie an jeder
-  Stelle — es gibt sie bisher nicht. Das ist wichtiger als jede weitere Unterseite.
-- Eigene Portal-Einträge, erste Bewertungen.
+- **Die Vorlage für die Sichtbarkeits-Analyse.** Deine Seite verspricht sie an
+  jeder Stelle — es gibt sie bisher nicht. Wichtiger als jede weitere Unterseite.
+- Erste Referenzen und Google-Bewertungen.
 
 ---
 
 ## Was ich sofort übernehmen kann
 
-- Die E-Mail-Adresse an allen Stellen ersetzen (sag mir welche)
-- Impressum- und Datenschutztexte einsetzen, sobald du Kleinunternehmer ja/nein
-  entschieden und den Hoster gewählt hast
 - Den Pull Request auf `main` anlegen
-- Eine 404-Seite bauen
+- Die Domain im ganzen Projekt ändern, falls `scharf-digital.de` vergeben ist
+- Eine Rechnungsvorlage mit korrektem § 19-Hinweis
+- Die Analyse-Vorlage aus Punkt 7

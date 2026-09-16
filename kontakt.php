@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-const EMPFAENGER   = 'antonlorenzscharf@gmail.com';
+const EMPFAENGER   = 'anton@scharf-digital.de';
 const ABSENDER     = 'formular@scharf-digital.de'; // muss zur Domain gehoeren, sonst landet die Mail im Spam
 const ZIEL_ERFOLG  = '/danke/';
 const ZIEL_FORMULAR = '/kontakt/';

@@ -1,0 +1,31 @@
+# Scharf Digital — Netlify-Konfiguration.
+# Kein Build-Schritt: die Dateien liegen fertig im Repository und werden
+# unveraendert ausgeliefert. Die .htaccess im Projekt ist nur relevant,
+# falls die Seite spaeter auf einen Apache-Hoster umzieht.
+
+[build]
+  publish = "."
+
+# Das PHP-Formular laeuft auf Netlify nicht und soll auch nicht als Text
+# abrufbar sein. Es bleibt im Repository, falls spaeter ein PHP-Hoster kommt.
+[[redirects]]
+  from = "/kontakt.php"
+  to = "/404.html"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
