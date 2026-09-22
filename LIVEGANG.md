@@ -214,11 +214,33 @@ Dokumenten. Du musst nachweisen können, dass er existiert.
 nutzt kein Tracking und lädt die Schriften vom eigenen Server — die häufigste
 Abmahnfalle (Google Fonts) ist damit erledigt.
 
-### 4.5 Einmal prüfen lassen
+### 4.5 Einmal prüfen lassen — so erreichst du die IHK
 
 Impressum und Datenschutzerklärung sind von mir als Entwurf geschrieben und
-nicht juristisch geprüft. Vor dem Livegang einmal durchsehen lassen:
-IHK-Gründerberatung (kostenlos) oder ein Anwalt für IT-Recht (150–300 €).
+nicht juristisch geprüft. Solange das so ist, steht auf beiden Seiten ein
+sichtbarer Hinweis darauf. Der kommt weg, sobald jemand draufgeschaut hat.
+
+**IHK Erfurt — Gründungsberatung, kostenlos**
+
+- Arnstädter Straße 34, 99096 Erfurt
+- Telefon **0361 3484-0**
+- info@erfurt.ihk.de
+- Öffnungszeiten: Mo–Do 8:00–17:00, Fr 8:00–14:30
+- Terminvereinbarung und Infos: ihk.de/erfurt → Service → Existenzgründung
+
+**Was du beim Anruf sagst:** „Ich habe mein Gewerbe angemeldet, bin
+Einzelunternehmer im Bereich Webseiten und Suchmaschinenoptimierung und
+möchte einen Termin zur Gründungsberatung. Ich habe Fragen zur
+Kleinunternehmerregelung, zum IHK-Beitrag und hätte gern, dass jemand
+einmal über Impressum und Datenschutzerklärung meiner Webseite schaut."
+
+**Was du mitbringst:** die Gewerbeanmeldung, die Adresse deiner Webseite,
+und die Frage, ob du im ersten Jahr über 22.000 € Umsatz kommst.
+
+Die IHK macht keine Rechtsberatung im engeren Sinn. Für eine belastbare
+Prüfung von Impressum und Datenschutz ist ein Anwalt für IT-Recht der
+sichere Weg (150–300 €). Die IHK findet aber die offensichtlichen Lücken
+und kostet nichts — für den Anfang reicht das meistens.
 
 ---
 
