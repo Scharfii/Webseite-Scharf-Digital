@@ -1,6 +1,6 @@
 /* Scharf Digital - ein Stylesheet, kein Build. */
 
-/* Schriften vom eigenen Server: keine Verbindung zu Google. */
+/* Schriften vom eigenen Server - keine Verbindung zu Google. */
 @font-face { font-family: 'Space Grotesk'; font-weight: 300 700; font-display: swap; src: url(/assets/fonts/space-grotesk.woff2) format('woff2'); }
 @font-face { font-family: 'IBM Plex Sans'; font-weight: 400 600; font-display: swap; src: url(/assets/fonts/ibm-plex-sans.woff2) format('woff2'); }
 
@@ -62,7 +62,7 @@ body {
 }
 
 h1, h2, h3, h4, p, ul, ol, figure, dl { margin: 0; }
-/* Platz fuer die Unterlaenge von g, j, p, q, y. */
+/* Platz fuer Unterlaengen */
 h1, h2, h3 { padding-bottom: .12em; }
 ul, ol { padding: 0; list-style: none; }
 p, li, dd, dt, address { text-wrap: pretty; overflow-wrap: break-word; }
@@ -131,7 +131,7 @@ strong { font-weight: 600; color: var(--text); }
   padding: var(--sec-y) var(--pad-x) calc(var(--sec-y) + 50px);
   overflow: hidden;
 }
-/* Keine geraden Kanten: Verlauf plus krumme Kante. */
+/* Verlauf plus krumme Kante statt gerader Linie. */
 .sec--alt { background: var(--bg-alt); }
 .sec--tight { --sec-y: 90px; }
 .sec--flush-top { padding-top: 20px; }
@@ -194,11 +194,11 @@ strong { font-weight: 600; color: var(--text); }
 }
 .nebula--warm { background: rgba(246,167,43,.16); }
 .nebula--cool { background: rgba(76,110,190,.20); }
-/* Im CTA liegen Nebel und beide Strahlenebenen uebereinander - sonst < 4,5:1 */
+/* Im CTA liegt alles uebereinander - sonst < 4,5:1 */
 .nebula--dim  { background: rgba(246,167,43,.09); }
 .nebula--dim ~ .wrap .lead-sm { color: var(--text); }
 
-/* Farbe der FOLGENDEN Sektion, Lage in der oberen. */
+/* Farbe der FOLGENDEN Sektion. */
 .fade-down {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -224,7 +224,7 @@ strong { font-weight: 600; color: var(--text); }
 .w-alt    path { fill: #0E1528; }
 .w-footer path { fill: #080C18; }
 
-/* 7 und 11 s sind teilerfremd - das Flimmern wiederholt sich nie sichtbar. */
+/* 7 und 11 s teilerfremd - das Flimmern wiederholt sich nie sichtbar */
 .rays {
   position: absolute;
   top: -35%; left: -15%;
@@ -292,7 +292,7 @@ strong { font-weight: 600; color: var(--text); }
 .stagger-open > *:nth-child(3) { animation-delay: 180ms; animation-range: entry 14% entry 74%; }
 .stagger-open > *:nth-child(4) { animation-delay: 270ms; animation-range: entry 21% entry 81%; }
 
-/* 5.4 Hero-Choreografie in Lesereihenfolge. `both` verhindert das Aufblitzen. */
+/* 5.4 Hero-Choreografie. `both` verhindert das Aufblitzen. */
 @keyframes hero-in {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -305,12 +305,10 @@ strong { font-weight: 600; color: var(--text); }
 
 .nebula { animation: soft-in 1200ms var(--ease-smooth) both; }
 
-/* 5.5 Staffelung 50 ms. Scrollgesteuert staffelt die animation-range. */
+/* 5.5 Staffelung 50 ms, scrollgesteuert ueber animation-range. */
 .stagger > *:nth-child(2) { animation-delay:  50ms; animation-range: entry 4% entry 64%; }
 .stagger > *:nth-child(3) { animation-delay: 100ms; animation-range: entry 8% entry 68%; }
 .stagger > *:nth-child(4) { animation-delay: 150ms; animation-range: entry 12% entry 72%; }
-.stagger > *:nth-child(5) { animation-delay: 200ms; animation-range: entry 16% entry 76%; }
-.stagger > *:nth-child(6) { animation-delay: 250ms; animation-range: entry 20% entry 80%; }
 
 .site-header {
   position: sticky;
@@ -478,7 +476,7 @@ strong { font-weight: 600; color: var(--text); }
 }
 
 .price { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 28px; font-weight: 700; color: var(--accent); letter-spacing: -.01em; }
-.price-lg { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 46px; font-weight: 700; color: #FFF; letter-spacing: -.02em; }
+.price-lg { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 46px; white-space: nowrap; font-weight: 700; color: #FFF; letter-spacing: -.02em; }
 .price-note { font-size: 14px; color: var(--muted); }
 .terms { display: flex; flex-direction: column; gap: 8px; }
 .terms li { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: var(--text-3); }
@@ -615,7 +613,7 @@ strong { font-weight: 600; color: var(--text); }
 .breadcrumb li { display: flex; align-items: center; gap: 10px; }
 .breadcrumb li + li::before { content: "/"; color: var(--muted); }
 
-/* Wer auf halber Seite ueberzeugt ist, soll nicht nach oben scrollen muessen. */
+/* Wer auf halber Seite ueberzeugt ist, soll nicht hochscrollen muessen. */
 .mobile-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
   display: none; gap: 10px;
@@ -753,6 +751,7 @@ strong { font-weight: 600; color: var(--text); }
   .h2-sm   { font-size: 28px; line-height: 1.16; }
   .h3      { font-size: 20px; }
   .h3-lg   { font-size: 21px; }
+  .price-lg { font-size: 33px; }
 
   .lead, .lead-sm { font-size: 17px; }
   .body-lg { font-size: 16px; }
@@ -787,7 +786,7 @@ strong { font-weight: 600; color: var(--text); }
   .prose h2 { font-size: 23px; }
 }
 
-/* 5.7 reduce heisst reduzieren, nicht einfrieren: Verschiebung raus, Einblenden bleibt. */
+/* 5.7 reduce: Verschiebung raus, Einblenden bleibt. */
 @media (prefers-reduced-motion: reduce) {
   
   .logo-mark { animation: soft-in 300ms var(--ease-snappy) both; }
