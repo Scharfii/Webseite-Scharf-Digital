@@ -1,6 +1,6 @@
-/* Scharf Digital - das einzige Stylesheet, kein Build. Animiert werden nur transform und opacity. */
+/* Scharf Digital - ein Stylesheet, kein Build. */
 
-/* Schriften vom eigenen Server: keine Verbindung zu Google, keine IP an Dritte. Variable Schriften - je eine Datei fuer alle Schnitte. */
+/* Schriften vom eigenen Server: keine Verbindung zu Google. */
 @font-face { font-family: 'Space Grotesk'; font-weight: 300 700; font-display: swap; src: url(/assets/fonts/space-grotesk.woff2) format('woff2'); }
 @font-face { font-family: 'IBM Plex Sans'; font-weight: 400 600; font-display: swap; src: url(/assets/fonts/ibm-plex-sans.woff2) format('woff2'); }
 
@@ -39,7 +39,7 @@
   --wrap: 1280px;
   --sec-y: 110px;
 
-  /* 5.1 Easing - nur diese drei Kurven, nie linear (ausser Endlosdrift), nie ease. Jede transition und jede animation verweist hierauf. */
+  /* 5.1 Easing - nur diese drei Kurven, nie linear, nie ease. */
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);    
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); 
   --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);      
@@ -62,6 +62,8 @@ body {
 }
 
 h1, h2, h3, h4, p, ul, ol, figure, dl { margin: 0; }
+/* Platz fuer die Unterlaenge von g, j, p, q, y. */
+h1, h2, h3 { padding-bottom: .12em; }
 ul, ol { padding: 0; list-style: none; }
 p, li, dd, dt, address { text-wrap: pretty; overflow-wrap: break-word; }
 
@@ -98,8 +100,8 @@ strong { font-weight: 600; color: var(--text); }
 }
 .skip-link:focus { top: 12px; color: var(--bg); }
 
-.h1-home { font-size: 78px; line-height: 1.04; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
-.h1-sub  { font-size: 58px; line-height: 1.06; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
+.h1-home { font-size: 78px; line-height: 1.12; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
+.h1-sub  { font-size: 58px; line-height: 1.12; font-weight: 700; letter-spacing: -.025em; color: #FFF; }
 .h2      { font-size: 44px; line-height: 1.12; font-weight: 700; letter-spacing: -.02em;  color: #FFF; }
 .h2-sm   { font-size: 38px; line-height: 1.14; font-weight: 700; letter-spacing: -.02em;  color: #FFF; }
 .h3      { font-size: 22px; line-height: 1.3;  font-weight: 600; letter-spacing: -.01em;  color: #FFF; }
@@ -129,7 +131,7 @@ strong { font-weight: 600; color: var(--text); }
   padding: var(--sec-y) var(--pad-x) calc(var(--sec-y) + 50px);
   overflow: hidden;
 }
-/* Keine geraden Kanten zwischen den Abschnitten: Farbverlauf (.fade-down) plus krumme Kante (.wave). */
+/* Keine geraden Kanten: Verlauf plus krumme Kante. */
 .sec--alt { background: var(--bg-alt); }
 .sec--tight { --sec-y: 90px; }
 .sec--flush-top { padding-top: 20px; }
@@ -196,7 +198,7 @@ strong { font-weight: 600; color: var(--text); }
 .nebula--dim  { background: rgba(246,167,43,.09); }
 .nebula--dim ~ .wrap .lead-sm { color: var(--text); }
 
-/* Beide Lagen tragen die Farbe der FOLGENDEN Sektion und liegen in der oberen. */
+/* Farbe der FOLGENDEN Sektion, Lage in der oberen. */
 .fade-down {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -222,7 +224,7 @@ strong { font-weight: 600; color: var(--text); }
 .w-alt    path { fill: #0E1528; }
 .w-footer path { fill: #080C18; }
 
-/* Der Ursprung des Verlaufs liegt ausserhalb des Bildes, dadurch laufen die Strahlen auseinander wie echtes Licht. Die zwei Ebenen flimmern in 7 und 11 Sekunden: teilerfremd, das Muster wiederholt sich nie sichtbar. Nicht auf runde Zahlen aendern. */
+/* 7 und 11 s sind teilerfremd - das Flimmern wiederholt sich nie sichtbar. */
 .rays {
   position: absolute;
   top: -35%; left: -15%;
@@ -235,6 +237,11 @@ strong { font-weight: 600; color: var(--text); }
   );
   filter: blur(14px);
   transform: translateZ(0);
+  /* Ohne Maske endet die Flaeche an einer sichtbaren Kante. */
+  --m: linear-gradient(#000 0 35%, rgba(0,0,0,.35) 65%, transparent 92%),
+       linear-gradient(90deg, transparent, #000 18% 72%, transparent);
+  -webkit-mask-image: var(--m); mask-image: var(--m);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
   animation: soft-in 1200ms var(--ease-smooth) both,
              shimmer 7s ease-in-out infinite alternate;
 }
@@ -250,7 +257,7 @@ strong { font-weight: 600; color: var(--text); }
              shimmer-soft 11s ease-in-out infinite alternate;
 }
 
-/* Sonnenlicht auf der Ueberschrift: Verlauf aus der Richtung der Strahlen, Lichthof dahinter. Ohne background-clip bleibt die Schrift weiss. */
+/* Sonnenlicht auf der Ueberschrift, aus der Richtung der Strahlen. */
 .h-title { filter: drop-shadow(0 0 30px rgba(255,178,68,.42)); }
 @supports (background-clip: text) or (-webkit-background-clip: text) {
   .h-title {
@@ -275,7 +282,17 @@ strong { font-weight: 600; color: var(--text); }
 }
 @keyframes soft-in { from { opacity: 0; } to { opacity: 1; } }
 
-/* 5.4 Hero-Choreografie: die Reihenfolge fuehrt den Blick so, wie gelesen werden soll. `both` haelt Start- und Endzustand - ohne das blitzt der Inhalt vor der Animation auf. */
+/* 5.9 Oeffnen statt Einblenden. 0.965 ist spuerbar, ohne nach Zoom auszusehen. */
+.open, .stagger-open > * { animation-name: open-up; animation-duration: 900ms; transform-origin: bottom; }
+@keyframes open-up {
+  from { opacity: 0; transform: translateY(24px) scale(.965); }
+  to   { opacity: 1; transform: none; }
+}
+.stagger-open > *:nth-child(2) { animation-delay: 90ms; animation-range: entry 7% entry 67%; }
+.stagger-open > *:nth-child(3) { animation-delay: 180ms; animation-range: entry 14% entry 74%; }
+.stagger-open > *:nth-child(4) { animation-delay: 270ms; animation-range: entry 21% entry 81%; }
+
+/* 5.4 Hero-Choreografie in Lesereihenfolge. `both` verhindert das Aufblitzen. */
 @keyframes hero-in {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -288,7 +305,7 @@ strong { font-weight: 600; color: var(--text); }
 
 .nebula { animation: soft-in 1200ms var(--ease-smooth) both; }
 
-/* 5.5 Staffelung: 50 ms Abstand. animation-delay greift nur beim Rueckfall ohne view()-Timeline; scrollgesteuert verschiebt zusaetzlich die animation-range. */
+/* 5.5 Staffelung 50 ms. Scrollgesteuert staffelt die animation-range. */
 .stagger > *:nth-child(2) { animation-delay:  50ms; animation-range: entry 4% entry 64%; }
 .stagger > *:nth-child(3) { animation-delay: 100ms; animation-range: entry 8% entry 68%; }
 .stagger > *:nth-child(4) { animation-delay: 150ms; animation-range: entry 12% entry 72%; }
@@ -321,7 +338,7 @@ strong { font-weight: 600; color: var(--text); }
   min-height: 44px; color: #FFF;
 }
 .logo-mark { grid-row: 1 / 3; }
-/* Beim Laden zieht die Blende einmal scharf - ueber transform und opacity, ein animierter filter: blur() waere nach Abschnitt 1 verboten. */
+/* Beim Laden zieht die Blende einmal scharf - nur transform und opacity. */
 .logo-mark { animation: focus-in 600ms var(--ease-smooth) both; }
 @keyframes focus-in {
   from { opacity: 0; transform: scale(1.4); }
@@ -499,7 +516,7 @@ strong { font-weight: 600; color: var(--text); }
 .step .small { color: var(--text-3); }
 .step-num {
   font-family: 'Space Grotesk', system-ui, sans-serif;
-  /* --muted statt --muted-2: #6B7793 liegt mit 4,49:1 knapp unter der 4,5:1-Grenze */
+  /* --muted-2 liegt mit 4,49:1 knapp unter der Grenze */
   font-size: 15px; font-weight: 600; letter-spacing: .1em; color: var(--muted);
 }
 .step--first .step-num { color: var(--accent); }
@@ -591,14 +608,14 @@ strong { font-weight: 600; color: var(--text); }
   font-size: 15px; line-height: 1.6; color: var(--text);
 }
 
-/* --text-3 statt --muted: die Brotkrumen sitzen oben links, genau im Ursprung der Sonnenstrahlen. Ueber der hellsten Stelle erreicht --muted dort nur 3,7:1, --text-3 kommt auf 5,3:1. */
+/* --text-3: ueber den Strahlen reicht --muted nur 3,7:1. */
 .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-3); flex-wrap: wrap; }
 .breadcrumb a { color: var(--text-3); }
 .breadcrumb a:hover { color: var(--accent-hover); }
 .breadcrumb li { display: flex; align-items: center; gap: 10px; }
 .breadcrumb li + li::before { content: "/"; color: var(--muted); }
 
-/* Der wichtigste Baustein der Mobilansicht: wer auf halber Seite überzeugt ist, soll nicht erst wieder nach oben scrollen müssen. */
+/* Wer auf halber Seite ueberzeugt ist, soll nicht nach oben scrollen muessen. */
 .mobile-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
   display: none; gap: 10px;
@@ -653,7 +670,7 @@ strong { font-weight: 600; color: var(--text); }
   .mobile-bar { display: flex; }
   body { padding-bottom: 92px; }
 
-  /* Wellen und Verläufe flacher, sonst fressen sie den halben Bildschirm */
+  /* Flacher, sonst fressen sie den halben Bildschirm */
   .wave svg { height: 54px; }
   .fade-down { height: 120px; }
 
@@ -670,7 +687,7 @@ strong { font-weight: 600; color: var(--text); }
   .header-actions .btn { display: none; }
   .header-actions { gap: 14px; }
 
-  /* Zwei geblurrte Ebenen kosten auf schwachen Geraeten Bildrate - auf Mobil nur eine. */
+  /* Auf Mobil nur eine Ebene - Bildrate. */
   .rays--soft { display: none; }
   .rays {
     top: -30%; left: -20%;
@@ -721,7 +738,7 @@ strong { font-weight: 600; color: var(--text); }
 @media (max-width: 600px) {
   :root { --pad-x: var(--pad-x-mobile); --sec-y: 56px; }
 
-  /* Wie im Mobil-Entwurf: nur die Wortmarke, der Claim braucht den Platz nicht */
+  /* Nur die Wortmarke */
   .logo-claim { display: none; }
   .logo { gap: 10px; }
   .logo-mark { width: 30px; height: 30px; }
@@ -730,8 +747,8 @@ strong { font-weight: 600; color: var(--text); }
 
   body { font-size: 16px; }
 
-  .h1-home { font-size: 41px; line-height: 1.06; letter-spacing: -.02em; }
-  .h1-sub  { font-size: 34px; line-height: 1.1;  letter-spacing: -.02em; }
+  .h1-home { font-size: 41px; line-height: 1.12; letter-spacing: -.02em; }
+  .h1-sub  { font-size: 34px; line-height: 1.14;  letter-spacing: -.02em; }
   .h2      { font-size: 30px; line-height: 1.15; }
   .h2-sm   { font-size: 28px; line-height: 1.16; }
   .h3      { font-size: 20px; }
@@ -747,7 +764,7 @@ strong { font-weight: 600; color: var(--text); }
   .card { padding: 26px; border-radius: 14px; }
   .card--pad { padding: 26px; }
 
-  /* Eigene, kleinere Sternen-Kachel: sonst sieht man auf dem schmalen Bildschirm kaum Sterne. */
+  /* Kleinere Kachel, sonst sieht man kaum Sterne. */
   .stars { background-size: 390px 340px; }
   .stars--slow { background-size: 560px 470px; }
   .sec--flush-top { padding-top: 8px; }
@@ -770,12 +787,13 @@ strong { font-weight: 600; color: var(--text); }
   .prose h2 { font-size: 23px; }
 }
 
-/* 5.7 reduce heisst REDUZIEREN, nicht einfrieren: gegen grosse raeumliche Bewegung, nicht gegen sanftes Einblenden. Eine Seite, die dabei erstarrt, erfuellt die Anforderung schlechter. */
+/* 5.7 reduce heisst reduzieren, nicht einfrieren: Verschiebung raus, Einblenden bleibt. */
 @media (prefers-reduced-motion: reduce) {
   
   .logo-mark { animation: soft-in 300ms var(--ease-snappy) both; }
   .reveal, .h-badge, .h-title, .h-text, .h-actions, .h-trust { animation: soft-in 300ms var(--ease-snappy) both; animation-timeline: view(); }
   .h-badge, .h-title, .h-text, .h-actions, .h-trust { animation-timeline: auto; }
+  .open, .stagger-open > * { animation-name: soft-in; animation-duration: 300ms; }
   .stagger > * { animation-range: normal; }
 
   /* Endlosbewegung anhalten, Strahlen bleiben sichtbar stehen */
