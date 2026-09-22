@@ -1,6 +1,6 @@
 /* Scharf Digital - ein Stylesheet, kein Build. */
 
-/* Schriften vom eigenen Server - keine Verbindung zu Google. */
+/* Schriften vom eigenen Server */
 @font-face { font-family: 'Space Grotesk'; font-weight: 300 700; font-display: swap; src: url(/assets/fonts/space-grotesk.woff2) format('woff2'); }
 @font-face { font-family: 'IBM Plex Sans'; font-weight: 400 600; font-display: swap; src: url(/assets/fonts/ibm-plex-sans.woff2) format('woff2'); }
 
@@ -39,7 +39,7 @@
   --wrap: 1280px;
   --sec-y: 110px;
 
-  /* 5.1 Easing - nur diese drei Kurven, nie linear, nie ease. */
+  /* Nur diese drei Kurven, nie linear, nie ease */
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);    
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); 
   --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);      
@@ -62,10 +62,11 @@ body {
 }
 
 h1, h2, h3, h4, p, ul, ol, figure, dl { margin: 0; }
-/* Platz fuer Unterlaengen */
+/* Unterlaengen */
 h1, h2, h3 { padding-bottom: .12em; }
 ul, ol { padding: 0; list-style: none; }
 p, li, dd, dt, address { text-wrap: pretty; overflow-wrap: break-word; }
+h1, h2, h3, h4 { overflow-wrap: break-word; }
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--accent-hover); }
@@ -73,7 +74,6 @@ a:hover { color: var(--accent-hover); }
 img, svg { display: block; max-width: 100%; }
 svg { flex-shrink: 0; }
 
-/* Icons kommen aus dem Sprite; die Strichfarbe erbt currentColor. */
 .ic { fill: none; stroke: currentColor; color: var(--accent); stroke-linecap: round; stroke-linejoin: round; }
 .ic--i    { color: inherit; }
 .ic--m    { color: var(--muted); }
@@ -127,11 +127,11 @@ strong { font-weight: 600; color: var(--text); }
 
 .sec {
   position: relative;
-  /* unten 50px mehr, damit kein Text unter die Welle rutscht */
+  /* Platz fuer die Welle */
   padding: var(--sec-y) var(--pad-x) calc(var(--sec-y) + 50px);
   overflow: hidden;
 }
-/* Verlauf plus krumme Kante statt gerader Linie. */
+/* Verlauf plus krumme Kante */
 .sec--alt { background: var(--bg-alt); }
 .sec--tight { --sec-y: 90px; }
 .sec--flush-top { padding-top: 20px; }
@@ -216,10 +216,10 @@ strong { font-weight: 600; color: var(--text); }
 }
 .wave svg { display: block; width: 100%; height: 96px; }
 
-/* Zielfarbe des Uebergangs - spart neun Inline-Verlaeufe je Seite */
-.to-base   { background: linear-gradient(180deg, rgba(10,15,30,0) 0%, rgba(10,15,30,.75) 60%, #0A0F1E 100%); }
-.to-alt    { background: linear-gradient(180deg, rgba(14,21,40,0) 0%, rgba(14,21,40,.75) 60%, #0E1528 100%); }
-.to-footer { background: linear-gradient(180deg, rgba(8,12,24,0) 0%, rgba(8,12,24,.75) 60%, #080C18 100%); }
+/* Zielfarbe des Uebergangs */
+.to-base   { background: linear-gradient(rgba(10,15,30,0), rgba(10,15,30,.75) 60%, #0A0F1E); }
+.to-alt    { background: linear-gradient(rgba(14,21,40,0), rgba(14,21,40,.75) 60%, #0E1528); }
+.to-footer { background: linear-gradient(rgba(8,12,24,0), rgba(8,12,24,.75) 60%, #080C18); }
 .w-base   path { fill: #0A0F1E; }
 .w-alt    path { fill: #0E1528; }
 .w-footer path { fill: #080C18; }
@@ -257,7 +257,7 @@ strong { font-weight: 600; color: var(--text); }
              shimmer-soft 11s ease-in-out infinite alternate;
 }
 
-/* Sonnenlicht auf der Ueberschrift, aus der Richtung der Strahlen. */
+/* Sonnenlicht auf der Ueberschrift */
 .h-title { filter: drop-shadow(0 0 30px rgba(255,178,68,.42)); }
 @supports (background-clip: text) or (-webkit-background-clip: text) {
   .h-title {
@@ -282,7 +282,7 @@ strong { font-weight: 600; color: var(--text); }
 }
 @keyframes soft-in { from { opacity: 0; } to { opacity: 1; } }
 
-/* 5.9 Oeffnen statt Einblenden. 0.965 ist spuerbar, ohne nach Zoom auszusehen. */
+/* 5.9 0.965 ist spuerbar, ohne nach Zoom auszusehen */
 .open, .stagger-open > * { animation-name: open-up; animation-duration: 900ms; transform-origin: bottom; }
 @keyframes open-up {
   from { opacity: 0; transform: translateY(24px) scale(.965); }
@@ -292,7 +292,7 @@ strong { font-weight: 600; color: var(--text); }
 .stagger-open > *:nth-child(3) { animation-delay: 180ms; animation-range: entry 14% entry 74%; }
 .stagger-open > *:nth-child(4) { animation-delay: 270ms; animation-range: entry 21% entry 81%; }
 
-/* 5.4 Hero-Choreografie. `both` verhindert das Aufblitzen. */
+/* `both` verhindert das Aufblitzen */
 @keyframes hero-in {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -305,7 +305,7 @@ strong { font-weight: 600; color: var(--text); }
 
 .nebula { animation: soft-in 1200ms var(--ease-smooth) both; }
 
-/* 5.5 Staffelung 50 ms, scrollgesteuert ueber animation-range. */
+/* 5.5 Staffelung ueber animation-range */
 .stagger > *:nth-child(2) { animation-delay:  50ms; animation-range: entry 4% entry 64%; }
 .stagger > *:nth-child(3) { animation-delay: 100ms; animation-range: entry 8% entry 68%; }
 .stagger > *:nth-child(4) { animation-delay: 150ms; animation-range: entry 12% entry 72%; }
@@ -336,25 +336,28 @@ strong { font-weight: 600; color: var(--text); }
   min-height: 44px; color: #FFF;
 }
 .logo-mark { grid-row: 1 / 3; }
-/* Beim Laden zieht die Blende einmal scharf - nur transform und opacity. */
+/* Blende zieht scharf */
 .logo-mark { animation: focus-in 600ms var(--ease-smooth) both; }
 @keyframes focus-in {
   from { opacity: 0; transform: scale(1.4); }
   to   { opacity: 1; transform: scale(1); }
 }
 .logo:hover { color: #FFF; }
-.logo-name { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: .14em; line-height: 1.1; }
+/* Anzeigeschrift */
+.logo-name, .price, .price-lg, .step-num, .ai-n { font-family: 'Space Grotesk', system-ui, sans-serif; white-space: nowrap; }
+.logo-name { font-size: 20px; font-weight: 700; letter-spacing: .14em; line-height: 1.1; }
 .logo-name span { color: var(--accent); }
 .logo-claim { font-size: 11px; letter-spacing: .08em; color: var(--muted); }
 
 .nav-desktop { display: flex; align-items: center; gap: 32px; }
 .nav-desktop a {
   position: relative;
+  padding-block: 14px;
   font-size: 15px; color: var(--text-2);
   transition: color 200ms var(--ease-snappy);
 }
 .nav-desktop a::after {
-  content: ""; position: absolute; left: 0; right: 100%; bottom: -7px;
+  content: ""; position: absolute; left: 0; right: 100%; bottom: 9px;
   height: 2px; background: var(--accent); border-radius: 2px;
   transition: right 250ms var(--ease-smooth);
 }
@@ -365,7 +368,7 @@ strong { font-weight: 600; color: var(--text); }
 
 .header-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 
-.header-phone { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: var(--text); }
+.header-phone { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; font-weight: 500; color: var(--text); }
 .header-phone:hover { color: var(--accent-hover); }
 
 .header-phone-mobile, .burger { display: none; }
@@ -422,7 +425,7 @@ strong { font-weight: 600; color: var(--text); }
 .btn-block { width: 100%; }
 
 .link-arrow {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
   font-size: 16px; font-weight: 500;
   transition: gap 200ms var(--ease-spring), color 200ms var(--ease-snappy);
 }
@@ -450,7 +453,7 @@ strong { font-weight: 600; color: var(--text); }
   margin-top: auto;
   padding-top: 20px;
   border-top: 1px solid var(--line);
-  display: flex; align-items: baseline; gap: 8px;
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px;
 }
 
 .icon-box {
@@ -475,8 +478,8 @@ strong { font-weight: 600; color: var(--text); }
   padding: 5px 10px; border-radius: 4px; white-space: nowrap;
 }
 
-.price { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 28px; font-weight: 700; color: var(--accent); letter-spacing: -.01em; }
-.price-lg { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 46px; white-space: nowrap; font-weight: 700; color: #FFF; letter-spacing: -.02em; }
+.price { font-size: 28px; font-weight: 700; color: var(--accent); letter-spacing: -.01em; }
+.price-lg { font-size: 46px; font-weight: 700; color: #FFF; letter-spacing: -.02em; }
 .price-note { font-size: 14px; color: var(--muted); }
 .terms { display: flex; flex-direction: column; gap: 8px; }
 .terms li { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: var(--text-3); }
@@ -513,7 +516,6 @@ strong { font-weight: 600; color: var(--text); }
 .step--first { border-top-color: var(--accent); }
 .step .small { color: var(--text-3); }
 .step-num {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
   /* --muted-2 liegt mit 4,49:1 knapp unter der Grenze */
   font-size: 15px; font-weight: 600; letter-spacing: .1em; color: var(--muted);
 }
@@ -546,7 +548,7 @@ strong { font-weight: 600; color: var(--text); }
   font-size: 15px; color: var(--text);
 }
 .ai-row--miss { background: none; border-style: dashed; border-color: rgba(255,255,255,.16); color: var(--muted); }
-.ai-n { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; color: var(--accent); }
+.ai-n { font-weight: 600; color: var(--accent); }
 
 .faq { display: flex; flex-direction: column; }
 .faq-item {
@@ -579,11 +581,11 @@ strong { font-weight: 600; color: var(--text); }
 .field:hover { border-color: rgba(255,255,255,.2); }
 
 .consent { display: flex; align-items: flex-start; gap: 12px; }
-.consent input { width: 24px; height: 24px; margin: 2px 0 0; accent-color: var(--accent); flex-shrink: 0; }
+.consent input { width: 26px; height: 26px; margin: 2px 0 0; accent-color: var(--accent); flex-shrink: 0; }
 .consent label { font-size: 15px; line-height: 1.55; color: var(--text-2); }
 .consent a { color: var(--text-3); text-decoration: underline; }
 
-/* Honeypot: sichtbar entfernt, aber nicht per display:none allein */
+/* Honeypot - nicht per display:none allein */
 .hp {
   position: absolute !important;
   left: -9999px; top: auto;
@@ -613,7 +615,7 @@ strong { font-weight: 600; color: var(--text); }
 .breadcrumb li { display: flex; align-items: center; gap: 10px; }
 .breadcrumb li + li::before { content: "/"; color: var(--muted); }
 
-/* Wer auf halber Seite ueberzeugt ist, soll nicht hochscrollen muessen. */
+/* Kein Hochscrollen noetig */
 .mobile-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
   display: none; gap: 10px;
@@ -668,7 +670,7 @@ strong { font-weight: 600; color: var(--text); }
   .mobile-bar { display: flex; }
   body { padding-bottom: 92px; }
 
-  /* Flacher, sonst fressen sie den halben Bildschirm */
+  /* Flacher auf Mobil */
   .wave svg { height: 54px; }
   .fade-down { height: 120px; }
 
@@ -685,7 +687,7 @@ strong { font-weight: 600; color: var(--text); }
   .header-actions .btn { display: none; }
   .header-actions { gap: 14px; }
 
-  /* Auf Mobil nur eine Ebene - Bildrate. */
+  /* Mobil nur eine Ebene */
   .rays--soft { display: none; }
   .rays {
     top: -30%; left: -20%;
@@ -736,7 +738,7 @@ strong { font-weight: 600; color: var(--text); }
 @media (max-width: 600px) {
   :root { --pad-x: var(--pad-x-mobile); --sec-y: 56px; }
 
-  /* Nur die Wortmarke */
+  
   .logo-claim { display: none; }
   .logo { gap: 10px; }
   .logo-mark { width: 30px; height: 30px; }
@@ -753,6 +755,8 @@ strong { font-weight: 600; color: var(--text); }
   .h3-lg   { font-size: 21px; }
   .price-lg { font-size: 33px; }
 
+  .price-lg { font-size: 33px; }
+
   .lead, .lead-sm { font-size: 17px; }
   .body-lg { font-size: 16px; }
   .body    { font-size: 15px; }
@@ -763,7 +767,7 @@ strong { font-weight: 600; color: var(--text); }
   .card { padding: 26px; border-radius: 14px; }
   .card--pad { padding: 26px; }
 
-  /* Kleinere Kachel, sonst sieht man kaum Sterne. */
+  /* Kleinere Kachel */
   .stars { background-size: 390px 340px; }
   .stars--slow { background-size: 560px 470px; }
   .sec--flush-top { padding-top: 8px; }
@@ -787,6 +791,13 @@ strong { font-weight: 600; color: var(--text); }
 }
 
 /* 5.7 reduce: Verschiebung raus, Einblenden bleibt. */
+/* Tablet: zwei Spalten. Erst ab 701px - darunter wird die Spalte fuer die Preiszahl zu schmal. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .grid-3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .price-lg { font-size: 33px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   
   .logo-mark { animation: soft-in 300ms var(--ease-snappy) both; }
@@ -795,7 +806,7 @@ strong { font-weight: 600; color: var(--text); }
   .open, .stagger-open > * { animation-name: soft-in; animation-duration: 300ms; }
   .stagger > * { animation-range: normal; }
 
-  /* Endlosbewegung anhalten, Strahlen bleiben sichtbar stehen */
+  /* Endlosbewegung anhalten */
   .stars  { animation: none; }
   .nebula { animation: none; }
   .rays   { animation: none; opacity: .5; }
