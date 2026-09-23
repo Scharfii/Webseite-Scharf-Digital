@@ -289,3 +289,171 @@ und kostet nichts — für den Anfang reicht das meistens.
 - Die Domain im ganzen Projekt ändern, falls `scharfdigital.de` vergeben ist
 - Eine Rechnungsvorlage mit korrektem § 19-Hinweis
 - Die Analyse-Vorlage aus Punkt 7
+
+---
+
+# Anhang: Drei Anleitungen
+
+**Stand 23.09.2026.** Die drei Dinge, die vor dem Livegang noch zu erledigen sind.
+
+---
+
+## A — Auftragsverarbeitungsvertrag mit Netlify
+
+**Gute Nachricht vorweg:** Du musst nichts aushandeln und nichts unterschreiben.
+Netlifys Auftragsverarbeitungsvertrag (Data Processing Agreement, DPA) ist
+**Bestandteil der Nutzungsbedingungen**, die du bei der Anmeldung akzeptiert
+hast. Er gilt also bereits. Was fehlt, ist nur ein Nachweis für deine Unterlagen.
+
+1. **netlify.com/gdpr-ccpa/** aufrufen
+2. Dort das **Data Processing Agreement als PDF** herunterladen
+3. Speichern unter einem Namen, den du wiederfindest, z. B.
+   `Netlify-DPA_2026-09-23.pdf`
+4. Dazu das **Abrufdatum** notieren — bei einer Prüfung willst du sagen können,
+   welche Fassung galt, als du die Seite online gestellt hast
+5. Im `VERARBEITUNGSVERZEICHNIS.md` in der Tabelle unten den Status von
+   „offen" auf „liegt vor, Fassung vom …" ändern
+
+**Optional, wenn du es formeller willst:** Eine unterschriebene Ausfertigung
+kannst du bei **privacy@netlify.com** anfordern. Für ein Einzelunternehmen ist
+das nicht nötig — die einbezogene Fassung reicht.
+
+**Was du dir ansehen solltest:** Im DPA stehen die Unterauftragsverarbeiter
+(welche Dienstleister Netlify seinerseits einsetzt) und die technischen
+Maßnahmen. Zwei Seiten überfliegen genügt.
+
+---
+
+## B — anton@scharfdigital.de über iCloud+ einrichten
+
+### Vorher prüfen
+
+- **iCloud+ aktiv?** iPhone → Einstellungen → dein Name → iCloud →
+  *Speicher aktualisieren*. Der 50-GB-Tarif reicht.
+- **Zwei-Faktor-Authentifizierung aktiv?** Ohne die geht es nicht.
+- **iCloud Mail aktiviert?** Du brauchst eine bestehende `@icloud.com`-Adresse
+  als Basis. Falls nicht vorhanden: Einstellungen → iCloud → iCloud Mail
+  einschalten und Adresse anlegen.
+
+### Reihenfolge
+
+**Verbinde zuerst die Webseite mit Netlify** und lass Netlify die DNS-Verwaltung
+übernehmen. Dann trägst du die iCloud-Einträge an derselben Stelle ein und musst
+dich nicht zwischen zwei Oberflächen hin- und herbewegen.
+
+### Einrichten
+
+1. **iCloud.com** im Browser öffnen, anmelden
+2. Oben rechts auf deinen Namen → **Einstellungen**
+3. Bereich **„Benutzerdefinierte E-Mail-Domain"** → **Domain hinzufügen**
+4. **„Nur von dir verwendet"** wählen (nicht „Du und andere Personen")
+5. `scharfdigital.de` eintragen
+6. Als E-Mail-Adresse **`anton@scharfdigital.de`** anlegen
+7. Apple zeigt dir jetzt eine **Liste von DNS-Einträgen**. Fenster offen lassen.
+
+### Die DNS-Einträge eintragen
+
+Bei Netlify unter *Site configuration → Domain management → DNS records*, oder
+beim Domain-Anbieter, falls du die Nameserver dort gelassen hast.
+
+| Typ | Name/Host | Wert | Priorität |
+|---|---|---|---|
+| MX | @ | `mx01.mail.icloud.com` | 10 |
+| MX | @ | `mx02.mail.icloud.com` | 10 |
+| TXT | @ | SPF-Wert, den Apple anzeigt | — |
+| CNAME | `sig1._domainkey` | Wert von Apple (DKIM) | — |
+| TXT | @ | Bestätigungswert von Apple | — |
+
+**Trag die Werte ab, die Apple dir anzeigt** — nicht die aus dieser Tabelle
+raten. Die MX-Server stimmen immer, SPF, DKIM und der Bestätigungswert sind
+bei jedem anders.
+
+> **Achtung, falls auf der Domain schon Mail läuft:** Neue MX-Einträge ersetzen
+> die alten. Ankommende Mails gehen dann an iCloud, nicht mehr an den alten
+> Anbieter. Bei einer frisch gekauften Domain ist das egal.
+
+### Abschließen
+
+8. Zurück bei Apple auf **Überprüfen** klicken
+9. **Warten:** 15 Minuten bis 24 Stunden, bis die Einträge überall bekannt sind
+10. **Standard-Absender umstellen** auf `anton@scharfdigital.de` — sonst
+    verschickst du weiter von `@icloud.com`
+11. **Testen, beides:** Von einer fremden Adresse eine Mail an
+    `anton@scharfdigital.de` schicken, und von dort eine rausschicken.
+    Erst wenn beide Richtungen laufen, ist es fertig.
+
+---
+
+## C — IHK Erfurt anschreiben
+
+### Kontakt
+
+| | |
+|---|---|
+| **IHK Erfurt** | Arnstädter Straße 34, 99096 Erfurt |
+| **Telefon** | 0361 3484-0 |
+| **E-Mail** | info@erfurt.ihk.de |
+| **Zeiten** | Mo–Do 8:00–17:00, Fr 8:00–14:30 |
+| **Online** | ihk.de/erfurt → Service → Existenzgründung |
+
+**Anrufen ist schneller.** Eine Mail kann ein paar Tage liegen; am Telefon hast
+du in fünf Minuten einen Termin. Wenn du lieber schreibst, nimm den Text unten.
+
+### Was die IHK leistet — und was nicht
+
+Die IHK macht **Gründungsberatung**, keine Rechtsberatung im engeren Sinn. Sie
+schaut über deine Angaben, findet die offensichtlichen Lücken und beantwortet
+Fragen zu Steuerstatus und Beitragspflicht. Das kostet nichts.
+
+Eine **belastbare Prüfung** von Impressum und Datenschutzerklärung, auf die du
+dich im Streitfall berufen kannst, bekommst du nur bei einem **Anwalt für
+IT-Recht** (150–300 €). Für den Start reicht die IHK meistens.
+
+### E-Mail-Vorlage
+
+**Betreff:** Terminanfrage Gründungsberatung — Einzelunternehmen Webdesign und SEO
+
+```
+Sehr geehrte Damen und Herren,
+
+ich habe ein Gewerbe als Einzelunternehmer angemeldet und arbeite im
+Bereich Webseiten und Suchmaschinenoptimierung für Handwerksbetriebe.
+Die Anmeldung beim Finanzamt ist eingereicht, der Bescheid steht noch aus.
+
+Ich würde gern einen Termin zur Gründungsberatung vereinbaren und habe
+vier konkrete Fragen:
+
+1. Kleinunternehmerregelung: Ich plane, sie nach § 19 UStG in Anspruch
+   zu nehmen. Bei meinem Preisgefüge könnte ich im ersten Jahr an die
+   Grenze von 22.000 € kommen. Was raten Sie?
+
+2. IHK-Beitrag: Bin ich in meiner Größenordnung beitragsfrei, und
+   worauf muss ich achten, damit das so bleibt?
+
+3. Impressum: Ich stelle demnächst meine Webseite online. Können Sie
+   einmal über die Pflichtangaben nach § 5 DDG schauen?
+
+4. Datenschutzerklärung: Mein Webhoster und mein E-Mail-Anbieter sitzen
+   in den USA, beide sind unter dem EU-US Data Privacy Framework
+   zertifiziert. Reicht der Verweis darauf, oder fehlt etwas?
+
+Ich bin zeitlich flexibel und komme gern zu Ihnen.
+
+Mit freundlichen Grüßen
+Anton Scharf
+Scharf Digital
+Am Eselsgraben 14, 99094 Erfurt
+Telefon 01522 4610099
+```
+
+### Zum Termin mitnehmen
+
+- Gewerbeanmeldung
+- Die Adresse deiner Webseite (falls schon online) oder einen Ausdruck von
+  Impressum und Datenschutzerklärung
+- Deine Preisliste — für die Frage nach der Umsatzgrenze
+
+### Danach
+
+Wenn die Prüfung durch ist: Sag mir Bescheid, dann entferne ich den sichtbaren
+Entwurfshinweis von Impressum und Datenschutzerklärung.
