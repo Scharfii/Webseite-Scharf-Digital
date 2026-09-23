@@ -34,7 +34,7 @@ Ein Datenschutzbeauftragter ist nicht zu benennen (§ 38 BDSG: weniger als
 | **Datenkategorien** | Name des Betriebs, Ort, ggf. Webadresse, Telefonnummer oder E-Mail-Adresse, Inhalt der Anfrage, Zeitpunkt |
 | **Rechtsgrundlage** | Art. 6 Abs. 1 lit. b DSGVO (vorvertraglich), hilfsweise lit. f, zusätzlich lit. a durch die Checkbox |
 | **Empfänger** | Netlify, Inc. (Formularannahme und Speicherung), Apple Inc. (Zustellung und Ablage der Benachrichtigungs-E-Mail) |
-| **Drittland** | USA — Grundlage: Standardvertragsklauseln der EU-Kommission nach Art. 46 Abs. 2 lit. c DSGVO |
+| **Drittland** | USA — Netlify und Apple sind unter dem EU-US Data Privacy Framework zertifiziert (Art. 45 Abs. 3 DSGVO), ergänzend Standardvertragsklauseln (Art. 46 Abs. 2 lit. c) |
 | **Löschfrist** | Nach abschließender Bearbeitung; bei Auftrag handels- und steuerrechtliche Fristen bis zu 10 Jahre |
 | **Maßnahmen** | TLS-Verschlüsselung, Zugang nur über persönliche Konten mit Zwei-Faktor-Anmeldung, keine Weitergabe an Dritte |
 
@@ -49,7 +49,7 @@ Ein Datenschutzbeauftragter ist nicht zu benennen (§ 38 BDSG: weniger als
 | **Datenkategorien** | Gekürzte IP-Adresse, Zeitpunkt, aufgerufene Seite, Datenmenge, Statuscode, Browser und Betriebssystem, Referrer |
 | **Rechtsgrundlage** | Art. 6 Abs. 1 lit. f DSGVO — sicherer und fehlerfreier Betrieb |
 | **Empfänger** | Netlify, Inc. |
-| **Drittland** | USA — Standardvertragsklauseln |
+| **Drittland** | USA — EU-US Data Privacy Framework (Art. 45 Abs. 3 DSGVO), ergänzend Standardvertragsklauseln |
 | **Löschfrist** | Nach den Vorgaben des Hosters, üblicherweise wenige Tage |
 | **Maßnahmen** | Keine Zusammenführung mit anderen Daten, kein Tracking, keine Cookies |
 
@@ -104,6 +104,6 @@ Ein Datenschutzbeauftragter ist nicht zu benennen (§ 38 BDSG: weniger als
 
 | Dienstleister | Wofür | Vertrag nach Art. 28 |
 |---|---|---|
-| Netlify, Inc., USA | Hosting, Kontaktformular | **offen — vor dem Livegang einholen** |
-| Apple Inc., USA | Geschäftliche E-Mail über iCloud+ | zu klären |
+| Netlify, Inc., USA | Hosting, Kontaktformular | **offen — vor dem Livegang einholen.** DPF-zertifiziert, Eintrag auf dataprivacyframework.gov/list prüfen |
+| Apple Inc., USA | Geschäftliche E-Mail über iCloud+ | DPF-zertifiziert; ob ein AVV nötig ist, mit der Rechtsberatung klären |
 | Domainanbieter | Registrierung und DNS | prüfen, ob erforderlich |
