@@ -251,7 +251,13 @@ und kostet nichts — für den Anfang reicht das meistens.
    404-Seite im Design kommen.
 3. **Das Formular an dich selbst abschicken.** Es muss unter *Forms → anfrage*
    in Netlify auftauchen **und** die Benachrichtigungs-Mail muss ankommen.
-   Danach musst du auf `/danke/` landen.
+   Danach musst du auf `/danke/` landen. Dazu vier kurze Gegenproben:
+   - Ein Pflichtfeld leer lassen → der Browser meckert, es wird nichts gesendet.
+   - Auf der Dankeseite F5 drücken → es darf keine zweite Anfrage entstehen.
+   - Umlaute testen, etwa „Grüne Wärmetechnik Gößnitz" → muss in der Mail
+     richtig ankommen, nicht als `GrÃ¼ne`.
+   - Landet die Mail im Spam, ist die Sache nicht erledigt: dann fehlt der
+     SPF-Eintrag der Domain. Sag mir Bescheid, das ist ein DNS-Eintrag.
 4. Auf dem Handy öffnen: unten muss die Leiste mit „Anrufen" und
    „Analyse anfordern" stehen.
 5. Den Link an dich selbst über WhatsApp schicken — das Vorschaubild muss

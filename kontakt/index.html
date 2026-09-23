@@ -91,13 +91,14 @@
 <h2 class="h3-lg" style="font-size:25px">Analyse anfordern</h2>
 <p class="small">Vier Angaben reichen. Dauert keine Minute.</p>
 </div>
+<p class="draft-note" data-fehler role="alert" hidden></p>
 
 <form class="form" name="anfrage" method="POST" action="/danke/"
-      data-netlify="true" data-netlify-honeypot="hp_website">
+      data-netlify="true" data-netlify-honeypot="website_url">
 <input type="hidden" name="form-name" value="anfrage">
 <div class="form-field">
-<label for="betrieb">Name Ihres Betriebs</label>
-<input class="field" type="text" id="betrieb" name="betrieb" required autocomplete="organization" placeholder="z. B. Solartechnik Meyer GmbH">
+<label for="firma">Name Ihres Betriebs</label>
+<input class="field" type="text" id="firma" name="firma" required autocomplete="organization" placeholder="z. B. Solartechnik Meyer GmbH">
 </div>
 
 <div class="form-field">
@@ -118,10 +119,10 @@
        placeholder="Telefon oder E-Mail">
 </div>
 
-<p class="hp" aria-hidden="true">
-<label for="hp-website">Dieses Feld bitte frei lassen</label>
-<input type="text" id="hp-website" name="hp_website" tabindex="-1" autocomplete="off">
-</p>
+<div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+<label for="website_url">Bitte dieses Feld leer lassen</label>
+<input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" style="font-size:16px">
+</div>
 
 <div class="consent">
 <input type="checkbox" id="einwilligung" name="einwilligung" value="ja" required>
@@ -204,5 +205,6 @@
 <a class="btn btn-primary" href="/kontakt/">Analyse anfordern</a>
 </div>
 <script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/formular.js" defer></script>
 </body>
 </html>
