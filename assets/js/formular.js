@@ -30,21 +30,30 @@
     box.hidden = true;
     if (knopf) { knopf.disabled = true; knopf.textContent = 'Wird gesendet …'; }
 
-    // Netlify nimmt den POST auf jedem Pfad der Seite entgegen und erkennt das
-    // Formular am Feld form-name. Ein PHP-Skript bekommt ihn direkt.
-    var ziel = /\.php$/.test(form.getAttribute('action') || '') ? form.action : location.pathname;
+    // Netlify erkennt das Formular am Feld form-name. Dokumentiert ist der
+    // POST auf "/", manche Aufbauten brauchen den Pfad der Seite - deshalb
+    // beides nacheinander. Ein PHP-Skript bekommt ihn direkt.
+    var daten = new URLSearchParams(new FormData(form)).toString();
+    var wege = /\.php$/.test(form.getAttribute('action') || '')
+      ? [form.action]
+      : ['/', location.pathname];
 
-    fetch(ziel, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form)).toString()
-    }).then(function (antwort) {
-      if (!antwort.ok) throw new Error(String(antwort.status));
-      var f = (String(antwort.url).match(/fehler=(\d)/) || [])[1];
-      if (f) { zeigen(f === '2' ? TELEFON : PFLICHT); return; }
-      location.assign('/danke/');
-    }).catch(function () {
-      zeigen(TELEFON);
-    });
+    function senden(i) {
+      return fetch(wege[i], {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: daten
+      }).then(function (antwort) {
+        if (!antwort.ok) {
+          if (i + 1 < wege.length) return senden(i + 1);
+          throw new Error(String(antwort.status));
+        }
+        var f = (String(antwort.url).match(/fehler=(\d)/) || [])[1];
+        if (f) { zeigen(f === '2' ? TELEFON : PFLICHT); return; }
+        location.assign('/danke/');
+      });
+    }
+
+    senden(0).catch(function () { zeigen(TELEFON); });
   });
 })();
