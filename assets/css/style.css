@@ -163,7 +163,7 @@ strong { font-weight: 600; color: var(--text); }
 
 .stars {
   position: absolute;
-  inset: 0;
+  inset: -60px;
   pointer-events: none;
   background-image:
     radial-gradient(1.3px 1.3px at 60px 80px,  rgba(255,255,255,.55), transparent),
@@ -176,18 +176,16 @@ strong { font-weight: 600; color: var(--text); }
     radial-gradient(1px 1px     at 700px 460px, rgba(255,255,255,.35), transparent);
   background-size: 760px 520px;
   background-repeat: repeat;
-  animation: drift 180s linear infinite;
+  will-change: transform;
+  animation: drift 180s linear infinite alternate;
 }
 .stars--slow {
   opacity: .6;
   background-size: 1100px 780px;
   animation-duration: 300s;
-  animation-direction: reverse;
+  animation-direction: alternate-reverse;
 }
-@keyframes drift {
-  from { background-position: 0 0; }
-  to   { background-position: 760px 520px; }
-}
+@keyframes drift { to { transform: translate3d(48px, 34px, 0); } }
 
 .nebula {
   position: absolute;
