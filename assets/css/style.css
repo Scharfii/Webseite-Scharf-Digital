@@ -71,6 +71,7 @@ h1, h2, h3 { padding-bottom: .12em; }
 ul, ol { padding: 0; list-style: none; }
 p, li, dd, dt, address { text-wrap: pretty; overflow-wrap: break-word; }
 h1, h2, h3, h4 { overflow-wrap: break-word; }
+[id] { scroll-margin-top: 92px; }
 
 a { color: var(--accent); text-decoration: none; }
 
@@ -765,6 +766,7 @@ strong { font-weight: 600; color: var(--text); }
 
   .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
   .split-form > :first-child { order: 1; }
+  .split-portrait > :first-child { order: 2; }
 
   .placeholder--portrait { max-width: 340px; aspect-ratio: 4 / 5; }
 }
@@ -796,7 +798,6 @@ strong { font-weight: 600; color: var(--text); }
   .body    { font-size: 15px; }
   .small   { font-size: 14px; }
   .tiny    { font-size: 13px; }
-  .eyebrow { font-size: 12px; }
 
   .card { padding: 26px; border-radius: 14px; }
   .card--pad { padding: 26px; }
