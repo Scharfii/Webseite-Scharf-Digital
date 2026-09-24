@@ -166,15 +166,18 @@ Im Impressum steht jetzt:
   Auf der Rechnung steht stattdessen der Hinweis auf § 19 UStG.
 - Du darfst im Gegenzug keine Vorsteuer ziehen — die 19 % auf Hosting, Software
   und Technik sind für dich echte Kosten.
-- **Die Grenze liegt bei 22.000 € Umsatz im ersten Jahr.** Bei 2.500 € pro
-  Webseite bist du nach neun Webseiten dran. Reißt du sie, wirst du **ab dem
-  Folgejahr** umsatzsteuerpflichtig — dann musst du deine Preise entweder um
-  19 % anheben oder die Steuer aus dem bestehenden Preis herausrechnen.
+- **Seit 2025 gelten zwei Grenzen: 25.000 € im Vorjahr und 100.000 € im
+  laufenden Jahr.** Für dich als Neugründer zählt zunächst die 25.000 €. Bei
+  2.000 € pro Webseite bist du nach dreizehn Webseiten dran, mit laufender
+  Betreuung deutlich früher. Überschreitest du 25.000 €, wirst du **ab dem
+  Folgejahr** umsatzsteuerpflichtig. Überschreitest du im laufenden Jahr
+  100.000 €, endet die Regelung **sofort**, ab genau dem Umsatz, der die
+  Grenze reißt.
 - Für deine Kunden ist das meist egal: Handwerksbetriebe sind selbst
   vorsteuerabzugsberechtigt, ihnen ist der Bruttopreis gleich.
 
 **Das ist keine Steuerberatung.** Wenn du damit rechnest, im ersten Jahr über
-22.000 € zu kommen, sprich das in der kostenlosen Gründerberatung der IHK
+25.000 € zu kommen, sprich das in der kostenlosen Gründerberatung der IHK
 Erfurt an — ein Wechsel mitten im Geschäftsjahr ist unangenehmer als von Anfang
 an Regelbesteuerung.
 
@@ -235,7 +238,7 @@ Kleinunternehmerregelung, zum IHK-Beitrag und hätte gern, dass jemand
 einmal über Impressum und Datenschutzerklärung meiner Webseite schaut."
 
 **Was du mitbringst:** die Gewerbeanmeldung, die Adresse deiner Webseite,
-und die Frage, ob du im ersten Jahr über 22.000 € Umsatz kommst.
+und die Frage, ob du im ersten Jahr über 25.000 € Umsatz kommst.
 
 Die IHK macht keine Rechtsberatung im engeren Sinn. Für eine belastbare
 Prüfung von Impressum und Datenschutz ist ein Anwalt für IT-Recht der
@@ -431,7 +434,7 @@ vier konkrete Fragen:
 
 1. Kleinunternehmerregelung: Ich plane, sie nach § 19 UStG in Anspruch
    zu nehmen. Bei meinem Preisgefüge könnte ich im ersten Jahr an die
-   Grenze von 22.000 € kommen. Was raten Sie?
+   Grenze von 25.000 € kommen. Was raten Sie?
 
 2. IHK-Beitrag: Bin ich in meiner Größenordnung beitragsfrei, und
    worauf muss ich achten, damit das so bleibt?
