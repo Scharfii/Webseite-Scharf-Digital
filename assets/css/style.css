@@ -734,20 +734,23 @@ strong { font-weight: 600; color: var(--text); }
     animation-duration: 1200ms, 9s;
   }
 
+  /* Faehrt von oben herunter. z-index unter der Kopfzeile, damit das X
+     zum Schliessen sichtbar bleibt. */
   .nav-mobile {
     display: block;
     position: fixed;
     inset: 0;
-    z-index: 60;
+    z-index: 40;
     background: var(--bg);
     padding: 90px var(--pad-x-mobile) 40px;
     overflow-y: auto;
+    overscroll-behavior: contain;
     visibility: hidden;
-    opacity: 0;
-    transform: translateY(-8px);
-    transition: opacity 240ms var(--ease-smooth), transform 240ms var(--ease-smooth), visibility 240ms;
+    transform: translateY(-100%);
+    transition: transform 280ms var(--ease-smooth), visibility 280ms;
   }
-  .nav-mobile.is-open { visibility: visible; opacity: 1; transform: translateY(0); transition-duration: 300ms; }
+  .nav-mobile.is-open { visibility: visible; transform: translateY(0); }
+  body.nav-open .mobile-bar { display: none; }
   .nav-mobile ul { display: flex; flex-direction: column; gap: 4px; }
   .nav-mobile a {
     display: flex; align-items: center;
@@ -840,6 +843,7 @@ strong { font-weight: 600; color: var(--text); }
 
   /* Endlosbewegung anhalten */
   .btn::after { display: none; }
+  .nav-mobile, .nav-mobile.is-open { transform: none; }
   .stars  { animation: none; }
   .nebula { animation: none; }
   .rays   { animation: none; opacity: .5; }
