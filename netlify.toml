@@ -18,6 +18,22 @@
   to = "/404.html"
   status = 404
 
+# Interne Unterlagen liegen im Repository, gehoeren aber nicht auf die Webseite.
+[[redirects]]
+  from = "/LIVEGANG.md"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/VERARBEITUNGSVERZEICHNIS.md"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+
 [[headers]]
   for = "/*"
   [headers.values]
