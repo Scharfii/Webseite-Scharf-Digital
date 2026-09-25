@@ -157,7 +157,7 @@ Daraus folgen drei Dinge, zwei davon mit Frist:
 | Was | Bis wann | Kosten |
 |---|---|---|
 | Fragebogen zur steuerlichen Erfassung über ELSTER | 01.11.2026 | 0 € |
-| Anmeldung bei der Berufsgenossenschaft (VBG) | 08.10.2026 | 0 € ohne Mitarbeiter |
+| Berufsgenossenschaft (VBG) | erledigt, kam von allein | 0 € ohne Mitarbeiter |
 | IHK-Mitgliedschaft | läuft automatisch an | siehe 4.3 |
 
 #### Fragebogen zur steuerlichen Erfassung — heute mit ELSTER anfangen
@@ -179,16 +179,51 @@ schlimmsten Fall bis Dezember auf dein Geld.
 **Reihenfolge:** ELSTER-Konto heute anlegen → Code abwarten → Fragebogen
 ausfüllen → beim Kreuz *Kleinunternehmerregelung nach § 19 UStG* bleiben.
 
-#### Berufsgenossenschaft — binnen einer Woche, wird gern vergessen
+#### Berufsgenossenschaft — erledigt, ohne dein Zutun
 
-Jedes neu gegründete Unternehmen muss sich **binnen einer Woche** bei seiner
-Berufsgenossenschaft anmelden, auch als Einzelunternehmer ohne Mitarbeiter.
-Für Webdesign ist die **VBG** zuständig (vbg.de → Unternehmen anmelden).
+Das Gewerbeamt hat die Anmeldung weitergeleitet. Die **VBG** (Verwaltungs-
+Berufsgenossenschaft, Standort Erfurt) hat sich am 24.09.2026 von selbst
+gemeldet und zwei Schreiben geschickt:
 
-Ohne Mitarbeiter ist die Mitgliedschaft **beitragsfrei**. Die Anmeldung ist
-trotzdem Pflicht, und wer sie versäumt, kann rückwirkend zur Kasse gebeten
-werden. Fünf Minuten Aufwand, deshalb einfach am 01.10. miterledigen —
-spätestens bis zum 08.10.2026.
+1. **Willkommensschreiben** mit deiner Unternehmensnummer — die Nummer steht
+   im Brief, nicht hier im Repo.
+2. **Bescheid über die Zuständigkeit nach § 136 SGB VII**: Mit Wirkung vom
+   01.10.2026 gehört dein Unternehmen der VBG an.
+
+**Beiträge fallen nicht an**, solange du niemanden beschäftigst. Meldepflicht
+besteht erst, wenn du erstmals jemanden einstellst — dann innerhalb von vier
+Wochen.
+
+Gegen den Bescheid kannst du binnen eines Monats Widerspruch einlegen. Das ist
+hier nicht sinnvoll: Die VBG ist für Webdesign die richtige
+Berufsgenossenschaft. Frist einfach verstreichen lassen.
+
+**Was du machen kannst:** Das Portal „meine VBG" einrichten
+(vbg.de/registrierung), sobald die Legitimierungs-ID per Post kommt. Dann läuft
+die Behördenpost digital statt auf Papier.
+
+#### Offene Entscheidung: Freiwillige Unternehmerversicherung
+
+Als Selbstständiger bist du bei der VBG **nicht automatisch unfallversichert** —
+die Pflichtversicherung gilt für Beschäftigte, nicht für dich. Die freiwillige
+Unternehmerversicherung schließt diese Lücke.
+
+**Zahlen für 2026:** Mindestversicherungssumme 28.476 €, Beitrag darauf je nach
+Gefahrklasse etwa 85 bis 440 € im Jahr. Büroarbeit ist die niedrigste
+Gefahrklasse, du liegst also voraussichtlich am unteren Ende. Die genaue Zahl
+nennt dir die VBG am Telefon (0361 2236444).
+
+**Wofür es bei dir spricht:** Du fährst zu Kundenterminen — so steht es auf
+`/webdesign-erfurt/`. Ein Unfall auf dem Weg nach Jena oder Gotha wäre über die
+gesetzliche Unfallversicherung gedeckt, über die Krankenkasse nur die
+Heilbehandlung, nicht der Verdienstausfall.
+
+**Was dagegen spricht:** Eine private Unfallversicherung gilt rund um die Uhr,
+nicht nur bei der Arbeit. Und wer am Anfang des Berufslebens steht, ist
+statistisch mit einer Berufsunfähigkeitsversicherung besser bedient, weil die
+meisten Fälle Krankheiten sind und keine Unfälle.
+
+**Keine Versicherungsberatung.** Nimm die Frage mit in den IHK-Termin am 09.10.
 
 #### Zwei Punkte für den IHK-Termin am 09.10.
 
