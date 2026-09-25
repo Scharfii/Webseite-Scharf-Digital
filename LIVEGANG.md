@@ -1,6 +1,7 @@
 # Livegang — Schritt für Schritt
 
-**Stand:** 16.09.2026 · Hosting: Netlify · E-Mail: iCloud+ · Kleinunternehmer nach § 19 UStG
+**Stand:** 25.09.2026 · Hosting: Netlify · E-Mail: iCloud+ · Kleinunternehmer nach § 19 UStG
+**Gewerbe angemeldet am 22.09.2026, Beginn der Tätigkeit 01.10.2026.**
 
 Keine Rechts- oder Steuerberatung. Die zwei Stellen, an denen das zählt, sind unten markiert.
 
@@ -10,15 +11,14 @@ Keine Rechts- oder Steuerberatung. Die zwei Stellen, an denen das zählt, sind u
 
 | | einmalig | laufend |
 |---|---|---|
-| Gewerbeanmeldung Erfurt | 20–40 € | — |
+| Gewerbeanmeldung Erfurt | 0 € (erledigt, gebührenfrei) | — |
 | Fragebogen beim Finanzamt (ELSTER) | 0 € | — |
 | IHK-Mitgliedschaft | 0 € | in deiner Größe meist beitragsfrei, siehe 3.3 |
 | Domain `scharfdigital.de` | — | 5–15 € im Jahr |
 | Netlify Hosting | — | 0 € (kostenloses Kontingent reicht deutlich) |
 | iCloud+ für die eigene E-Mail-Adresse | — | rund 12 € im Jahr |
 
-**Rund 2 € im Monat plus einmalig die Gewerbeanmeldung.** Das ist der ganze
-Kostenblock, um online zu gehen.
+**Rund 2 € im Monat.** Das ist der ganze Kostenblock, um online zu sein.
 
 ---
 
@@ -139,20 +139,67 @@ weiterhin von `@icloud.com`.
 
 ## 4 — Rechtliches
 
-### 4.1 Gewerbeanmeldung
+### 4.1 Gewerbeanmeldung — erledigt am 22.09.2026
 
-Vor der ersten Rechnung. In Erfurt beim Bürgeramt/Gewerbeamt, **20–40 €**, das
-Formular ist eine Seite. Tätigkeit: *„Erstellung von Webseiten und
-Suchmaschinenoptimierung"*. Viele Kommunen bieten das inzwischen online an —
-auf der Seite der Stadt Erfurt nach „Gewerbeanmeldung" suchen.
+Bescheinigt nach § 15 Abs. 1 GewO, Gebühr 0,00 €. Angemeldet ist:
 
-Danach schickt dir das Finanzamt automatisch den *Fragebogen zur steuerlichen
-Erfassung*. Den füllst du kostenlos über ELSTER aus. Dort setzt du das Kreuz
-bei der Kleinunternehmerregelung.
+> Erstellung, Gestaltung und technische Umsetzung von Webseiten sowie damit
+> verbundene digitale Dienstleistungen
 
-> **Falls du noch nicht 18 bist:** Es braucht die Zustimmung der
-> Erziehungsberechtigten und eine Genehmigung des Familiengerichts. Ruf vorher
-> beim Gewerbeamt an — das klärt sich in fünf Minuten am Telefon.
+Nebenerwerb · Hauptniederlassung · Neugründung · keine Mitarbeiter.
+
+**Beginn der Tätigkeit: 01.10.2026.** Das ist das Datum, ab dem du abrechnen
+darfst. Keine Rechnung mit einem früheren Datum — Gespräche führen, Angebote
+schreiben und die Webseite bewerben darfst du vorher.
+
+Daraus folgen drei Dinge, zwei davon mit Frist:
+
+| Was | Bis wann | Kosten |
+|---|---|---|
+| Fragebogen zur steuerlichen Erfassung über ELSTER | 01.11.2026 | 0 € |
+| Anmeldung bei der Berufsgenossenschaft (VBG) | 08.10.2026 | 0 € ohne Mitarbeiter |
+| IHK-Mitgliedschaft | läuft automatisch an | siehe 4.3 |
+
+#### Fragebogen zur steuerlichen Erfassung — heute mit ELSTER anfangen
+
+Pflicht, elektronisch, **innerhalb eines Monats nach Beginn der Tätigkeit**
+(§ 138 AO) — also bis zum 01.11.2026. Das Finanzamt schickt dir keine
+Aufforderung, auf die du warten könntest; du musst von dir aus einreichen.
+
+Der Haken liegt nicht im Formular, sondern im Konto: Der Aktivierungscode für
+ELSTER kommt **per Brief und kann bis zu zwei Wochen dauern**. Danach vergehen
+noch einmal **zwei bis sechs Wochen, bis deine Steuernummer da ist**.
+
+Das ist der kritische Pfad, denn: Seit 2025 muss auch auf einer
+Kleinunternehmer-Rechnung die **Steuernummer** stehen (§ 34a UStDV). Ohne
+Steuernummer kannst du keine gültige Rechnung über 2.000 € schreiben. Wenn im
+Oktober der erste Auftrag kommt und du erst dann anfängst, wartest du im
+schlimmsten Fall bis Dezember auf dein Geld.
+
+**Reihenfolge:** ELSTER-Konto heute anlegen → Code abwarten → Fragebogen
+ausfüllen → beim Kreuz *Kleinunternehmerregelung nach § 19 UStG* bleiben.
+
+#### Berufsgenossenschaft — binnen einer Woche, wird gern vergessen
+
+Jedes neu gegründete Unternehmen muss sich **binnen einer Woche** bei seiner
+Berufsgenossenschaft anmelden, auch als Einzelunternehmer ohne Mitarbeiter.
+Für Webdesign ist die **VBG** zuständig (vbg.de → Unternehmen anmelden).
+
+Ohne Mitarbeiter ist die Mitgliedschaft **beitragsfrei**. Die Anmeldung ist
+trotzdem Pflicht, und wer sie versäumt, kann rückwirkend zur Kasse gebeten
+werden. Fünf Minuten Aufwand, deshalb einfach am 01.10. miterledigen —
+spätestens bis zum 08.10.2026.
+
+#### Zwei Punkte für den IHK-Termin am 09.10.
+
+1. **Feld 21 der Anmeldung:** Angekreuzt sind *Handel* und *Sonstiges*.
+   Webdesign ist eine Dienstleistung, *Sonstiges* allein hätte gereicht. Kein
+   Problem und formlos änderbar, aber es beeinflusst, in welche Sparte dich die
+   IHK einsortiert. Sprich es an.
+2. **Nebenerwerb und Krankenversicherung:** Solange die Selbstständigkeit
+   nebenberuflich bleibt, ändert sich an deiner Krankenversicherung in der
+   Regel nichts. Lass dir bestätigen, ab welchem Punkt das kippt — bei Stunden
+   und Einkommen gibt es Grenzen, und die kennt die IHK-Beratung.
 
 ### 4.2 Kleinunternehmer nach § 19 UStG — ist eingetragen
 
@@ -183,7 +230,10 @@ an Regelbesteuerung.
 
 ### 4.3 IHK — Pflicht, aber wahrscheinlich kostenlos
 
-Mit der Gewerbeanmeldung wirst du automatisch IHK-Mitglied. Das erschreckt
+**Beratungstermin steht: 09.10.2026.** Nimm die Gewerbeanmeldung, die Adresse
+der Webseite und die Angebotsvorlage mit.
+
+Mit der Gewerbeanmeldung bist du seit dem 22.09.2026 automatisch IHK-Mitglied. Das erschreckt
 viele Gründer, ist aber in deiner Größe in der Regel beitragsfrei: Wer nicht im
 Handelsregister steht und unter den gesetzlichen Freigrenzen bleibt, zahlt
 keinen Grundbeitrag, und in den ersten Jahren nach der Gründung gibt es
