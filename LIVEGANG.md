@@ -202,6 +202,44 @@ Berufsgenossenschaft. Frist einfach verstreichen lassen.
 (vbg.de/registrierung), sobald die Legitimierungs-ID per Post kommt. Dann läuft
 die Behördenpost digital statt auf Papier.
 
+#### Fragebogen ausfüllen — die Felder, bei denen man sich vertut
+
+| Feld | Was rein muss |
+|---|---|
+| Art der Tätigkeit | Wortlaut aus der Gewerbeanmeldung, wörtlich |
+| Einkunftsart | Gewerbebetrieb, nicht freiberuflich |
+| Beginn der Tätigkeit | 01.10.2026 |
+| Handelsregister | nein |
+| Gewinnermittlung | **Einnahmenüberschussrechnung nach § 4 Abs. 3 EStG** |
+| Wirtschaftsjahr | Kalenderjahr |
+| Voraussichtlicher Gewinn 2026 | niedrig und ehrlich — noch kein Kunde |
+| Voraussichtlicher Umsatz 2026 | unter 25.000 € |
+| Kleinunternehmerregelung | **in Anspruch nehmen** |
+| USt-IdNr | nicht beantragen |
+| SEPA-Lastschriftmandat | empfehlenswert |
+
+**Gewinnermittlung:** Einnahmenüberschussrechnung, niemals Bilanzierung. Die
+Bilanz bedeutet doppelte Buchführung und damit Steuerberaterkosten, die du in
+dieser Größe nicht brauchst.
+
+**Gewinnschätzung:** Schätzt du zu hoch, setzt das Finanzamt
+Einkommensteuer-Vorauszahlungen fest, die du jedes Quartal zahlst, bevor du das
+Geld verdient hast. Schätzt du absurd niedrig, kommt am Jahresende eine
+Nachzahlung. Ehrlich und eher vorsichtig ist richtig — du hast beim Ausfüllen
+noch keinen einzigen Auftrag.
+
+**Umsatzschätzung — hier hat sich 2025 etwas geändert:** Die Grenze von
+25.000 € gilt im Gründungsjahr **absolut**. Früher musste der Umsatz eines
+Rumpfjahres auf zwölf Monate hochgerechnet werden; diese Umrechnung ist
+entfallen. Du startest am 01.10. und hast für Oktober bis Dezember trotzdem die
+vollen 25.000 € Spielraum.
+
+**Kleinunternehmerregelung:** Kreuz setzen. Wer stattdessen freiwillig zur
+Regelbesteuerung optiert, ist **fünf Jahre daran gebunden**.
+
+**Nach dem Absenden:** Das übermittelte Formular als PDF speichern. Die
+Steuernummer kommt danach per Post.
+
 #### Offene Entscheidung: Freiwillige Unternehmerversicherung
 
 Als Selbstständiger bist du bei der VBG **nicht automatisch unfallversichert** —
