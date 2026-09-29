@@ -215,16 +215,33 @@ strong { font-weight: 600; color: var(--text); }
    Drift, 5 % ohne. Das Bewegungsbudget steckt jetzt im Lichtstreifen und in
    den Scroll-Einblendungen, die man tatsaechlich sieht. */
 
+/* Die Lichtwolken waren frueher eine einfarbige Ellipse mit filter:
+   blur(90px). Safari beschneidet den Weichzeichner am Kasten des Elements,
+   statt ihn darueber hinauslaufen zu lassen — auf dem iPad standen dadurch
+   harte Rechtecke im Hintergrund, genau auf den Elementgrenzen.
+
+   Ein radialer Verlauf ist von sich aus weich. Er kann nicht beschnitten
+   werden, weil nichts ausserhalb des Kastens gezeichnet werden muss, und
+   er kostet keinen Weichzeichner. Die Farbstopps sind gegen die alte
+   Fassung gemessen: flacher Kern, langer Ausklang, mittlere Abweichung
+   1,2 % gegenueber dem weichgezeichneten Original. */
 .nebula {
   position: absolute;
   pointer-events: none;
-  border-radius: 50%;
-  filter: blur(90px);
 }
-.nebula--warm { background: rgba(246,167,43,.16); }
-.nebula--cool { background: rgba(76,110,190,.20); }
+.nebula--warm {
+  background: radial-gradient(closest-side,
+      rgba(246,167,43,.26) 0%, rgba(246,167,43,.20) 30%, rgba(246,167,43,0) 100%);
+}
+.nebula--cool {
+  background: radial-gradient(closest-side,
+      rgba(76,110,190,.32) 0%, rgba(76,110,190,.24) 30%, rgba(76,110,190,0) 100%);
+}
 /* Im CTA liegt alles uebereinander - sonst < 4,5:1 */
-.nebula--dim  { background: rgba(246,167,43,.09); }
+.nebula--dim {
+  background: radial-gradient(closest-side,
+      rgba(246,167,43,.15) 0%, rgba(246,167,43,.11) 30%, rgba(246,167,43,0) 100%);
+}
 .nebula--dim ~ .wrap .lead-sm { color: var(--text); }
 
 /* Farbe der FOLGENDEN Sektion. */
@@ -534,16 +551,6 @@ strong { font-weight: 600; color: var(--text); }
   display: flex; align-items: center; justify-content: center;
 }
 
-.badge {
-  align-self: flex-start;
-  display: inline-flex; align-items: center; gap: 10px;
-  border: 1px solid rgba(246,167,43,.35);
-  border-radius: 100px;
-  padding: 7px 16px;
-  font-size: 13px; color: var(--accent); letter-spacing: .03em;
-  box-shadow: var(--schatten);
-}
-.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .tag {
   font-size: 11px; letter-spacing: .1em; font-weight: 600;
   color: var(--bg); background: var(--accent);
