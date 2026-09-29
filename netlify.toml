@@ -51,6 +51,14 @@
     # style-Attribute im HTML, Skripte brauchen es nicht.
     Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'"
 
+# Das Woerterbuch des Sprachumschalters ist eine Hilfsdatei, kein Inhalt.
+# Es soll nicht als eigenes Suchergebnis auftauchen.
+[[headers]]
+  for = "/assets/i18n/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+    Cache-Control = "public, max-age=86400"
+
 [[headers]]
   for = "/assets/fonts/*"
   [headers.values]
