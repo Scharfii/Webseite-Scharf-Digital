@@ -393,6 +393,59 @@ strong { font-weight: 600; color: var(--text); }
 
 .header-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 
+/* Sprachumschalter. Die englische Fassung ist eine Vorfuehrung, keine
+   eigene Adresse — deshalb ein Klappmenue statt eines Links. Beschriftet
+   ist jede Sprache mit ihrem eigenen Namen, damit man sie auch findet,
+   wenn man die aktuelle nicht versteht. */
+.sprache { position: relative; flex-shrink: 0; }
+.sprache-knopf {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 40px; padding: 7px 12px;
+  font: inherit; font-size: 14px; font-weight: 500;
+  color: var(--text-2); cursor: pointer;
+  background: var(--glas), rgba(255,255,255,.04);
+  border: 1px solid var(--line-strong); border-radius: 100px;
+  box-shadow: var(--rim);
+  transition: color 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy);
+}
+.sprache-pfeil { transition: transform 200ms var(--ease-snappy); }
+.sprache-knopf[aria-expanded="true"] .sprache-pfeil { transform: rotate(180deg); }
+.sprache-liste {
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 60;
+  min-width: 152px; margin: 0; padding: 6px; list-style: none;
+  background: var(--surface); border: 1px solid var(--line-strong);
+  border-radius: 12px; box-shadow: var(--schatten);
+}
+.sprache-liste[hidden] { display: none; }
+.sprache-liste button {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; min-height: 40px; padding: 8px 10px;
+  font: inherit; font-size: 15px; text-align: left; color: var(--text-2);
+  background: none; border: 0; border-radius: 8px; cursor: pointer;
+}
+.sprache-liste button::after { content: ""; width: 16px; }
+.sprache-liste button[aria-checked="true"] { color: var(--accent); }
+.sprache-liste button[aria-checked="true"]::after {
+  content: "✓"; font-size: 15px; line-height: 1;
+}
+@media (hover: hover) {
+  .sprache-knopf:hover { color: #FFF; border-color: var(--accent-border); }
+  .sprache-liste button:hover { background: rgba(246,167,43,.1); color: #FFF; }
+}
+@media (max-width: 900px) {
+  /* Schmalerer Kopf: Knopf enger fassen. */
+  .sprache-knopf { padding: 7px 10px; gap: 5px; }
+  .sprache-name { font-size: 13px; }
+}
+.sprache-kurz { display: none; font-weight: 600; letter-spacing: .04em; }
+/* Unter 400px ist im Kopf kein Platz fuer "Deutsch". Statt das Wort
+   ersatzlos zu streichen — ein Globus allein sagt nicht, dass es um
+   Sprache geht — steht dort das Kuerzel DE bzw. EN. */
+@media (max-width: 400px) {
+  .sprache-name, .sprache-pfeil { display: none; }
+  .sprache-kurz { display: inline; }
+}
+
 .header-phone { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; font-weight: 500; color: var(--text); }
 
 .header-phone-mobile, .burger { display: none; }
@@ -888,3 +941,18 @@ strong { font-weight: 600; color: var(--text); }
   .card:hover, .link-arrow:hover, .faq-item:hover, .step:hover { transform: none; translate: none; }
   .card:hover .icon-box { transform: none; }
 }
+
+/* Sehr schmale Handys: Das Sprachkuerzel im Kopf braucht Platz, den holt
+   sich der Schriftzug. Steht hier unten, weil der 600px-Block weiter oben
+   dieselben Regeln setzt und sonst gewinnt. */
+@media (max-width: 400px) {
+  .logo { gap: 8px; }
+  .logo-mark { width: 26px; height: 26px; }
+  .logo-name { font-size: 13px; letter-spacing: .04em; }
+  .header-inner { gap: 8px; }
+  .header-actions { gap: 10px; }
+}
+/* Unter 340px reicht der Platz auch dafuer nicht mehr. Dann bleibt das
+   Zeichen stehen, der Schriftzug geht — besser als ein Schriftzug, der
+   unter dem Sprachknopf verschwindet. */
+@media (max-width: 340px) { .logo-name { display: none; } }

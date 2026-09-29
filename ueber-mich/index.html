@@ -32,6 +32,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://scharfdigital.de/"},{"@type":"ListItem","position":2,"name":"Über mich","item":"https://scharfdigital.de/ueber-mich/"}]}
 </script>
+<noscript><style>.sprache{display:none}</style></noscript>
 </head>
 <body>
 <svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="i-phone" viewBox="0 0 24 24" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol><symbol id="i-check" viewBox="0 0 24 24" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></symbol><symbol id="i-user" viewBox="0 0 24 24" stroke-width="1.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol></svg>
@@ -45,6 +46,17 @@
 </a>
 <nav class="nav-desktop" aria-label="Hauptnavigation"><a href="/webseiten/">Webseiten</a><a href="/seo/">SEO</a><a href="/geo/">GEO</a><a href="/preise/">Preise</a><a href="/ueber-mich/" aria-current="page">Über mich</a></nav>
 <div class="header-actions">
+<div class="sprache" data-keine-uebersetzung>
+<button class="sprache-knopf" type="button" data-sprache-knopf aria-expanded="false" aria-haspopup="true" aria-label="Sprache wählen / Choose language">
+<svg class="ic ic--i" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18" stroke-linecap="round"/></svg>
+<span class="sprache-name" data-sprache-name>Deutsch</span><span class="sprache-kurz" data-sprache-kurz aria-hidden="true">DE</span>
+<svg class="ic sprache-pfeil" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><polyline points="6 9 12 15 18 9" stroke-linecap="round"/></svg>
+</button>
+<ul class="sprache-liste" data-sprache-liste role="menu" hidden>
+<li role="none"><button type="button" role="menuitemradio" data-sprache-wahl="de" aria-checked="true">Deutsch</button></li>
+<li role="none"><button type="button" role="menuitemradio" data-sprache-wahl="en" aria-checked="false">English</button></li>
+</ul>
+</div>
 <a class="header-phone" href="tel:+4915224610099"><svg class="ic ic--i" width="17" height="17" aria-hidden="true"><use href="#i-phone"/></svg>01522 4610099</a>
 <a class="header-phone-mobile" href="tel:+4915224610099" aria-label="Anrufen: 01522 4610099"><svg class="ic ic--i" width="20" height="20" aria-hidden="true"><use href="#i-phone"/></svg></a>
 <a class="btn btn-primary btn-sm" href="/kontakt/">Sichtbarkeit prüfen</a>
@@ -174,5 +186,6 @@ Anton Scharf
 <a class="btn btn-primary" href="/kontakt/">Analyse anfordern</a>
 </div>
 <script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/sprache.js" defer></script>
 </body>
 </html>
