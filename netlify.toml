@@ -39,6 +39,16 @@
   to = "/404.html"
   status = 404
 
+[[redirects]]
+  from = "/SICHTBARKEITS-ANALYSE.html"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/ANALYSE-ABLAUF.md"
+  to = "/404.html"
+  status = 404
+
 [[headers]]
   for = "/*"
   [headers.values]
