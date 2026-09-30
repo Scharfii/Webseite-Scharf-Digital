@@ -109,8 +109,16 @@ hat den Kunden verloren.
 
 ## 6. Rausschicken
 
-PDF drucken aus `SICHTBARKEITS-ANALYSE.html`, benennen nach dem Muster
-`Sichtbarkeit-<Betrieb>-<JJJJ-MM-TT>.pdf`.
+**Am Rechner ausfuellen:** `SICHTBARKEITS-ANALYSE.html` im Browser oeffnen
+(Doppelklick auf die Datei), Felder ausfuellen, dann **Strg+P → Als PDF
+speichern**. Die Eingaben bleiben im Browser gespeichert, bis du auf
+„Leeren" drueckst — wenn dich jemand mittendrin anruft, ist nichts weg.
+Gespeichert wird nur auf deinem Rechner, nichts geht an einen Server.
+
+**Mit dem Stift ausfuellen:** Blatt leer ausdrucken, ausfuellen,
+einscannen. Die Felder haben Schreiblinien.
+
+Benennen nach dem Muster `Sichtbarkeit-<Betrieb>-<JJJJ-MM-TT>.pdf`.
 
 Dazu eine kurze Mail — kein Verkaufstext:
 

@@ -1,96 +1,126 @@
 <!doctype html><html lang="de"><head><meta charset="utf-8"><title>Sichtbarkeits-Analyse</title>
 <style>
-@page { size: A4; margin: 14mm 16mm 12mm; }
+@page { size: A4; margin: 12mm 15mm 10mm; }
 body { font-family: Calibri, "Helvetica Neue", Arial, sans-serif; font-size: 9.5pt; line-height: 1.32; color: #111; margin: 0; }
 .marke { font-weight: 700; font-size: 11pt; letter-spacing: .04em; }
 .marke span { font-weight: 400; color: #666; letter-spacing: 0; }
 .zeile { font-size: 7.5pt; color: #666; padding-bottom: 4pt; border-bottom: 1.2pt solid #C98314; margin-bottom: 10pt; }
 h1 { font-size: 17pt; margin: 0 0 2pt; }
 .meta { color: #666; font-size: 9pt; margin: 0 0 10pt; }
-h2 { font-size: 10.5pt; margin: 10pt 0 3pt; page-break-after: avoid; }
-p { margin: 0 0 4.5pt; }
+h2 { font-size: 10.5pt; margin: 7pt 0 2pt; page-break-after: avoid; }
+p { margin: 0 0 3.5pt; }
 .feld { margin: 0 0 5pt; }
-ul { margin: 0 0 6pt; padding-left: 0; list-style: none; }
-li { margin: 0 0 2.5pt; padding-left: 14pt; text-indent: -14pt; }
+ul { margin: 0 0 4pt; padding-left: 0; list-style: none; }
+li { margin: 0 0 2pt; padding-left: 14pt; text-indent: -14pt; }
 li::before { content: "–   "; }
-table { width: 100%; border-collapse: collapse; margin: 4pt 0 6pt; }
-th, td { border: 0.5pt solid #bbb; padding: 3pt 6pt; font-size: 9pt; vertical-align: top; }
+table { width: 100%; border-collapse: collapse; margin: 3pt 0 4pt; }
+th, td { border: 0.5pt solid #bbb; padding: 2pt 5pt; font-size: 9pt; vertical-align: top; line-height: 1.25; }
 th { background: #f4f4f4; text-align: left; }
 .klein { font-size: 8.5pt; color: #666; }
-.kasten { border: 0.8pt solid #C98314; background: #FFF9F0; padding: 6pt 8pt; margin: 6pt 0 8pt; }
+.kasten { border: 0.8pt solid #C98314; background: #FFF9F0; padding: 4pt 7pt; margin: 4pt 0 5pt; }
+.notiz { border: 0.5pt solid #bbb; padding: 3pt 5pt; }
+.notiz textarea { width: 100%; border: 0; line-height: 1.55;
+  background: repeating-linear-gradient(transparent, transparent calc(1.55em - 0.4pt), #ddd calc(1.55em - 0.4pt), #ddd 1.55em); }
 .umbruch { page-break-before: always; }
 .fuss { margin-top: 12pt; padding-top: 5pt; border-top: 0.5pt solid #ccc; font-size: 8pt; color: #666; }
 .linie { border-bottom: 0.6pt solid #999; display: inline-block; min-width: 40pt; }
+
+/* --- Ausfuellbar am Rechner ------------------------------------------
+   Die Felder sehen wie Linien aus und drucken sich wie Linien. Wer die
+   Vorlage lieber mit dem Stift ausfuellt, druckt sie einfach leer. */
+input[type="text"], textarea {
+  font: inherit; color: inherit; background: transparent;
+  border: 0; border-bottom: 0.6pt solid #999; outline: none;
+  padding: 0 2pt; width: 80pt; box-sizing: border-box; line-height: 1.2;
+}
+input[type="text"].voll { width: 100%; }
+input[type="text"].kurz { width: 42pt; }
+input[type="text"].kopffeld { width: 130pt; }
+input[type="text"].kopffeld.kurz { width: 72pt; }
+input[type="text"]:focus, textarea:focus { background: #FFF9F0; }
+::placeholder { color: #999; opacity: 1; font-style: italic; }
+textarea { resize: none; overflow: hidden; border-bottom: 0; line-height: 1.5; }
+.zeilen { background: repeating-linear-gradient(transparent, transparent calc(1.5em - 0.6pt), #999 calc(1.5em - 0.6pt), #999 1.5em); }
+td input[type="text"] { border-bottom: 0.4pt solid #ddd; }
+input[type="checkbox"] { width: 9pt; height: 9pt; vertical-align: -1pt; margin: 0 2pt 0 0; accent-color: #C98314; }
+label { white-space: nowrap; margin-right: 6pt; }
+.leiste { position: fixed; top: 8pt; right: 8pt; background: #fff; border: 0.8pt solid #C98314;
+          padding: 5pt 8pt; font-size: 8.5pt; border-radius: 3pt; z-index: 9; }
+.leiste button { font: inherit; margin-left: 6pt; cursor: pointer; }
+@media print { .leiste { display: none; } input[type="text"]:focus, textarea:focus { background: transparent; } }
 </style></head><body>
+<div class="leiste">Eingaben bleiben im Browser gespeichert
+<button type="button" onclick="leeren()">Leeren</button>
+<button type="button" onclick="window.print()">Als PDF drucken</button></div>
 
 <div class="marke">SCHARF DIGITAL <span>· Damit Handwerk gefunden wird.</span></div>
 <div class="zeile">Anton Scharf · Am Eselsgraben 14 · 99094 Erfurt · 01522 4610099 · anton@scharfdigital.de · scharfdigital.de</div>
 
 <h1>Sichtbarkeits-Analyse</h1>
-<p class="meta">Betrieb: ____________________________ &nbsp;&nbsp; Gewerk: ______________ &nbsp;&nbsp; Ort: ______________ &nbsp;&nbsp; Datum: __________</p>
+<p class="meta">Betrieb: <input type="text" class="kopffeld" id="betrieb"> &nbsp; Gewerk: <input type="text" class="kopffeld kurz"> &nbsp; Ort: <input type="text" class="kopffeld kurz"> &nbsp; Datum: <input type="text" class="kopffeld kurz"></p>
 
-<p>Ich habe nachgesehen, wie Ihr Betrieb gefunden wird — bei Google, in Google Maps und in den
-Antworten von ChatGPT und Perplexity. Unten steht, was dabei herausgekommen ist. Wortwörtlich,
-ohne Beschönigung, und mit den Suchbegriffen, die Ihre Kunden tatsächlich eintippen.</p>
+<p>Ich habe nachgesehen, wie Ihr Betrieb bei Google, in Google Maps und in den Antworten von
+ChatGPT und Perplexity gefunden wird. Unten steht das Ergebnis — ohne Beschönigung.</p>
 
 <h2>1. Google-Suche</h2>
 <table>
 <tr><th style="width:34%">Gesucht nach</th><th style="width:20%">Ihre Position</th><th>Wer steht oben</th></tr>
-<tr><td>„______________ ______________"<br><span class="klein">Gewerk + Ort</span></td><td></td><td></td></tr>
-<tr><td>„______________ in der Nähe"</td><td></td><td></td></tr>
-<tr><td>„______________ ______________"<br><span class="klein">Leistung + Ort</span></td><td></td><td></td></tr>
+<tr><td><input type="text" class="voll" placeholder="Gewerk + Ort, z. B. Dachdecker Erfurt"></td><td><input type="text" class="voll"></td><td><input type="text" class="voll"></td></tr>
+<tr><td><input type="text" class="voll" placeholder="Gewerk + „in der Nähe“"></td><td><input type="text" class="voll"></td><td><input type="text" class="voll"></td></tr>
+<tr><td><input type="text" class="voll" placeholder="Leistung + Ort, z. B. Dachsanierung Erfurt"></td><td><input type="text" class="voll"></td><td><input type="text" class="voll"></td></tr>
 </table>
-<p class="klein">Position 1–10 heißt: auf Seite eins. Alles darüber hinaus sieht praktisch niemand — rund drei Viertel aller Klicks gehen an die ersten drei Ergebnisse.</p>
+<p class="klein">Rund drei Viertel aller Klicks gehen an die ersten drei Ergebnisse.</p>
 
 <h2>2. Google Maps</h2>
 <table>
 <tr><th style="width:50%">Geprüft</th><th>Befund</th></tr>
-<tr><td>Google-Eintrag vorhanden</td><td>☐ ja &nbsp; ☐ nein &nbsp; ☐ vorhanden, aber ungepflegt</td></tr>
-<tr><td>Position im Kartenblock (die drei oben)</td><td></td></tr>
-<tr><td>Bewertungen</td><td>Anzahl: _______ &nbsp; Schnitt: _______</td></tr>
-<tr><td>Öffnungszeiten, Telefon, Leistungen gepflegt</td><td>☐ ja &nbsp; ☐ teilweise &nbsp; ☐ nein</td></tr>
-<tr><td>Fotos vorhanden</td><td>☐ ja &nbsp; ☐ nein</td></tr>
+<tr><td>Google-Eintrag vorhanden</td><td><label><input type="checkbox">ja</label> &nbsp; <label><input type="checkbox">nein</label> &nbsp; <label><input type="checkbox">vorhanden, aber ungepflegt</label></td></tr>
+<tr><td>Position im Kartenblock (die drei oben)</td><td><input type="text" class="voll"></td></tr>
+<tr><td>Bewertungen</td><td>Anzahl: <input type="text" class="kurz"> &nbsp; Schnitt: <input type="text" class="kurz"></td></tr>
+<tr><td>Öffnungszeiten, Telefon, Leistungen gepflegt</td><td><label><input type="checkbox">ja</label> <label><input type="checkbox">teilweise</label> <label><input type="checkbox">nein</label> &nbsp;·&nbsp; Fotos: <label><input type="checkbox">ja</label> <label><input type="checkbox">nein</label></td></tr>
 </table>
 
 <h2>3. KI-Antworten</h2>
 <table>
 <tr><th style="width:40%">Gefragt</th><th style="width:18%">Sie genannt?</th><th>Genannt wurden stattdessen</th></tr>
-<tr><td>ChatGPT: „Welchen ____________ kannst du mir in ____________ empfehlen?"</td><td>☐ ja ☐ nein</td><td></td></tr>
-<tr><td>Perplexity: dieselbe Frage</td><td>☐ ja ☐ nein</td><td></td></tr>
-<tr><td>ChatGPT: „Wer macht ____________ in ____________?"</td><td>☐ ja ☐ nein</td><td></td></tr>
+<tr><td>ChatGPT: <input type="text" class="voll" placeholder="Welchen … kannst du mir in … empfehlen?"></td><td><label><input type="checkbox">ja <label><input type="checkbox">nein</label></td><td><input type="text" class="voll"></td></tr>
+<tr><td>Perplexity: dieselbe Frage</td><td><label><input type="checkbox">ja <label><input type="checkbox">nein</label></td><td><input type="text" class="voll"></td></tr>
+<tr><td>ChatGPT: <input type="text" class="voll" placeholder="Wer macht … in …?"></td><td><label><input type="checkbox">ja <label><input type="checkbox">nein</label></td><td><input type="text" class="voll"></td></tr>
 </table>
-<p class="klein">KI-Antworten schwanken. Wer Ihnen hier exakte Platzierungen verspricht, hat sie sich ausgedacht. Was zählt, ist das Muster: Werden Sie genannt oder nicht — und wer stattdessen.</p>
+<p class="klein">KI-Antworten schwanken. Wer hier exakte Platzierungen verspricht, hat sie sich ausgedacht.</p>
 
 <h2>4. Ihre Webseite</h2>
 <table>
 <tr><th style="width:50%">Geprüft</th><th>Befund</th></tr>
-<tr><td>Webseite vorhanden</td><td>☐ ja: ______________________ &nbsp; ☐ nein</td></tr>
-<tr><td>Ladezeit auf dem Handy</td><td>_______ Sekunden &nbsp; <span class="klein">(über 3 s springt jeder Zweite ab)</span></td></tr>
-<tr><td>Auf dem Handy bedienbar</td><td>☐ ja &nbsp; ☐ mit Mühe &nbsp; ☐ nein</td></tr>
-<tr><td>Telefonnummer antippbar</td><td>☐ ja &nbsp; ☐ nein</td></tr>
-<tr><td>Für KI lesbar <span class="klein">(Text im Quelltext, Crawler nicht gesperrt)</span></td><td>☐ ja &nbsp; ☐ nein &nbsp; ☐ teilweise</td></tr>
-<tr><td>Impressum und Datenschutz vollständig</td><td>☐ ja &nbsp; ☐ nein</td></tr>
+<tr><td>Webseite vorhanden</td><td><label><input type="checkbox">ja:</label> <input type="text" style="width:190pt"> <label><input type="checkbox">nein</label></td></tr>
+<tr><td>Ladezeit auf dem Handy</td><td><input type="text" class="kurz"> Sekunden &nbsp; <span class="klein">(über 3 s springt jeder Zweite ab)</span></td></tr>
+<tr><td>Auf dem Handy bedienbar</td><td><label><input type="checkbox">ja</label> <label><input type="checkbox">mit Mühe</label> <label><input type="checkbox">nein</label> &nbsp;·&nbsp; antippbar: <label><input type="checkbox">ja</label> <label><input type="checkbox">nein</label></td></tr>
+<tr><td>Für KI lesbar <span class="klein">(Text im Quelltext, Crawler nicht gesperrt)</span></td><td><label><input type="checkbox">ja</label> &nbsp; <label><input type="checkbox">nein</label> &nbsp; <label><input type="checkbox">teilweise</label></td></tr>
+<tr><td>Impressum und Datenschutz vollständig</td><td><label><input type="checkbox">ja</label> &nbsp; <label><input type="checkbox">nein</label></td></tr>
 </table>
+
+<h2>Notizen</h2>
+<div class="notiz"><textarea rows="6" placeholder="Was mir sonst noch aufgefallen ist"></textarea></div>
 
 <div class="umbruch"></div>
 <div class="marke">SCHARF DIGITAL <span>· Damit Handwerk gefunden wird.</span></div>
-<div class="zeile">Sichtbarkeits-Analyse · ____________________________ · Seite 2</div>
+<div class="zeile">Sichtbarkeits-Analyse · <input type="text"> · Seite 2</div>
 
 <h2>5. Die drei wichtigsten Punkte</h2>
 <div class="kasten">
-<p><strong>1. ______________________________________________________________</strong></p>
-<p>___________________________________________________________________________</p>
-<p>___________________________________________________________________________</p>
+<p><strong>1. <input type="text" class="voll"></strong></p>
+<p><input type="text" class="voll"></p>
+<p><input type="text" class="voll"></p>
 </div>
 <div class="kasten">
-<p><strong>2. ______________________________________________________________</strong></p>
-<p>___________________________________________________________________________</p>
-<p>___________________________________________________________________________</p>
+<p><strong>2. <input type="text" class="voll"></strong></p>
+<p><input type="text" class="voll"></p>
+<p><input type="text" class="voll"></p>
 </div>
 <div class="kasten">
-<p><strong>3. ______________________________________________________________</strong></p>
-<p>___________________________________________________________________________</p>
-<p>___________________________________________________________________________</p>
+<p><strong>3. <input type="text" class="voll"></strong></p>
+<p><input type="text" class="voll"></p>
+<p><input type="text" class="voll"></p>
 </div>
 
 <h2>6. Was Sie sofort selbst tun können — ohne mich, ohne Kosten</h2>
@@ -105,9 +135,9 @@ ohne Beschönigung, und mit den Suchbegriffen, die Ihre Kunden tatsächlich eint
 <h2>7. Was ich machen würde</h2>
 <table>
 <tr><th style="width:56%">Vorschlag</th><th style="width:24%">Aufwand</th><th>Preis</th></tr>
-<tr><td>☐ ____________________________________________</td><td></td><td></td></tr>
-<tr><td>☐ ____________________________________________</td><td></td><td></td></tr>
-<tr><td>☐ ____________________________________________</td><td></td><td></td></tr>
+<tr><td><label><input type="checkbox"><input type="text"></td><td><input type="text" class="voll"></td><td><input type="text" class="voll"></td></tr>
+<tr><td><label><input type="checkbox"><input type="text"></td><td><input type="text" class="voll"></td><td><input type="text" class="voll"></td></tr>
+<tr><td><label><input type="checkbox"><input type="text"></td><td><input type="text" class="voll"></td><td><input type="text" class="voll"></td></tr>
 </table>
 <p class="klein">Webseite ab 2.000 € einmalig, fertig in ein bis zwei Wochen. Betreuung für Google und KI-Suchen: drei Monate für 600 € im Monat oder sechs Monate für 500 € im Monat. Ich bin Kleinunternehmer nach § 19 UStG — auf die genannten Preise kommt keine Umsatzsteuer hinzu, es sind Endpreise.</p>
 
@@ -123,8 +153,34 @@ Fünfzehn Minuten reichen, um die drei Punkte oben durchzugehen. Wenn Sie danach
 sich für Sie nicht, ist das auch eine Antwort — und die Analyse behalten Sie trotzdem.</p>
 
 <div class="fuss">
-Erstellt am ____________ von Anton Scharf · Scharf Digital · Am Eselsgraben 14 · 99094 Erfurt · 01522 4610099 · anton@scharfdigital.de<br>
+Erstellt am <input type="text"> von Anton Scharf · Scharf Digital · Am Eselsgraben 14 · 99094 Erfurt · 01522 4610099 · anton@scharfdigital.de<br>
 Die Angaben beruhen auf einer Prüfung am oben genannten Tag. Such- und KI-Ergebnisse ändern sich laufend; eine Momentaufnahme ist keine Garantie für künftige Platzierungen.
 </div>
 
+<script>
+/* Speichert jede Eingabe im Browser. Kein Server, keine Uebertragung —
+   die Daten des Kunden bleiben auf diesem Rechner. */
+(function () {
+  var SCHLUESSEL = 'scharf-analyse';
+  var felder = document.querySelectorAll('input, textarea');
+  try {
+    var alt = JSON.parse(localStorage.getItem(SCHLUESSEL) || '{}');
+    felder.forEach(function (f, i) {
+      if (alt[i] === undefined) return;
+      if (f.type === 'checkbox') f.checked = alt[i]; else f.value = alt[i];
+    });
+  } catch (e) {}
+  var sichern = function () {
+    var d = {};
+    felder.forEach(function (f, i) { d[i] = f.type === 'checkbox' ? f.checked : f.value; });
+    try { localStorage.setItem(SCHLUESSEL, JSON.stringify(d)); } catch (e) {}
+  };
+  felder.forEach(function (f) { f.addEventListener('input', sichern); f.addEventListener('change', sichern); });
+  window.leeren = function () {
+    if (!confirm('Alle Eingaben loeschen?')) return;
+    felder.forEach(function (f) { if (f.type === 'checkbox') f.checked = false; else f.value = ''; });
+    try { localStorage.removeItem(SCHLUESSEL); } catch (e) {}
+  };
+})();
+</script>
 </body></html>
